@@ -10,7 +10,12 @@
 </head>
 
 <body class="bg-primary">
-    @yield('content')
+
+    <main class="relative overflow-y-hidden overflow-x-hidden">
+        <img src="{{ asset('assets/Ellipse 1.svg') }}" class=" absolute bottom-0 left-96" alt="">
+        <img src="{{ asset('assets/Ellipse 2.svg') }}" class=" absolute top-0 right-96" alt="">
+        @yield('content')
+    </main>
 
     <script src="./node_modules/preline/dist/preline.js"></script>
 </body>
