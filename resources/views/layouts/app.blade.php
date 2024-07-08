@@ -9,8 +9,10 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="bg-primary">
     @yield('content')
+
+    <script src="./node_modules/preline/dist/preline.js"></script>
 </body>
 
 </html>
