@@ -11,9 +11,9 @@
 
 <body class="bg-primary">
 
-    <main class="relative overflow-y-hidden overflow-x-hidden">
-        <img src="{{ asset('assets/Ellipse 1.svg') }}" class=" absolute bottom-0 left-96" alt="">
-        <img src="{{ asset('assets/Ellipse 2.svg') }}" class=" absolute top-0 right-96" alt="">
+    <main class="relative overflow-x-hidden overflow-y-hidden">
+        {{-- <img src="{{ asset('assets/Ellipse 1.svg') }}" class="absolute bottom-0  left-96" alt=""> --}}
+        {{-- <img src="{{ asset('assets/Ellipse 2.svg') }}" class="absolute top-0  right-96" alt=""> --}}
         @yield('content')
     </main>
 
