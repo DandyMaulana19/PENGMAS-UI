@@ -65,7 +65,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                {{-- <tr>
                     <td class="text-center">1</td>
                     <td class="text-start">Penelitian 1</td>
                     <td class="text-start">Peneliti 1</td>
@@ -77,8 +77,25 @@
                     <td class="flex items-center justify-center p-2">
                         <button class="px-4 py-2 text-white bg-blue-500 rounded-lg ">Detail</button>
                     </td>
-                </tr>
-
+                </tr> --}}
+                {{-- foreach here --}}
+                @foreach ($dataDummyTable as $item)
+                    <tr>
+                        <td class="text-center">{{ $loop->iteration }}</td>
+                        <td class="text-start">{{ $item['nip'] }}</td>
+                        <td class="text-start">{{ $item['penulis'] }}</td>
+                        <td class="text-start">{{ $item['judulpenelitian'] }}</td>
+                        <td class="text-start">{{ $item['kontributor'] }}</td>
+                        <td class="text-start">{{ $item['prodi'] }}</td>
+                        <td class="text-start">{{ $item['tanggalupload'] }}</td>
+                        <td class="text-start">
+                            {{ $item['tanggalpembaruan'] }}
+                        </td>
+                        <td class="flex items-center justify-center p-2">
+                            <button class="px-4 py-2 text-white bg-blue-500 rounded-lg ">Detail</button>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
     </div>
 @endsection
