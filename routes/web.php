@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('pages.login');
 });
+Route::get('/pengajuan', function () {
+    return view('pages.pengajuan');
+});
 
 // lists penelitian
 Route::get('/permintaan', [PermintaanController::class, 'index']);
