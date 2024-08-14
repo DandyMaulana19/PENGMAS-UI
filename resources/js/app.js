@@ -1,1 +1,4 @@
-import './bootstrap';
+import "./bootstrap";
+import "preline";
+
+window.HSStaticMethods.autoInit();

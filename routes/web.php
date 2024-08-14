@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermintaanController;
+use App\Http\Controllers\PindahMasukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,7 @@ Route::get('/pengajuan', function () {
 
 // lists penelitian
 Route::get('/permintaan', [PermintaanController::class, 'index']);
-Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Route Warga
+Route::get('/warga/dashboard', [DashboardController::class, 'index']);
+Route::get('/warga/pindah-masuk', [PindahMasukController::class, 'index']);

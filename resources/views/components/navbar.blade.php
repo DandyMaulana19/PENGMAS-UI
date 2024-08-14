@@ -3,9 +3,10 @@
         <div class="flex items-center justify-between">
             <a class="flex-none text-xl font-semibold focus:outline-none focus:opacity-80" href="#"
                 aria-label="Brand">
-                Brand
+                <img src="{{ asset('/assets/Logo Desa.svg') }}" alt="" width="100px">
             </a>
-            <div class="sm:hidden">
+
+            <div class="">
                 <button type="button"
                     class="hs-collapse-toggle relative size-7 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                     id="hs-navbar-example-collapse" aria-expanded="false" aria-controls="hs-navbar-example"
@@ -28,7 +29,7 @@
             </div>
         </div>
         <div id="hs-navbar-example"
-            class="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
+            class="hs-collapse overflow-hidden transition-all duration-300 basis-full grow hidden"
             aria-labelledby="hs-navbar-example-collapse">
             <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
                 <a class="font-medium text-blue-500 focus:outline-none" href="#" aria-current="page">Landing</a>
