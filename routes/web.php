@@ -22,8 +22,26 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('pages.login');
 });
-Route::get('/pengajuan', function () {
-    return view('pages.pengajuan');
+Route::get('/tambahData', function () {
+    return view('pages.tambahData');
+});
+Route::get('/pengajuan-pekerjaan', function () {
+    return view('pages.pengajuanPekerjaan');
+});
+Route::get('/pengajuan-permohonan', function () {
+    return view('pages.pengajuanPermohonan');
+});
+Route::get('/pengajuan-kk', function () {
+    return view('pages.pengajuanKK');
+});
+Route::get('/detail-pekerjaan', function () {
+    return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan');
+});
+Route::get('/detail-pindah-keluar', function () {
+    return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar');
+});
+Route::get('/detail-pindah-masuk', function () {
+    return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk');
 });
 
 // lists penelitian
