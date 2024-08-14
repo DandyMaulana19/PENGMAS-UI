@@ -9,6 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 
+@include('components.navbar')
+
 <body class="bg-primary">
 
     <main class="relative overflow-x-hidden overflow-y-hidden">

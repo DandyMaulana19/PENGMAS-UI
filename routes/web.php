@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermintaanController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,4 @@ Route::get('/login', function () {
 
 // lists penelitian
 Route::get('/permintaan', [PermintaanController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
