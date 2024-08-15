@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.template')
 @section('title', 'Login')
 
 @section('content')
-    <div class="container flex min-h-screen justify-center items-center">
+    <div class="container flex min-h-screen justify-center items-center py-8">
         <div
             class="flex flex-col w-11/12 md:w-4/12 items-center text-center bg-[#F9F9F9] border border-gray-200 shadow-md rounded-xl px-10 pt-2 pb-10">
             <img src="{{ asset('assets/Logo Desa.svg') }}" width="200" class="mb-2" alt="">
@@ -28,8 +28,11 @@
             </div>
             <button type="button"
                 class="w-8/12 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-main text-white hover:bg-[#6a2120] disabled:opacity-50 disabled:pointer-events-none">
-                Masuk
+                Daftar
             </button>
+
+            <span class="text-sm text-center mt-6">Sudah punya akun ? <a href="{{ url('/login') }}"
+                    class="text-[#9B1010]">Masuk.</a></span>
             {{-- </form> --}}
         </div>
     </div>
