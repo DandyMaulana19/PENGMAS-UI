@@ -11,8 +11,13 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('adminkelurahans', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('kelurahan_id');
+            $table->primary(['user_id', 'kelurahan_id']);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('kelurahan_id')->references('id')->on('kelurahans')->onDelete('cascade');
         });
     }
 

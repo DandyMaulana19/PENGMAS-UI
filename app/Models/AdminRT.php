@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdminRT extends Model
 {
     use HasFactory;
-    protected $table = 'adminrt';
+    protected $table = 'adminrts';
     public $incrementing = false;
 }

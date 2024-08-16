@@ -9,6 +9,6 @@ class DataDiriDataKK extends Model
 {
     use HasFactory;
 
-    protected $table = 'datadiri_datakk';
+    protected $table = 'datadiri_datakks';
     public $timestamps = false;
 }

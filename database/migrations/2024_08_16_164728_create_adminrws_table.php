@@ -11,8 +11,13 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('adminrws', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('user_id');
+            $table->uuid('rw_id');
+            $table->primary(['user_id', 'rw_id']);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('rw_id')->references('id')->on('rws')->onDelete('cascade');
         });
     }
 
