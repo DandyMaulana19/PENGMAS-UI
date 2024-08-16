@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Pindah Masuk')
+@section('title', 'Pindah Keluar')
 
 @section('content')
     <div class="container py-12">
         <div class="w-full p-6 bg-white rounded-xl shadow-md">
-            <h1 class="font-bold text-2xl mb-6">Pengajuan Permohonan Pindah Masuk</h1>
+            <h1 class="font-bold text-2xl mb-6">Pengajuan Permohonan Pindah Keluar</h1>
             <hr class="w-full border border-[#9B1010] mb-6">
             <div class="max-w-full border border-[#9B1010] rounded-md mb-6">
                 <!-- SearchBox -->
@@ -44,12 +44,6 @@
                 <!-- End SearchBox -->
             </div>
 
-            <div class="mb-3 text-end">
-                <a href="{{ url('/warga/form-tambah-data') }}"
-                    class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white shadow-sm hover:bg-[#722423] focus:outline-none disabled:opacity-50 disabled:pointer-events-none ">Tambah
-                    Data</a>
-            </div>
-
             <div class="flex flex-col">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
@@ -80,6 +74,9 @@
                                         <th scope="col"
                                             class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">
                                             Pendidikan</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
@@ -91,9 +88,10 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-xs text-black">14 Agustus 2002</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-xs text-black">Islam</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-xs text-black">SMA</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-white"><a
+                                                href="{{ url('/warga/form-pindah-keluar') }}"
+                                                class="px-3 py-2 bg-[#9B1010] rounded ">Ajukan</a></td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
                         </div>

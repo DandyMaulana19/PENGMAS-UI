@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Login')
+@section('title', 'Register')
 
 @section('content')
     <div class="container flex min-h-screen justify-center items-center py-8">
@@ -9,18 +9,14 @@
             <h1 class="font-bold text-2xl">Selamat Datang !</h1>
             {{-- <form action="" method="POST"> --}}
             <div class="mt-6 mb-10 w-full text-start">
-                <label for="input-label" class="block text-sm font-medium mb-2 text-black">Nama</label>
-                <input type="text" id="input-label"
-                    class=" mb-4 py-3 px-4 block w-full bg-[#f2f2f2] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
-                    placeholder="Masukkan Username">
                 <label for="input-label" class="block text-sm font-medium mb-2 text-black">Username</label>
                 <input type="text" id="input-label"
                     class=" mb-4 py-3 px-4 block w-full bg-[#f2f2f2] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
                     placeholder="Masukkan Username">
                 <label for="input-label" class="block text-sm font-medium mb-2 text-black">Email</label>
-                <input type="text" id="input-label"
+                <input type="email" id="input-label"
                     class=" mb-4 py-3 px-4 block w-full bg-[#f2f2f2] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
-                    placeholder="Masukkan Username">
+                    placeholder="Masukkan Email">
                 <label for="input-label" class="block text-sm font-medium mb-2 text-black">Password</label>
                 <input type="password" id="input-label"
                     class="py-3 px-4 block w-full bg-[#f2f2f2] border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "

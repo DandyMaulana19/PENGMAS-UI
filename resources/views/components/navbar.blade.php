@@ -1,8 +1,8 @@
 <header class="px-6 shadow-md relative flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3">
     <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
         <div class="flex items-center justify-between">
-            <a class="flex-none text-xl font-semibold focus:outline-none focus:opacity-80" href="#"
-                aria-label="Brand">
+            <a class="flex-none text-xl font-semibold focus:outline-none focus:opacity-80"
+                href="{{ url('/warga/dashboard') }}" aria-label="Brand">
                 <img src="{{ asset('/assets/Logo Desa.svg') }}" alt="" width="100px">
             </a>
 

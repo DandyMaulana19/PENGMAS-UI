@@ -22,9 +22,9 @@
                         </span>
                     </div>
                     <div class="mt-1">
-                        <span class="block text-xs font-normal text-blue-500">
+                        <a href="{{ url('/warga/detail-pindah-masuk') }}" class="block text-xs font-normal text-blue-500">
                             detail
-                        </span>
+                        </a>
                     </div>
                 </li>
 
@@ -120,10 +120,10 @@
                                     </div>
                                     <div class="flex justify-center items-center gap-x-2 py-5 px-6">
                                         <a href="{{ url('/warga/pindah-masuk') }}" type="button"
-                                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white shadow-sm hover:bg-[#722423] focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none ">
+                                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white hover:bg-[#722423] focus:outline-none disabled:opacity-50 disabled:pointer-events-none ">
                                             Numpang KK
                                         </a>
-                                        <a href="" type="button"
+                                        <a href="{{ url('/warga/form-kk-baru') }}" type="button"
                                             class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white hover:bg-[#722423] focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                                             Buat KK Baru
                                         </a>
@@ -141,7 +141,8 @@
                             penduduk untuk secara resmi mengajukan permohonan untuk pindah dari desa Panjunan ke lokasi
                             baru..</p>
                         <div class="text-end">
-                            <a href="" class="text-md font-semibold text-[#9B1010] text-end">Buat Pengajuan</a>
+                            <a href="{{ url('/warga/pindah-keluar') }}"
+                                class="text-md font-semibold text-[#9B1010] text-end">Buat Pengajuan</a>
                         </div>
                     </div>
                 </div>
@@ -152,7 +153,8 @@
                         <p class="mb-2">Pengajuan Ubah Status Pekerjaan adalah proses administratif yang memungkinkan
                             penduduk untuk mengajukan perubahan status pekerjaan mereka secara resmi.</p>
                         <div class="text-end">
-                            <a href="" class="text-md font-semibold text-[#9B1010] text-end">Buat Pengajuan</a>
+                            <a href="{{ url('/warga/ubah-pekerjaan') }}"
+                                class="text-md font-semibold text-[#9B1010] text-end">Buat Pengajuan</a>
                         </div>
                     </div>
                 </div>

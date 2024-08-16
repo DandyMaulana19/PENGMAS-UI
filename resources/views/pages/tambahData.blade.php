@@ -169,10 +169,12 @@
                 </div>
 
                 <div class="mt-8 flex justify-end">
-                    <button type="button"
-                        class="px-4 py-2 mr-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition duration-200">Cancel</button>
-                    <button type="submit"
-                        class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-200">Submit</button>
+                    <a href="{{ url('/warga/pindah-masuk') }}"
+                        class="px-4 py-2 mr-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition duration-200">Batal</a>
+                    {{-- <button type="submit"
+                        class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-200">Submit</button> --}}
+                    <a href="{{ url('/warga/dashboard') }}"
+                        class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-200">Submit</a>
                 </div>
             </form>
         </div>
