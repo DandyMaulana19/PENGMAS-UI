@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermintaanController;
 use App\Http\Controllers\PindahKeluarController;
 use App\Http\Controllers\PindahMasukController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UbahKerjaController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('pages.login');
 });
-Route::get('/register', function () {
-    return view('pages.register');
-});
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
+
 // Route penelitian
 Route::get('/permintaan', [PermintaanController::class, 'index']);
 
