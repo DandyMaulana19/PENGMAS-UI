@@ -57,19 +57,11 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Pendidikan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan Pendidikan">
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Jenis Kelamin</label>
+                    <label for="" class="w-full md:w-1/4">Status Pekerjaan</label>
                     <select id="" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg">
                         <option value="">Pilih Status Pekerjaan</option>
                         <option value="Belum Kerja">Belum Bekerja</option>
-                        <option value="Mahasiswa">Mahasiswa</option>
                         <option value="Sudah Bekerja">Sudah Bekerja</option>
-                        <option value="Lainnya">Lainnya</option>
                     </select>
                 </div>
 
