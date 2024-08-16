@@ -6,6 +6,7 @@ use App\Http\Controllers\PindahKeluarController;
 use App\Http\Controllers\PindahMasukController;
 use App\Http\Controllers\UbahKerjaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('pages.login');
-});
+// Route::get('/login', function () {
+//     return view('pages.login');
+// });
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/register', function () {
     return view('pages.register');
 });
