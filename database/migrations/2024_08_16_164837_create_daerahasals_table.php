@@ -4,13 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('daerahtujuan', function (Blueprint $table) {
+        Schema::create('daerahasals', function (Blueprint $table) {
             $table->uuid('dataDiri_id');
             $table->string('alamat', 255);
             $table->string('namaProvinsi', 255);
@@ -21,9 +22,8 @@ return new class extends Migration {
             $table->string('namaRt', 255);
             $table->timestamps();
 
-            $table->foreign('dataDiri_id')->references('id')->on('datadiri')->onDelete('cascade');
+            $table->foreign('dataDiri_id')->references('id')->on('datadiris')->onDelete('cascade');
         });
-
     }
 
     /**
@@ -31,6 +31,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('daerahtujuan');
+        Schema::dropIfExists('daerahasals');
     }
 };

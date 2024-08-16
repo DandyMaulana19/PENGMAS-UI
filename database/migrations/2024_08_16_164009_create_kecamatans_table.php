@@ -4,22 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('datakk', function (Blueprint $table) {
+        Schema::create('kecamatans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('alamat', 255);
-            $table->string('no_kk', 255);
-            $table->uuid('rt_id');
+            $table->string('namaKecamatan', 255);
+            $table->uuid('id_kelurahan');
             $table->timestamps();
 
-            $table->foreign('rt_id')->references('id')->on('rt');
+            $table->foreign('id_kelurahan')->references('id')->on('kelurahans');
         });
-
     }
 
     /**
@@ -27,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('datakk');
+        Schema::dropIfExists('kecamatans');
     }
 };

@@ -10,7 +10,7 @@ class StatusPengajuan extends Model
     use HasFactory;
     protected $primaryKey = 'id';
 
-    public function dataDiris()
+    public function dataDiri()
     {
         return $this->hasMany(DataDiri::class, 'id_status_pengajuan');
     }

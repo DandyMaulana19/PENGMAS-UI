@@ -9,6 +9,8 @@ class DataDiri extends Model
 {
     use HasFactory;
 
+    protected $table = 'datadiris';
+
     protected $primaryKey = 'id';
 
     public function statusPekerjaan()

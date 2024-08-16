@@ -4,13 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('datadiri', function (Blueprint $table) {
+        Schema::create('datadiris', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nik', 255);
             $table->string('namaLengkap', 255);
@@ -26,11 +27,10 @@ return new class extends Migration {
             $table->uuid('id_status_users');
             $table->timestamps();
 
-            $table->foreign('id_status_pekerjaan')->references('id')->on('statuspekerjaan')->onDelete('cascade');
-            $table->foreign('id_status_pengajuan')->references('id')->on('statuspengajuan')->onDelete('cascade');
-            $table->foreign('id_status_users')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_status_pekerjaan')->references('id')->on('statuspekerjaans');
+            $table->foreign('id_status_pengajuan')->references('id')->on('statuspengajuans');
+            $table->foreign('id_status_users')->references('id')->on('users');
         });
-
     }
 
     /**
@@ -38,6 +38,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('datadiri');
+        Schema::dropIfExists('datadiris');
     }
 };

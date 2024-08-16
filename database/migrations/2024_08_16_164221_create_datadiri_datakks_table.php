@@ -4,20 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('datadiri_datakk', function (Blueprint $table) {
+        Schema::create('datadiri_datakks', function (Blueprint $table) {
             $table->uuid('dataDiri_id');
             $table->uuid('dataKk_id');
             $table->primary(['dataDiri_id', 'dataKk_id']);
-            $table->foreign('dataDiri_id')->references('id')->on('datadiri')->onDelete('cascade');
-            $table->foreign('dataKk_id')->references('id')->on('datakk')->onDelete('cascade');
+            $table->foreign('dataDiri_id')->references('id')->on('datadiris')->onDelete('cascade');
+            $table->foreign('dataKk_id')->references('id')->on('datakks')->onDelete('cascade');
         });
-
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('datadiri_datakk');
+        Schema::dropIfExists('datadiri_datakks');
     }
 };
