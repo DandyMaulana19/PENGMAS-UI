@@ -21,6 +21,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8',
         ], [
             'email.unique' => 'Email telah dipakai.',
+            'password.min' => 'Password minimal 8 karakter.',
         ]);
 
         User::create([

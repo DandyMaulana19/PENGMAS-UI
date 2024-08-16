@@ -7,6 +7,7 @@ use App\Http\Controllers\PindahMasukController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UbahKerjaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('pages.login');
-});
 Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
+Route::post('/register', [RegisterController::class, 'register']);
 
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/register', function () {
+    return view('pages.register');
+});
 // Route penelitian
 Route::get('/permintaan', [PermintaanController::class, 'index']);
 
