@@ -12,8 +12,13 @@ return new class extends Migration {
     {
         Schema::create('rts', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('nama', 255);
+            $table->uuid('rw_id');
             $table->timestamps();
+
+            $table->foreign('rw_id')->references('id')->on('rws')->onDelete('cascade');
         });
+
     }
 
     /**

@@ -26,9 +26,9 @@ return new class extends Migration {
             $table->uuid('id_status_users');
             $table->timestamps();
 
-            $table->foreign('id_status_pekerjaan')->references('id')->on('statuspekerjaans');
-            $table->foreign('id_status_pengajuan')->references('id')->on('statuspengajuans');
-            $table->foreign('id_status_users')->references('id')->on('users');
+            $table->foreign('id_status_pekerjaan')->references('id')->on('statuspekerjaans')->onDelete('cascade');
+            $table->foreign('id_status_pengajuan')->references('id')->on('statuspengajuans')->onDelete('cascade');
+            $table->foreign('id_status_users')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

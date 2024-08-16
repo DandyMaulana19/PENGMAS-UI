@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdminRW extends Model
 {
     use HasFactory;
-    protected $table = 'adminrw';
+    protected $table = 'adminrws';
     public $timestamps = false;
 }

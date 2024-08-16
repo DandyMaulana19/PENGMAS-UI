@@ -11,8 +11,13 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('datadiriberkass', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('dataDiri_id');
+            $table->uuid('berkas_id');
+            $table->primary(['dataDiri_id', 'berkas_id']);
             $table->timestamps();
+
+            $table->foreign('dataDiri_id')->references('id')->on('datadiris')->onDelete('cascade');
+            $table->foreign('berkas_id')->references('id')->on('berkass')->onDelete('cascade');
         });
     }
 

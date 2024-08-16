@@ -12,8 +12,14 @@ return new class extends Migration {
     {
         Schema::create('datakks', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('alamat', 255);
+            $table->string('no_kk', 255);
+            $table->uuid('rt_id');
             $table->timestamps();
+
+            $table->foreign('rt_id')->references('id')->on('rts')->onDelete('cascade');
         });
+
     }
 
     /**
