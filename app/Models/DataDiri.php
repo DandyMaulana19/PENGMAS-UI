@@ -11,9 +11,8 @@ class DataDiri extends Model
 
     protected $table = 'datadiris';
     public $incrementing = false;
-
-
     protected $primaryKey = 'id';
+    protected $keyType = 'string';
 
     protected $fillable = [
         'nik',

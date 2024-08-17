@@ -59,6 +59,8 @@ Route::prefix('warga')->group(function () {
     Route::get('/form-kk-baru', function () {
         return view('pages.pengajuanKK');
     });
+
+    Route::get('/form-pekerjaan/{id}', [UbahKerjaController::class, 'show']);
     Route::get('/form-pekerjaan', function () {
         return view('pages.pengajuanPekerjaan');
     });
