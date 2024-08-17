@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class DataKK extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id';
+
+    public function rt()
+    {
+        return $this->belongsTo(RT::class, 'rt_id');
+    }
 }
