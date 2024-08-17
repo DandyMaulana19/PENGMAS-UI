@@ -10,6 +10,8 @@ class DataDiri extends Model
     use HasFactory;
 
     protected $table = 'datadiris';
+    public $incrementing = false;
+
 
     protected $primaryKey = 'id';
 

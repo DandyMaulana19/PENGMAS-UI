@@ -18,55 +18,50 @@
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">No. KK</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan No. KK" value="{{ $data-> }}">
+                            placeholder="Masukkan No. KK" name="no_kk" value="{{ $data->no_kk }}">
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">NIK</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan NIK">
+                            placeholder="Masukkan NIK" name="nik" value="{{ $data->nik }}">
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Nama Lengkap</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Nama Lengkap">
+                            placeholder="Masukkan Nama Lengkap" name="namaLengkap" value="{{ $data->namaLengkap }}">
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Jenis Kelamin</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Jenis Kelamin">
+                            placeholder="Masukkan Jenis Kelamin" name="jenisKelamin" value="{{ $data->jenisKelamin }}">
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Tempat Lahir</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Tempat Lahir">
+                            placeholder="Masukkan Tempat Lahir" name="tempatLahir" value="{{ $data->tempatLahir }}">
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Tanggal Lahir</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Tanggal Lahir (YYYY-MM-DD)">
+                            placeholder="Masukkan Tanggal Lahir (YYYY-MM-DD)" name="tanggalLahir"
+                            value="{{ $data->tanggalLahir }}">
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Agama</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Agama">
+                            placeholder="Masukkan Agama" name="agama" value="{{ $data->agama }}">
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Pendidikan</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Pendidikan">
-                    </div>
-
-                    <div class="flex flex-col items-center mb-4 md:flex-row">
-                        <label for="" class="w-full md:w-1/4">Pendidikan</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Pendidikan">
+                            placeholder="Masukkan Pendidikan" name="pendidikan" value="{{ $data->pendidikan }}">
                     </div>
                 @endforeach
 
@@ -75,43 +70,43 @@
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="" class="w-full md:w-1/4">Alamat</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                        placeholder="Masukkan Alamat">
+                        placeholder="Masukkan Alamat" name="Alamat">
                 </div>
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="" class="w-full md:w-1/4">RT</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                        placeholder="Masukkan RT">
+                        placeholder="Masukkan RT" name="namaRt">
                 </div>
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="" class="w-full md:w-1/4">RW</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                        placeholder="Masukkan RW">
+                        placeholder="Masukkan RW" name="namaRw">
                 </div>
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="" class="w-full md:w-1/4">Desa/Kelurahan</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                        placeholder="Masukkan Desa/Kelurahan">
+                        placeholder="Masukkan Desa/Kelurahan" name="namaKelurahan">
                 </div>
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="" class="w-full md:w-1/4">Kecamatan</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                        placeholder="Masukkan Kecamatan">
+                        placeholder="Masukkan Kecamatan" name="namaKecamatan">
                 </div>
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="" class="w-full md:w-1/4">Kabupaten</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                        placeholder="Masukkan Kabupaten">
+                        placeholder="Masukkan Kabupaten" name="namaKabupaten">
                 </div>
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="" class="w-full md:w-1/4">Provinsi</label>
                     <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                        placeholder="Masukkan Provinsi">
+                        placeholder="Masukkan Provinsi" name="namaProvinsi">
                 </div>
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">

@@ -12,7 +12,6 @@ class DataDiriDataKK extends Model
     protected $table = 'datadiri_datakks';
     public $timestamps = false;
     public $incrementing = false;
-    // protected $primaryKey = 'dataDiri_id, dataKk_id';
     protected $guarded = 'dataDiri_id, dataKk_id';
 
 

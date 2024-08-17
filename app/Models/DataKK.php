@@ -10,6 +10,8 @@ class DataKK extends Model
     use HasFactory;
     protected $table = 'datakks';
     protected $primaryKey = 'id';
+    public $incrementing = false;
+
 
     public function rt()
     {
