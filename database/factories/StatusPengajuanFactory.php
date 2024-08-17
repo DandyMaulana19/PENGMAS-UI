@@ -18,8 +18,8 @@ class StatusPengajuanFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => (string) Str::uuid(),
-            'nama_pengajuan' => $this->faker->word,
+            'id' => fake()->uuid(),
+            'nama_status' => fake()->sentence(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

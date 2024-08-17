@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +17,8 @@ class StatusPekerjaanFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => (string) Str::uuid(),
-            'nama_pekerjaan' => $this->faker->word,
+            'id' => fake()->uuid(),
+            'nama_status' => fake()->sentence(),
             'created_at' => now(),
             'updated_at' => now(),
         ];
