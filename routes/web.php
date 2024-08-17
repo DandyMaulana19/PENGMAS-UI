@@ -52,9 +52,7 @@ Route::prefix('warga')->group(function () {
     Route::get('/detail-ubah-pekerjaan', function () {
         return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan');
     });
-    Route::get('/form-tambah-data', function () {
-        return view('pages.tambahData');
-    });
+    Route::get('/form-tambah-data', [PindahMasukController::class, 'tambahData']);
     Route::get('/form-pindah-keluar', [PindahKeluarController::class, 'form']);
     Route::get('/form-kk-baru', function () {
         return view('pages.pengajuanKK');

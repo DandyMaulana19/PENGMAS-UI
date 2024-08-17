@@ -18,50 +18,53 @@
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">No. KK</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan No. KK" name="no_kk" value="{{ $data->no_kk }}">
+                            placeholder="Masukkan No. KK" name="no_kk" value="{{ $data->no_kk }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">NIK</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan NIK" name="nik" value="{{ $data->nik }}">
+                            placeholder="Masukkan NIK" name="nik" value="{{ $data->nik }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Nama Lengkap</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Nama Lengkap" name="namaLengkap" value="{{ $data->namaLengkap }}">
+                            placeholder="Masukkan Nama Lengkap" name="namaLengkap" value="{{ $data->namaLengkap }}"
+                            readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Jenis Kelamin</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Jenis Kelamin" name="jenisKelamin" value="{{ $data->jenisKelamin }}">
+                            placeholder="Masukkan Jenis Kelamin" name="jenisKelamin" value="{{ $data->jenisKelamin }}"
+                            readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Tempat Lahir</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Tempat Lahir" name="tempatLahir" value="{{ $data->tempatLahir }}">
+                            placeholder="Masukkan Tempat Lahir" name="tempatLahir" value="{{ $data->tempatLahir }}"
+                            readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Tanggal Lahir</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
                             placeholder="Masukkan Tanggal Lahir (YYYY-MM-DD)" name="tanggalLahir"
-                            value="{{ $data->tanggalLahir }}">
+                            value="{{ $data->tanggalLahir }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Agama</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Agama" name="agama" value="{{ $data->agama }}">
+                            placeholder="Masukkan Agama" name="agama" value="{{ $data->agama }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Pendidikan</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Pendidikan" name="pendidikan" value="{{ $data->pendidikan }}">
+                            placeholder="Masukkan Pendidikan" name="pendidikan" value="{{ $data->pendidikan }}" readonly>
                     </div>
                 @endforeach
 

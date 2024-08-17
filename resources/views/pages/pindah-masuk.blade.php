@@ -83,16 +83,26 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-black">1</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-black">Hendrik Hermawan</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-black">Laki-laki</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-black">Surabaya</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-black">14 Agustus 2002</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-black">Islam</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-xs text-black">SMA</td>
-                                    </tr>
 
+                                    @foreach ($datadiri as $data)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                                {{ $loop->iteration }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                                {{ $data->namaLengkap }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                                {{ $data->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan' }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                                {{ $data->tempatLahir }}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                                {{ Carbon\Carbon::parse($data->tanggalLahir)->translatedFormat('d F Y') }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $data->agama }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                                {{ $data->pendidikan }}</td>
+                                        </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>

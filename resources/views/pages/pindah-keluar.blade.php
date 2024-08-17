@@ -91,7 +91,8 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
                                                 {{ $item->tempatLahir }}</td>
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
-                                                {{ $item->tanggalLahir->format('d F Y') }}</td>
+                                                {{ Carbon\Carbon::parse($item->tanggalLahir)->translatedFormat('d F Y') }}
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $item->agama }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-xs text-black">

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\DaerahTujuan;
 use App\Models\DataDiri;
 use App\Models\DataDiriDataKK;
 use App\Models\DataKK;
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
         RT::factory()->count(1)->create();
         DataKK::factory()->count(1)->create();
         DataDiriDataKK::factory()->count(1)->create();
+        DaerahTujuan::factory()->count(1)->create();
 
         User::factory()->create([
             'name' => 'Test User',

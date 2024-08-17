@@ -120,53 +120,55 @@
 
                 <h3 class="text-2xl font-semibold mb-4 my-6">Data Daerah Tujuan</h3>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Alamat</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan Alamat">
-                </div>
+                @foreach ($datadiri as $data)
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">Alamat</label>
+                        <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            placeholder="Masukkan Alamat" value="{{ $data->alamat }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">RT</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan RT">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">RT</label>
+                        <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            placeholder="Masukkan RT" value="{{ $data->namaRt }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">RW</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan RW">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">RW</label>
+                        <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            placeholder="Masukkan RW" value="{{ $data->namaRw }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Desa/Kelurahan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan Desa/Kelurahan">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">Desa/Kelurahan</label>
+                        <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            placeholder="Masukkan Desa/Kelurahan" value="{{ $data->namaKelurahan }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Kecamatan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan Kecamatan">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">Kecamatan</label>
+                        <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            placeholder="Masukkan Kecamatan" value="{{ $data->namaKecamatan }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Kabupaten</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan Kabupaten">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">Kabupaten</label>
+                        <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            placeholder="Masukkan Kabupaten" value="{{ $data->namaKabupaten }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Provinsi</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        placeholder="Masukkan Provinsi">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">Provinsi</label>
+                        <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            placeholder="Masukkan Provinsi" value="{{ $data->namaProvinsi }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="" class="w-full md:w-1/4">Lampiran</label>
-                    <input type="file" name="" id=""
-                        class="block w-full md:w-3/4 border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="" class="w-full md:w-1/4">Lampiran</label>
+                        <input type="file" name="" id=""
+                            class="block w-full md:w-3/4 border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
+                    </div>
+                @endforeach
 
                 <div class="mt-8 flex justify-end">
                     <a href="{{ url('/warga/pindah-masuk') }}"

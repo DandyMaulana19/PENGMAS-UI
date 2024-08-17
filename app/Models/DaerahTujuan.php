@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DaerahTujuan extends Model
 {
+    protected $table = 'daerahtujuans';
     use HasFactory;
     protected $primaryKey = 'dataDiri_id';
+    public $incrementing = false;
 
     public function dataDiri()
     {
