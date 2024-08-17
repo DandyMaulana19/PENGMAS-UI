@@ -2,22 +2,19 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\StatusPengajuan;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StatusPengajuan>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StatusUser>
  */
-class StatusPengajuanFactory extends Factory
+class StatusUserFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = StatusPengajuan::class;
-
     public function definition(): array
     {
         return [

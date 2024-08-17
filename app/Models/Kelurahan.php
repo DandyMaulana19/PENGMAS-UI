@@ -9,4 +9,5 @@ class Kelurahan extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
+    public $incrementing = false;
 }

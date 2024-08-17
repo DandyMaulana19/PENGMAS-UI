@@ -13,6 +13,25 @@ class DataDiri extends Model
 
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'nik',
+        'namaLengkap',
+        'jenisKelamin',
+        'tempatLahir',
+        'tanggalLahir',
+        'agama',
+        'pendidikan',
+        'namaPekerjaan',
+        'alamatPekerjaan',
+        'id_status_pekerjaan',
+        'id_status_pengajuan',
+        'id_status_users'
+    ];
+
+    protected $casts = [
+        'tanggalLahir' => 'datetime',
+    ];
+
     public function statusPekerjaan()
     {
         return $this->belongsTo(StatusPekerjaan::class, 'id_status_pekerjaan');

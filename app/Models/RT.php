@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class RT extends Model
 {
     use HasFactory;
+    protected $table = 'rts';
     protected $primaryKey = 'id';
+    public $incrementing = false;
+
 
     public function rw()
     {

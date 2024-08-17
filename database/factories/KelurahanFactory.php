@@ -2,27 +2,27 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
+use App\Models\Kecamatan;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\StatusPengajuan;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StatusPengajuan>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Kelurahan>
  */
-class StatusPengajuanFactory extends Factory
+class KelurahanFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = StatusPengajuan::class;
-
     public function definition(): array
     {
         return [
             'id' => (string) Str::uuid(),
-            'nama_status' => $this->faker->word,
+            'namaKelurahan' => $this->faker->word,
+            'namaKabupaten' => $this->faker->word,
+            'namaProvinsi' => $this->faker->word,
             'created_at' => now(),
             'updated_at' => now(),
         ];

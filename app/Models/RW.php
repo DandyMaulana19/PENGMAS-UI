@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class RW extends Model
 {
     use HasFactory;
+
+    protected $table = 'rws';
     protected $primaryKey = 'id';
+    public $incrementing = false;
+
 
     public function kecamatan()
     {

@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\StatusPekerjaan;
+use App\Models\StatusPengajuan;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,6 +20,10 @@ class DataDiriFactory extends Factory
      */
     public function definition(): array
     {
+
+        // $statusPekerjaanId = StatusPekerjaan::inRandomOrder()->first()->id;
+        // $statusPengajuanId = StatusPengajuan::inRandomOrder()->first()->id;
+
         return [
             'id' => Str::uuid(),
             'nik' => $this->faker->unique()->numerify('#################'),
@@ -28,9 +35,9 @@ class DataDiriFactory extends Factory
             'pendidikan' => $this->faker->randomElement(['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3']),
             'namaPekerjaan' => $this->faker->jobTitle(),
             'alamatPekerjaan' => $this->faker->address(),
-            'id_status_pekerjaan' => Str::uuid(),
-            'id_status_pengajuan' => Str::uuid(),
-            'id_status_users' => Str::uuid(),
+            'id_status_pekerjaan' => StatusPekerjaan::factory(),
+            'id_status_pengajuan' => StatusPengajuan::factory(),
+            'id_status_users' => User::factory(),
         ];
     }
 }

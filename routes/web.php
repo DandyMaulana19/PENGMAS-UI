@@ -55,11 +55,9 @@ Route::prefix('warga')->group(function () {
     Route::get('/form-tambah-data', function () {
         return view('pages.tambahData');
     });
+    Route::get('/form-pindah-keluar', [PindahKeluarController::class, 'form']);
     Route::get('/form-kk-baru', function () {
         return view('pages.pengajuanKK');
-    });
-    Route::get('/form-pindah-keluar', function () {
-        return view('pages.pengajuanPermohonan');
     });
     Route::get('/form-pekerjaan', function () {
         return view('pages.pengajuanPekerjaan');
