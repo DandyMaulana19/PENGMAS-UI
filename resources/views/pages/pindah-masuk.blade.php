@@ -3,9 +3,10 @@
 @section('title', 'Pindah Masuk')
 
 @section('content')
-    <div class="container py-12">
-        <div class="w-full p-6 bg-white rounded-xl shadow-md">
-            <h1 class="font-bold text-2xl mb-6">Pengajuan Permohonan Pindah Masuk</h1>
+    {{-- <div class="container py-12"> --}}
+        <div class=" max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between  my-4 rounded h-full items-center">
+        <div class="w-full p-6 bg-white shadow-md rounded-xl">
+            <h1 class="mb-6 text-2xl font-bold">Pengajuan Permohonan Pindah Masuk</h1>
             <hr class="w-full border border-[#9B1010] mb-6">
             <div class="max-w-full border border-[#9B1010] rounded-md mb-6">
                 <!-- SearchBox -->
@@ -20,7 +21,7 @@
                 }'>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
-                            <svg class="shrink-0 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24"
+                            <svg class="text-gray-400 shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="11" cy="11" r="8"></circle>
@@ -53,32 +54,32 @@
             <div class="flex flex-col">
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
-                        <div class="border overflow-hidden">
+                        <div class="overflow-hidden border">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-100">
                                     <tr>
                                         <th scope="col"
-                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">No.
+                                            class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">No.
                                         </th>
                                         <th scope="col"
-                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">Nama
+                                            class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Nama
                                             Lengkap</th>
                                         <th scope="col"
-                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">Jenis
+                                            class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Jenis
                                             Kelamin</th>
                                         <th scope="col"
-                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">
+                                            class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
                                             Tempat
                                             Lahir</th>
                                         <th scope="col"
-                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">
+                                            class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
                                             Tanggal
                                             Lahir</th>
                                         <th scope="col"
-                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">Agama
+                                            class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Agama
                                         </th>
                                         <th scope="col"
-                                            class="px-6 py-3 text-start text-xs font-semibold text-black uppercase">
+                                            class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
                                             Pendidikan</th>
                                     </tr>
                                 </thead>
@@ -86,20 +87,20 @@
 
                                     @foreach ($datadiri as $data)
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                            <td class="px-6 py-4 text-xs text-black whitespace-nowrap">
                                                 {{ $loop->iteration }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                            <td class="px-6 py-4 text-xs text-black whitespace-nowrap">
                                                 {{ $data->namaLengkap }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                            <td class="px-6 py-4 text-xs text-black whitespace-nowrap">
                                                 {{ $data->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan' }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                            <td class="px-6 py-4 text-xs text-black whitespace-nowrap">
                                                 {{ $data->tempatLahir }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                            <td class="px-6 py-4 text-xs text-black whitespace-nowrap">
                                                 {{ Carbon\Carbon::parse($data->tanggalLahir)->translatedFormat('d F Y') }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $data->agama }}
+                                            <td class="px-6 py-4 text-xs text-black whitespace-nowrap">{{ $data->agama }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-xs text-black">
+                                            <td class="px-6 py-4 text-xs text-black whitespace-nowrap">
                                                 {{ $data->pendidikan }}</td>
                                         </tr>
                                     @endforeach
