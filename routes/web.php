@@ -42,7 +42,6 @@ Route::get('/permintaan', [PermintaanController::class, 'index']);
 Route::prefix('warga')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/pindah-masuk', [PindahMasukController::class, 'index']);
-    Route::get('/pindah-keluar', [PindahKeluarController::class, 'index']);
     Route::get('/detail-pindah-masuk', function () {
         return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk');
     });
@@ -52,11 +51,14 @@ Route::prefix('warga')->group(function () {
     Route::get('/detail-ubah-pekerjaan', function () {
         return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan');
     });
-    Route::get('/form-tambah-data', [PindahMasukController::class, 'tambahData']);
-    Route::get('/form-pindah-keluar', [PindahKeluarController::class, 'form']);
     Route::get('/form-kk-baru', function () {
         return view('pages.pengajuanKK');
     });
+
+    // Route Pindah Keluar
+    Route::get('/pindah-keluar', [PindahKeluarController::class, 'index']);
+    Route::get('/form-pindah-keluar/{id}', [PindahKeluarController::class, 'show']);
+    Route::put('/form-pindah-keluar/{id}', [PindahKeluarController::class, 'update'])->name('form-pindah-keluar');
 
     // Route Ubah Pekerjaan
     Route::get('/ubah-pekerjaan', [UbahKerjaController::class, 'index']);

@@ -11,115 +11,129 @@
 
             <hr class="mb-4 bg-red-600 h-0.5">
 
-            <form action="{{ route('form-pekerjaan', $dataDiri->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+            @php
+                $existingPengajuan = $dataDiri
+                    ->statusPengajuan()
+                    ->whereIn('nama_status', ['RT', 'RW', 'Kelurahan', 'Kecamatan'])
+                    ->exists();
+            @endphp
 
-                <h3 class="text-2xl font-semibold mb-4 my-6">Data Diri</h3>
+            @if ($existingPengajuan)
+                <div class="mb-4 bg-yellow-100 text-yellow-600 p-4 rounded-lg">
+                    <p>Anda sudah pernah mengajukan perubahan status pekerjaan dan sedang dalam proses persetujuan. Anda
+                        tidak dapat mengajukan lagi saat ini.</p>
+                </div>
+            @else
+                <form action="{{ route('form-pekerjaan', $dataDiri->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
 
-                @if ($errors->any())
-                    <div class="mb-4 bg-red-100 text-red-600 p-4 rounded-lg">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                    <h3 class="text-2xl font-semibold mb-4 my-6">Data Diri</h3>
+
+                    @if ($errors->any())
+                        <div class="mb-4 bg-red-100 text-red-600 p-4 rounded-lg">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="nik" class="w-full md:w-1/4">NIK</label>
+                        <input type="text" id="nik" name="nik"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" value="{{ $dataDiri->nik }}"
+                            readonly>
                     </div>
-                @endif
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="nik" class="w-full md:w-1/4">NIK</label>
-                    <input type="text" id="nik" name="nik"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" value="{{ $dataDiri->nik }}"
-                        readonly>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="nama_lengkap" class="w-full md:w-1/4">Nama Lengkap</label>
+                        <input type="text" id="nama_lengkap" name="nama_lengkap"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ $dataDiri->namaLengkap }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="nama_lengkap" class="w-full md:w-1/4">Nama Lengkap</label>
-                    <input type="text" id="nama_lengkap" name="nama_lengkap"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $dataDiri->namaLengkap }}" readonly>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="jenis_kelamin" class="w-full md:w-1/4">Jenis Kelamin</label>
+                        <input type="text" id="jenis_kelamin" name="jenis_kelamin"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ $dataDiri->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan' }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="jenis_kelamin" class="w-full md:w-1/4">Jenis Kelamin</label>
-                    <input type="text" id="jenis_kelamin" name="jenis_kelamin"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $dataDiri->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan' }}" readonly>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="tempat_lahir" class="w-full md:w-1/4">Tempat Lahir</label>
+                        <input type="text" id="tempat_lahir" name="tempat_lahir"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ $dataDiri->tempatLahir }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="tempat_lahir" class="w-full md:w-1/4">Tempat Lahir</label>
-                    <input type="text" id="tempat_lahir" name="tempat_lahir"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $dataDiri->tempatLahir }}" readonly>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="tanggal_lahir" class="w-full md:w-1/4">Tanggal Lahir</label>
+                        <input type="text" id="tanggal_lahir" name="tanggal_lahir"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ \Carbon\Carbon::parse($dataDiri->tanggalLahir)->format('d F Y') }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="tanggal_lahir" class="w-full md:w-1/4">Tanggal Lahir</label>
-                    <input type="text" id="tanggal_lahir" name="tanggal_lahir"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ \Carbon\Carbon::parse($dataDiri->tanggalLahir)->format('d F Y') }}" readonly>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="agama" class="w-full md:w-1/4">Agama</label>
+                        <input type="text" id="agama" name="agama"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ $dataDiri->agama }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="agama" class="w-full md:w-1/4">Agama</label>
-                    <input type="text" id="agama" name="agama"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" value="{{ $dataDiri->agama }}"
-                        readonly>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="pendidikan" class="w-full md:w-1/4">Pendidikan</label>
+                        <input type="text" id="pendidikan" name="pendidikan"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ $dataDiri->pendidikan }}" readonly>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="pendidikan" class="w-full md:w-1/4">Pendidikan</label>
-                    <input type="text" id="pendidikan" name="pendidikan"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $dataDiri->pendidikan }}" readonly>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="status_pekerjaan" class="w-full md:w-1/4">Status Pekerjaan</label>
+                        <select id="status_pekerjaan" name="status_pekerjaan"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            onchange="toggleFields(this)">
+                            <option value="">Pilih Status Pekerjaan</option>
+                            <option value="Belum Bekerja"
+                                {{ $dataDiri->id_status_pekerjaan == 'Belum Bekerja' ? 'selected' : '' }}>
+                                Belum Bekerja
+                            </option>
+                            <option value="Sudah Bekerja"
+                                {{ $dataDiri->id_status_pekerjaan == 'Sudah Bekerja' ? 'selected' : '' }}>
+                                Sudah Bekerja
+                            </option>
+                        </select>
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="status_pekerjaan" class="w-full md:w-1/4">Status Pekerjaan</label>
-                    <select id="status_pekerjaan" name="status_pekerjaan"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" onchange="toggleFields(this)">
-                        <option value="">Pilih Status Pekerjaan</option>
-                        <option value="Belum Bekerja"
-                            {{ $dataDiri->id_status_pekerjaan == 'Belum Bekerja' ? 'selected' : '' }}>
-                            Belum Bekerja
-                        </option>
-                        <option value="Sudah Bekerja"
-                            {{ $dataDiri->id_status_pekerjaan == 'Sudah Bekerja' ? 'selected' : '' }}>
-                            Sudah Bekerja
-                        </option>
-                    </select>
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="nama_instansi" class="w-full md:w-1/4">Nama Instansi Pekerjaan</label>
+                        <input type="text" id="nama_instansi" name="nama_instansi"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ old('nama_instansi', $dataDiri->namaInstansi) }}">
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="nama_instansi" class="w-full md:w-1/4">Nama Instansi Pekerjaan</label>
-                    <input type="text" id="nama_instansi" name="nama_instansi"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ old('nama_instansi', $dataDiri->namaInstansi) }}">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="alamat_instansi" class="w-full md:w-1/4">Alamat Instansi Pekerjaan</label>
+                        <input type="text" id="alamat_instansi" name="alamat_instansi"
+                            class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                            value="{{ old('alamat_instansi', $dataDiri->alamatInstansi) }}">
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="alamat_instansi" class="w-full md:w-1/4">Alamat Instansi Pekerjaan</label>
-                    <input type="text" id="alamat_instansi" name="alamat_instansi"
-                        class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ old('alamat_instansi', $dataDiri->alamatInstansi) }}">
-                </div>
+                    <div class="flex flex-col md:flex-row items-center mb-4">
+                        <label for="lampiran" class="w-full md:w-1/4">Lampiran</label>
+                        <input type="file" id="lampiran" name="lampiran"
+                            class="block w-full md:w-3/4 border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
+                    </div>
 
-                <div class="flex flex-col md:flex-row items-center mb-4">
-                    <label for="lampiran" class="w-full md:w-1/4">Lampiran</label>
-                    <input type="file" id="lampiran" name="lampiran"
-                        class="block w-full md:w-3/4 border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
-                </div>
-
-                <div class="flex justify-end mt-8">
-                    <a href="{{ url('/warga/ubah-pekerjaan') }}"
-                        class="px-4 py-2 mr-2 text-gray-800 transition duration-200 bg-gray-200 rounded-md hover:bg-gray-300">Batal</a>
-                    <button type="submit"
-                        class="px-4 py-2 text-white transition duration-200 bg-red-600 rounded-md hover:bg-red-700">Submit</button>
-                </div>
-
-            </form>
+                    <div class="flex justify-end mt-8">
+                        <a href="{{ url('/warga/ubah-pekerjaan') }}"
+                            class="px-4 py-2 mr-2 text-gray-800 transition duration-200 bg-gray-200 rounded-md hover:bg-gray-300">Batal</a>
+                        <button type="submit"
+                            class="px-4 py-2 text-white transition duration-200 bg-red-600 rounded-md hover:bg-red-700">Submit</button>
+                    </div>
+                </form>
+            @endif
         </div>
     </div>
 
