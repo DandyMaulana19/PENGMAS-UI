@@ -26,7 +26,11 @@ class DataDiri extends Model
         'alamatPekerjaan',
         'id_status_pekerjaan',
         'id_status_pengajuan',
-        'id_status_users'
+        'id_status_users',
+        'id_user',
+        'urlktp',
+        'urlkk',
+        'urlbukunikah',
     ];
 
     protected $casts = [
