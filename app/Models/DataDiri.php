@@ -56,4 +56,8 @@ class DataDiri extends Model
     {
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
+    public function dataKks()
+    {
+        return $this->belongsToMany(DataKK::class, 'datadiri_datakks', 'dataDiri_id', 'dataKk_id');
+    }
 }

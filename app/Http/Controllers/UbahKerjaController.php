@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataDiri;
 use App\Models\StatusPekerjaan;
-
+use App\Models\StatusPengajuan;
 
 class UbahKerjaController extends Controller
 {
@@ -18,8 +18,15 @@ class UbahKerjaController extends Controller
     public function show($id)
     {
         $dataDiri = DataDiri::where('id', $id)->firstOrFail();
-        // dd($dataDiri);
-        return view('pages.pengajuanPekerjaan', ['dataDiri' => $dataDiri]);
+
+        $pendingPengajuan = StatusPengajuan::whereIn('nama_status', ['RT', 'RW', 'Kelurahan', 'Kecamatan'])
+            ->where('id', $dataDiri->id_status_pengajuan)
+            ->exists();
+
+        return view('pages.pengajuanPekerjaan', [
+            'dataDiri' => $dataDiri,
+            'pendingPengajuan' => $pendingPengajuan,
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -45,10 +52,17 @@ class UbahKerjaController extends Controller
             $dataDiri->id_status_pekerjaan = $sudahBekerjaId;
         }
 
+        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->first();
+
+        if (!$statusPengajuan) {
+            $statusPengajuan = StatusPengajuan::create(['nama_status' => 'RT']);
+        }
+
+        $dataDiri->id_status_pengajuan = $statusPengajuan->id;
+
         $dataDiri->save();
 
-        return redirect()->route('form-pekerjaan', ['id' => $dataDiri->id])
-            ->with('success', 'Status pekerjaan updated successfully.');
+        return redirect('/warga/ubah-pekerjaan')->with('success', 'Data pekerjaan berhasil diperbarui!');
     }
 
 }
