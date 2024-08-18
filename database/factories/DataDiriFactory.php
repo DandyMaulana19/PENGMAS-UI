@@ -20,10 +20,6 @@ class DataDiriFactory extends Factory
      */
     public function definition(): array
     {
-
-        // $statusPekerjaanId = StatusPekerjaan::inRandomOrder()->first()->id;
-        // $statusPengajuanId = StatusPengajuan::inRandomOrder()->first()->id;
-
         return [
             'id' => Str::uuid(),
             'nik' => $this->faker->unique()->numerify('#################'),
@@ -35,9 +31,13 @@ class DataDiriFactory extends Factory
             'pendidikan' => $this->faker->randomElement(['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3']),
             'namaPekerjaan' => $this->faker->jobTitle(),
             'alamatPekerjaan' => $this->faker->address(),
+            'urlKTP' => $this->faker->imageUrl(),
+            'urlKK' => $this->faker->imageUrl(),
+            'urlBukuNikah' => $this->faker->imageUrl(),
             'id_status_pekerjaan' => StatusPekerjaan::factory(),
             'id_status_pengajuan' => StatusPengajuan::factory(),
             'id_status_users' => User::factory(),
+            'id_user' => User::factory(),
         ];
     }
 }

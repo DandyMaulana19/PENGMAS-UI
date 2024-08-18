@@ -10,4 +10,9 @@ class Kelurahan extends Model
     use HasFactory;
     protected $primaryKey = 'id';
     public $incrementing = false;
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class, 'id_kecamatan');
+    }
 }

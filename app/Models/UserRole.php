@@ -10,4 +10,6 @@ class UserRole extends Model
     use HasFactory;
 
     protected $table = 'userroles';
+    public $incrementing = false;
+    protected $keyType = 'string';
 }

@@ -43,8 +43,13 @@ class DataDiri extends Model
         return $this->belongsTo(StatusPengajuan::class, 'id_status_pengajuan');
     }
 
-    public function user()
+    public function statusUser()
     {
         return $this->belongsTo(User::class, 'id_status_users');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

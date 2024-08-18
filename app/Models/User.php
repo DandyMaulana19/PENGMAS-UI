@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'userroles', 'user_id', 'role_id');
     }
+
+    public function dataDiris()
+    {
+        return $this->hasMany(DataDiri::class, 'id_user', 'id');
+    }
 }
