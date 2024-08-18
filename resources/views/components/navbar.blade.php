@@ -1,4 +1,4 @@
-<header class="px-6 shadow-md relative flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3">
+<header class="relative flex flex-wrap w-full px-6 py-3 text-sm bg-white shadow-md sm:justify-start sm:flex-nowrap">
     <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
         <div class="flex items-center justify-between">
             <a class="flex-none text-xl font-semibold focus:outline-none focus:opacity-80"
@@ -8,7 +8,7 @@
 
             <div class="">
                 <button type="button"
-                    class="hs-collapse-toggle relative size-7 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                    class="relative flex items-center justify-center text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm hs-collapse-toggle size-7 gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                     id="hs-navbar-example-collapse" aria-expanded="false" aria-controls="hs-navbar-example"
                     aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-example">
                     <svg class="hs-collapse-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,7 @@
                         <line x1="3" x2="21" y1="12" y2="12" />
                         <line x1="3" x2="21" y1="18" y2="18" />
                     </svg>
-                    <svg class="hs-collapse-open:block hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
+                    <svg class="hidden hs-collapse-open:block shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 6 6 18" />
@@ -28,10 +28,10 @@
                 </button>
             </div>
         </div>
-        <div class="flex gap-2 items-center justify-center">
+        <div class="flex items-center justify-center gap-2">
             <span class="text-[#9B1010] text-xs font-medium">Username</span>
             <span class="inline-block size-[46px] bg-gray-100 rounded-full overflow-hidden">
-                <svg class="size-full text-gray-300" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                <svg class="text-gray-300 size-full" width="16" height="16" viewBox="0 0 16 16" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.62854" y="0.359985" width="15" height="15" rx="7.5" fill="gray"></rect>
                     <path
@@ -42,9 +42,9 @@
                         fill="currentColor"></path>
                 </svg>
             </span>
-            <div class="hs-dropdown relative inline-flex">
+            <div class="relative inline-flex hs-dropdown">
                 <button id="hs-dropdown-default" type="button"
-                    class="hs-dropdown-toggle pr-1 inline-flex items-center gap-x-2 text-sm font-medium text-gray-800 shadow-sm"
+                    class="inline-flex items-center pr-1 text-sm font-medium text-gray-800 shadow-sm hs-dropdown-toggle gap-x-2"
                     aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                     <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -59,7 +59,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit"
-                            class="flex items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700">
+                            class="flex items-center px-3 py-2 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700">
                             Logout
                         </button>
                     </form>
@@ -67,7 +67,7 @@
             </div>
 
             {{-- <div id="hs-navbar-example"
-            class="hs-collapse overflow-hidden transition-all duration-300 basis-full grow hidden"
+            class="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow"
             aria-labelledby="hs-navbar-example-collapse">
             <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
                 <a class="font-medium text-blue-500 focus:outline-none" href="#" aria-current="page">Landing</a>
@@ -80,4 +80,5 @@
             </div>
         </div> --}}
     </nav>
+    @include('components.sidebar')
 </header>
