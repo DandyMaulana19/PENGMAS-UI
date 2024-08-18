@@ -61,5 +61,5 @@ Route::prefix('warga')->group(function () {
     // Route Ubah Pekerjaan
     Route::get('/ubah-pekerjaan', [UbahKerjaController::class, 'index']);
     Route::get('/form-pekerjaan/{id}', [UbahKerjaController::class, 'show']);
-    // Route::put('/form-pekerjaan/{id}', [UbahKerjaController::class, 'update'])->name('form-pekerjaan');
+    Route::put('/form-pekerjaan/{id}', [UbahKerjaController::class, 'update'])->name('form-pekerjaan');
 });

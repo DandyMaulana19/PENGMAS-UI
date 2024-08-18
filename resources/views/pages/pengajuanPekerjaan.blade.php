@@ -11,13 +11,13 @@
 
             <hr class="mb-4 bg-red-600 h-0.5">
 
-            <form>
-                {{-- @csrf --}}
-                {{-- @method('PUT') --}}
+            <form action="{{ route('form-pekerjaan', $dataDiri->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
                 <h3 class="text-2xl font-semibold mb-4 my-6">Data Diri</h3>
 
-                {{-- @if ($errors->any())
+                @if ($errors->any())
                     <div class="mb-4 bg-red-100 text-red-600 p-4 rounded-lg">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -25,7 +25,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif --}}
+                @endif
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="nik" class="w-full md:w-1/4">NIK</label>
@@ -81,10 +81,12 @@
                     <select id="status_pekerjaan" name="status_pekerjaan"
                         class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" onchange="toggleFields(this)">
                         <option value="">Pilih Status Pekerjaan</option>
-                        <option value="Belum Bekerja" {{ $dataDiri->statusPekerjaan == 'Belum Bekerja' ? 'selected' : '' }}>
+                        <option value="Belum Bekerja"
+                            {{ $dataDiri->id_status_pekerjaan == 'Belum Bekerja' ? 'selected' : '' }}>
                             Belum Bekerja
                         </option>
-                        <option value="Sudah Bekerja" {{ $dataDiri->statusPekerjaan == 'Sudah Bekerja' ? 'selected' : '' }}>
+                        <option value="Sudah Bekerja"
+                            {{ $dataDiri->id_status_pekerjaan == 'Sudah Bekerja' ? 'selected' : '' }}>
                             Sudah Bekerja
                         </option>
                     </select>
@@ -111,7 +113,7 @@
                 </div>
 
                 <div class="flex justify-end mt-8">
-                    <a href="{{ url('/warga/pindah-keluar') }}"
+                    <a href="{{ url('/warga/ubah-pekerjaan') }}"
                         class="px-4 py-2 mr-2 text-gray-800 transition duration-200 bg-gray-200 rounded-md hover:bg-gray-300">Batal</a>
                     <button type="submit"
                         class="px-4 py-2 text-white transition duration-200 bg-red-600 rounded-md hover:bg-red-700">Submit</button>

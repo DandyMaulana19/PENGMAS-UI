@@ -28,7 +28,6 @@ class UbahKerjaController extends Controller
             'status_pekerjaan' => 'required|string',
             'nama_instansi' => 'nullable|string|max:255',
             'alamat_instansi' => 'nullable|string|max:255',
-            'lampiran' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
         $dataDiri = Datadiri::findOrFail($id);
@@ -46,10 +45,8 @@ class UbahKerjaController extends Controller
             $dataDiri->id_status_pekerjaan = $sudahBekerjaId;
         }
 
-        $dataDiri->statusPekerjaan = $request->status_pekerjaan;
         $dataDiri->save();
-        dd($dataDiri);
-        die();
+
         return redirect()->route('form-pekerjaan', ['id' => $dataDiri->id])
             ->with('success', 'Status pekerjaan updated successfully.');
     }
