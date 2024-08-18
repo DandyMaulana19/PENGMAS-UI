@@ -96,14 +96,14 @@
                     <label for="nama_instansi" class="w-full md:w-1/4">Nama Instansi Pekerjaan</label>
                     <input type="text" id="nama_instansi" name="nama_instansi"
                         class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ old('nama_instansi', $dataDiri->namaInstansi) }}">
+                        value="{{ old('nama_instansi', $dataDiri->namaInstansi) }}" required>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="alamat_instansi" class="w-full md:w-1/4">Alamat Instansi Pekerjaan</label>
                     <input type="text" id="alamat_instansi" name="alamat_instansi"
                         class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ old('alamat_instansi', $dataDiri->alamatInstansi) }}">
+                        value="{{ old('alamat_instansi', $dataDiri->alamatInstansi) }}" required>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">

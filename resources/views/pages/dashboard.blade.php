@@ -4,6 +4,31 @@
 
 @section('content')
     <div class="container px-8 py-6">
+        @if (session('success'))
+            <div id="dismiss-toast"
+                class="my-4 hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 max-w-full bg-green-600 border border-gray-200 rounded-xl shadow-lg"
+                role="alert" tabindex="-1" aria-labelledby="hs-toast-dismiss-button-label">
+                <div class="flex p-4">
+                    <p id="hs-toast-dismiss-button-label" class="text-sm text-white">
+                        {{ session('success') }}
+                    </p>
+
+                    <div class="ms-auto">
+                        <button type="button"
+                            class="inline-flex shrink-0 justify-center items-center size-5 rounded-lg text-white opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100"
+                            aria-label="Close" data-hs-remove-element="#dismiss-toast">
+                            <span class="sr-only">Close</span>
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="shadow-md rounded-xl mb-6 p-6 w-full bg-white">
             <h1 class="text-xl font-bold mb-6">Progress Laporan ( Surat Pindah Masuk )</h1>
 

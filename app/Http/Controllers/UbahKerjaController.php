@@ -47,8 +47,7 @@ class UbahKerjaController extends Controller
 
         $dataDiri->save();
 
-        return redirect()->route('form-pekerjaan', ['id' => $dataDiri->id])
-            ->with('success', 'Status pekerjaan updated successfully.');
-    }
 
+        return redirect('/warga/dashboard')->with('success', 'Form berhasil diisi.');
+    }
 }

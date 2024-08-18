@@ -29,7 +29,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', function () {
     return view('pages.register');
