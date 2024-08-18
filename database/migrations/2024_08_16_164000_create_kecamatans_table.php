@@ -10,9 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('kelurahans', function (Blueprint $table) {
+        Schema::create('kecamatans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('namaKelurahan', 255);
+            $table->string('namaKecamatan', 255);
             $table->string('namaKabupaten', 255);
             $table->string('namaProvinsi', 255);
             $table->timestamps();

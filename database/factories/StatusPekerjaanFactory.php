@@ -22,7 +22,7 @@ class StatusPekerjaanFactory extends Factory
     {
         return [
             'id' => (string) Str::uuid(),
-            'nama_status' => $this->faker->word,
+            'nama_status' => $this->faker->randomElement(['Belum Bekerja', 'Sudah Bekerja']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

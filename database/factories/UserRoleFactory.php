@@ -2,15 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Kecamatan;
-use App\Models\Kelurahan;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use App\Models\User;
+use App\Models\Role;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Rw>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserRole>
  */
-class RwFactory extends Factory
+class UserRoleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,9 +19,8 @@ class RwFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => (string) Str::uuid(),
-            'nama' => $this->faker->word,
-            'id_kelurahan' => Kelurahan::factory(),
+            'user_id' => User::factory(),
+            'role_id' => Role::factory(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

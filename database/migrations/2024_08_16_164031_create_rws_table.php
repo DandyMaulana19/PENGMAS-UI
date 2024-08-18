@@ -13,10 +13,10 @@ return new class extends Migration {
         Schema::create('rws', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nama', 255);
-            $table->string('id_kecamatan', 255);
+            $table->string('id_kelurahan', 255);
             $table->timestamps();
 
-            $table->foreign('id_kecamatan')->references('id')->on('kecamatans')->onDelete('cascade');
+            $table->foreign('id_kelurahan')->references('id')->on('kelurahans')->onDelete('cascade');
         });
     }
 

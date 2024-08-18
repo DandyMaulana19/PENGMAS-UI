@@ -21,7 +21,8 @@ class KecamatanFactory extends Factory
         return [
             'id' => (string) Str::uuid(),
             'namaKecamatan' => $this->faker->word,
-            'id_kelurahan' => Kelurahan::factory(),
+            'namaKabupaten' => $this->faker->word,
+            'namaProvinsi' => $this->faker->word,
             'created_at' => now(),
             'updated_at' => now(),
         ];

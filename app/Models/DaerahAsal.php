@@ -9,6 +9,10 @@ class DaerahAsal extends Model
 {
     use HasFactory;
     protected $primaryKey = 'dataDiri_id';
+    protected $table = 'daerahasals';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
 
     public function dataDiri()
     {

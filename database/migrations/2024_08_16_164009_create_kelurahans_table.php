@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('kecamatans', function (Blueprint $table) {
+        Schema::create('kelurahans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('namaKecamatan', 255);
-            $table->uuid('id_kelurahan');
+            $table->string('namaKelurahan', 255);
+            $table->uuid('id_kecamatan');
             $table->timestamps();
 
-            $table->foreign('id_kelurahan')->references('id')->on('kelurahans')->onDelete('cascade');
+            $table->foreign('id_kecamatan')->references('id')->on('kecamatans')->onDelete('cascade');
         });
     }
 

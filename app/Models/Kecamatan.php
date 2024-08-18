@@ -11,9 +11,4 @@ class Kecamatan extends Model
     protected $primaryKey = 'id';
     public $incrementing = false;
 
-
-    public function kelurahan()
-    {
-        return $this->belongsTo(Kelurahan::class, 'kelurahan_id');
-    }
 }

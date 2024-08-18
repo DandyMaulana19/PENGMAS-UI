@@ -11,11 +11,21 @@
 
             <hr class="mb-4 bg-red-600 h-0.5">
 
-            <form action="" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="uuid" value="{{ $dataDiri->uuid }}">
+            <form>
+                {{-- @csrf --}}
+                {{-- @method('PUT') --}}
 
                 <h3 class="text-2xl font-semibold mb-4 my-6">Data Diri</h3>
+
+                {{-- @if ($errors->any())
+                    <div class="mb-4 bg-red-100 text-red-600 p-4 rounded-lg">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif --}}
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="nik" class="w-full md:w-1/4">NIK</label>
@@ -72,9 +82,11 @@
                         class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" onchange="toggleFields(this)">
                         <option value="">Pilih Status Pekerjaan</option>
                         <option value="Belum Bekerja" {{ $dataDiri->statusPekerjaan == 'Belum Bekerja' ? 'selected' : '' }}>
-                            Belum Bekerja</option>
+                            Belum Bekerja
+                        </option>
                         <option value="Sudah Bekerja" {{ $dataDiri->statusPekerjaan == 'Sudah Bekerja' ? 'selected' : '' }}>
-                            Sudah Bekerja</option>
+                            Sudah Bekerja
+                        </option>
                     </select>
                 </div>
 
@@ -82,16 +94,14 @@
                     <label for="nama_instansi" class="w-full md:w-1/4">Nama Instansi Pekerjaan</label>
                     <input type="text" id="nama_instansi" name="nama_instansi"
                         class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $dataDiri->statusPekerjaan == 'Belum Bekerja' ? '' : $dataDiri->namaInstansi }}"
-                        {{ $dataDiri->statusPekerjaan == 'Belum Bekerja' ? 'readonly' : '' }}>
+                        value="{{ old('nama_instansi', $dataDiri->namaInstansi) }}">
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="alamat_instansi" class="w-full md:w-1/4">Alamat Instansi Pekerjaan</label>
                     <input type="text" id="alamat_instansi" name="alamat_instansi"
                         class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $dataDiri->statusPekerjaan == 'Belum Bekerja' ? '' : $dataDiri->alamatInstansi }}"
-                        {{ $dataDiri->statusPekerjaan == 'Belum Bekerja' ? 'readonly' : '' }}>
+                        value="{{ old('alamat_instansi', $dataDiri->alamatInstansi) }}">
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
@@ -100,13 +110,42 @@
                         class="block w-full md:w-3/4 border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
                 </div>
 
-                <div class="mt-8 flex justify-end">
-                    <a href="{{ url('/warga/ubah-pekerjaan') }}"
-                        class="px-4 py-2 mr-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition duration-200">Batal</a>
+                <div class="flex justify-end mt-8">
+                    <a href="{{ url('/warga/pindah-keluar') }}"
+                        class="px-4 py-2 mr-2 text-gray-800 transition duration-200 bg-gray-200 rounded-md hover:bg-gray-300">Batal</a>
                     <button type="submit"
-                        class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-200">Submit</button>
+                        class="px-4 py-2 text-white transition duration-200 bg-red-600 rounded-md hover:bg-red-700">Submit</button>
                 </div>
+
             </form>
         </div>
     </div>
+
+    <script>
+        function toggleFields(selectElement) {
+            const status = selectElement.value;
+
+            const namaInstansiInput = document.getElementById('nama_instansi');
+            const alamatInstansiInput = document.getElementById('alamat_instansi');
+
+            if (status === 'Belum Bekerja') {
+                namaInstansiInput.value = '';
+                alamatInstansiInput.value = '';
+                namaInstansiInput.readOnly = true;
+                alamatInstansiInput.readOnly = true;
+                namaInstansiInput.classList.add('bg-gray-200', 'hover:bg-gray-300');
+                alamatInstansiInput.classList.add('bg-gray-200', 'hover:bg-gray-300');
+            } else if (status === 'Sudah Bekerja') {
+                namaInstansiInput.readOnly = false;
+                alamatInstansiInput.readOnly = false;
+                namaInstansiInput.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                alamatInstansiInput.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusSelect = document.getElementById('status_pekerjaan');
+            toggleFields(statusSelect);
+        });
+    </script>
 @endsection

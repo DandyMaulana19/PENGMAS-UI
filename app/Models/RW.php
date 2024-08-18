@@ -14,8 +14,8 @@ class RW extends Model
     public $incrementing = false;
 
 
-    public function kecamatan()
+    public function kelurahan()
     {
-        return $this->belongsTo(Kecamatan::class, 'id_kecamatan');
+        return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
     }
 }

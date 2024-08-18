@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Aktifitas extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,15 @@ class Role extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    public function users()
+    protected $fillable = [
+        'user_id',
+        'status',
+        'catatan',
+        'created_by',
+    ];
+
+    public function user()
     {
-        return $this->belongsToMany(User::class, 'userroles', 'role_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

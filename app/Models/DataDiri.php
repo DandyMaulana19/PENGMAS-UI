@@ -26,7 +26,11 @@ class DataDiri extends Model
         'alamatPekerjaan',
         'id_status_pekerjaan',
         'id_status_pengajuan',
-        'id_status_users'
+        'id_status_users',
+        'id_user',
+        'urlktp',
+        'urlkk',
+        'urlbukunikah',
     ];
 
     protected $casts = [
@@ -43,8 +47,13 @@ class DataDiri extends Model
         return $this->belongsTo(StatusPengajuan::class, 'id_status_pengajuan');
     }
 
-    public function user()
+    public function statusUser()
     {
         return $this->belongsTo(User::class, 'id_status_users');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

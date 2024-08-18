@@ -28,12 +28,13 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/register', function () {
     return view('pages.register');
 });
+
 // Route penelitian
 Route::get('/permintaan', [PermintaanController::class, 'index']);
 
@@ -42,7 +43,6 @@ Route::prefix('warga')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/pindah-masuk', [PindahMasukController::class, 'index']);
     Route::get('/pindah-keluar', [PindahKeluarController::class, 'index']);
-    Route::get('/ubah-pekerjaan', [UbahKerjaController::class, 'index']);
     Route::get('/detail-pindah-masuk', function () {
         return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk');
     });
@@ -58,8 +58,8 @@ Route::prefix('warga')->group(function () {
         return view('pages.pengajuanKK');
     });
 
+    // Route Ubah Pekerjaan
+    Route::get('/ubah-pekerjaan', [UbahKerjaController::class, 'index']);
     Route::get('/form-pekerjaan/{id}', [UbahKerjaController::class, 'show']);
-    Route::get('/form-pekerjaan', function () {
-        return view('pages.pengajuanPekerjaan');
-    });
+    // Route::put('/form-pekerjaan/{id}', [UbahKerjaController::class, 'update'])->name('form-pekerjaan');
 });
