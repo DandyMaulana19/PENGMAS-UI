@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(DataDiri::class, 'id_user', 'id');
     }
+
+    public function adminRts()
+    {
+        return $this->hasMany(AdminRT::class);
+    }
 }
