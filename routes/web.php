@@ -8,6 +8,9 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UbahKerjaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\UbahKerjaController as AdminKerjaController;
+use App\Http\Controllers\Admin\PindahMasukController as AdminMasukController;
+use App\Http\Controllers\Admin\PindahKeluarController as AdminKeluarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +39,26 @@ Route::get('/register', function () {
 });
 
 // Route penelitian
-Route::get('/permintaan', [PermintaanController::class, 'index']);
+Route::prefix('/rt')->group(function () {
+    Route::get('/ubah-kerja', [AdminKerjaController::class, '']);
+    Route::get('/pindah-masuk', [AdminMasukController::class, 'index']);
+    Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
+});
+Route::prefix('/rw')->group(function () {
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'index']);
+    Route::get('/pindah-masuk', [AdminMasukController::class, 'index']);
+    Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
+});
+Route::prefix('/kelurahan')->group(function () {
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'index']);
+    Route::get('/pindah-masuk', [AdminMasukController::class, 'index']);
+    Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
+});
+Route::prefix('/kecamatan')->group(function () {
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'index']);
+    Route::get('/pindah-masuk', [AdminMasukController::class, 'index']);
+    Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
+});
 
 // Route Warga
 Route::prefix('warga')->group(function () {
