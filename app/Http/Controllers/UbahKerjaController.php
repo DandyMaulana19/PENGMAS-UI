@@ -18,7 +18,7 @@ class UbahKerjaController extends Controller
         $user = User::findOrFail($id);
         $dataDiri = DataDiri::all();
 
-        if (auth()->user()->id != $id) {
+        if (auth()->check() && auth()->user()->id != $id) {
             return redirect('/warga/dashboard/' . auth()->user()->id)->withErrors('Unauthorized access.');
         }
 
@@ -38,37 +38,6 @@ class UbahKerjaController extends Controller
             'pendingPengajuan' => $pendingPengajuan,
         ]);
     }
-
-
-    public function getData(Request $request)
-    {
-        $searchValue = $request->input('search')['value']; // Get search value from DataTables
-
-        $dataDiri = Datadiri::join('datadiri_datakks', 'datadiris.id', '=', 'datadiri_datakks.dataDiri_id')
-            ->join('data_kks', 'datadiri_datakks.dataKk_id', '=', 'data_kks.id')
-            ->select([
-                'datadiris.id',
-                'datadiris.namaLengkap',
-                'datadiris.jenisKelamin',
-                'datadiris.tempatLahir',
-                'datadiris.tanggalLahir',
-                'datadiris.agama',
-                'datadiris.pendidikan',
-                'data_kks.no_kk'
-            ])
-            ->where('data_kks.no_kk', 'like', "%{$searchValue}%"); // Filter by nomor KK
-
-        return DataTables::of($dataDiri)
-            ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                return '<a href="' . url('/warga/form-pekerjaan/' . $row->id) . '" class="px-3 py-2 bg-[#9B1010] rounded">Ajukan</a>';
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-
-
-
 
     public function update(Request $request, $id)
     {
@@ -108,5 +77,26 @@ class UbahKerjaController extends Controller
         $idUser = session('idUser');
 
         return redirect('/warga/dashboard/' . $idUser)->with('success', 'Form berhasil diisi.');
+    }
+    public function getData(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = DataDiri::select(['id', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('jenisKelamin', function ($row) {
+                    return $row->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan';
+                })
+                ->addColumn('tanggalLahir', function ($row) {
+                    return \Carbon\Carbon::parse($row->tanggalLahir)->translatedformat('d F Y');
+                })
+                ->addColumn('action', function ($row) {
+                    return '<a href="' . url('/warga/form-pekerjaan/' . $row->id) . '" class="px-3 py-2 bg-[#9B1010] text-white rounded">Ajukan</a>';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return response()->json(['error' => 'Invalid request'], 400);
     }
 }
