@@ -8,7 +8,8 @@
     {{-- Cards Container --}}
     <div class="max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between my-4 rounded h-full items-center">
 
-        <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem] mx-auto text-start py-12">Permohonan Pindah Keluar</h1>
+        <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem] mx-auto text-start py-12">Permohonan Ubah Status Pekerjaan
+        </h1>
 
         {{-- cards --}}
         <div class="flex py-5 space-x-4">

@@ -35,8 +35,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route penelitian
 Route::prefix('/rt')->group(function () {
-    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'index']);
     Route::get('/pengajuan/getRT', [AdminKerjaController::class, 'getDataPengajuan'])->name('Pengajuan.getDataRT');
+    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'showRt'])->name('ubah-pekerjaan-pengajuan');
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'indexRt']);
     Route::get('/pindah-masuk', [AdminMasukController::class, 'index']);
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
