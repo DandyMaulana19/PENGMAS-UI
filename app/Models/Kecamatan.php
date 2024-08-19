@@ -11,4 +11,8 @@ class Kecamatan extends Model
     protected $primaryKey = 'id';
     public $incrementing = false;
 
+    public function adminKecamatans()
+    {
+        return $this->hasMany(AdminKecamatan::class);
+    }
 }

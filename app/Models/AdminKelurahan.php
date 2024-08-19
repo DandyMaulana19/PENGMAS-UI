@@ -9,5 +9,15 @@ class AdminKelurahan extends Model
 {
     use HasFactory;
     protected $table = 'adminkelurahans';
-    public $timestamps = false;
+    public $incrementing = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function kelurahan()
+    {
+        return $this->belongsTo(Kelurahan::class);
+    }
 }
