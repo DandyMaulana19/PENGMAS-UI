@@ -6,7 +6,8 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
     {{-- Cards Container --}}
-    <div class=" max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between  my-4 rounded h-full items-center">
+    <div
+        class="items-center h-full mx-auto my-4 rounded lg:max-w-screen-lg md:max-w-screen-lg sm:max-w-screen-sm sm:items-center sm:justify-between">
 
         <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem]  mx-auto text-start py-12">Pengajuan Ubah Status Pekerjaan
         </h1>
@@ -48,7 +49,7 @@
 
     {{-- table container --}}
     <div
-        class="px-12 py-8 max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-white border-[#D92F2F] border-t-8 ">
+        class="px-12 py-8 lg:max-w-screen-lg w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-white border-[#D92F2F] border-t-8 ">
 
         {{-- title --}}
         <h1 class="text-3xl font-bold text-[#AA0000] max-w-[82rem]  mx-auto text-start py-4 my-3">Daftar Pengajuan</h1>
@@ -62,7 +63,7 @@
         </div>
 
         {{-- table --}}
-        <table class="w-full mb-5 bg-white rounded">
+        <table class="mb-5 bg-white rounded lg:max-w-screen-lg">
             <thead>
                 <tr class="border-2 ">
                     <th class="px-3 py-3 text-gray-800 text-start bg-[#F2F4F8]">No.</th>
