@@ -53,10 +53,10 @@ Route::prefix('warga')->group(function () {
     Route::put('/form-pindah-keluar/{id}', [PindahKeluarController::class, 'update'])->name('form-pindah-keluar');
 
     // Route Ubah Pekerjaan
+    Route::get('/datadiri/getData', [UbahKerjaController::class, 'getData'])->name('data-diri.getData');
     Route::get('/ubah-pekerjaan/{id}', [UbahKerjaController::class, 'index']);
     Route::get('/form-pekerjaan/{id}', [UbahKerjaController::class, 'show']);
     Route::put('/form-pekerjaan/{id}', [UbahKerjaController::class, 'update'])->name('form-pekerjaan');
-    Route::get('/form-pekerjaan/getData', [UbahKerjaController::class, 'getData'])->name('data-diri.getData');
 
     // Route Detail Pengajuan
     Route::get('/detail-pindah-masuk', function () {

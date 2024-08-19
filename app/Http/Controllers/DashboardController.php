@@ -11,7 +11,7 @@ class DashboardController extends Controller
     {
         $user = User::findOrFail($id);
 
-        if (auth()->user()->id != $id) {
+        if (auth()->check() && auth()->user()->id != $id) {
             return redirect('/warga/dashboard/' . auth()->user()->id)->withErrors('Unauthorized access.');
         }
 
