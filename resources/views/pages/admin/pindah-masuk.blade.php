@@ -47,7 +47,7 @@
 
     {{-- table container --}}
     <div
-        class="px-12 py-8 max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-white border-[#D92F2F] border-t-8 ">
+        class="px-12 py-8 max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-slate-100 border-[#D92F2F] border-t-8 ">
 
         {{-- title --}}
         <h1 class="text-3xl font-bold text-[#AA0000] max-w-[82rem]  mx-auto text-start py-4 my-3">Daftar Pengajuan</h1>
@@ -55,86 +55,105 @@
         {{-- divider --}}
         <div class="mb-3 border-b-[1.8px] border-[#AA0000]"></div>
 
-        <div class="flex items-center justify-end gap-4 my-4">
+        {{-- <div class="flex items-center justify-end gap-4 my-4">
             <label for="search" class="text-sm text-gray-800 text-md">Cari :</label>
             <input type="search" class="p-2 border-2 rounded-md">
-        </div>
+        </div> --}}
 
         {{-- table --}}
-        <table class="w-full mb-5 bg-white rounded">
-            <thead>
-                <tr class="border-2 ">
-                    <th class="px-3 py-3 text-gray-800 text-start bg-[#F2F4F8]">No.</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">NIK</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">Nama Lengkap</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">Jenis Kelamin</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">Tempat Lahir</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">Tanggal Lahir</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">Agama</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">Pendidikan</th>
-                    <th class="py-3 text-gray-800 text-start bg-[#F2F4F8]">Status</th>
-                    <th class="py-3 text-gray-800 text-center bg-[#F2F4F8]">Aksi</th>
-                </tr>
-            </thead>
-
-            <tbody class="">
-                @foreach ($dataDummyTable as $item)
-                    <tr class="border-2">
-                        <td class="text-center text-md font-extralight ">{{ $loop->iteration }}</td>
-                        <td class="pr-3 font-extralight text-start">{{ $item['nip'] }}</td>
-                        <td class="pr-3 font-extralight text-start">{{ $item['penulis'] }}</td>
-                        <td class="flex font-extralight ">{{ __('Laki-laki') }}</td>
-                        <td class="font-extralight text-start">{{ $item['kontributor'] }}</td>
-                        <td class="font-extralight text-start">{{ $item['prodi'] }}</td>
-                        <td class="font-extralight text-start">{{ $item['tanggalupload'] }}</td>
-
-                        <td class="font-extralight text-start">
-                            {{ $item['tanggalpembaruan'] }}
-                        </td>
-
-                        <td class="font-extralight text-start">
-                            {{ $item['tanggalpembaruan'] }}
-                        </td>
-
-                        <td class="flex items-center justify-center gap-2 p-2">
-                            <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]">
-                                <box-icon name='show-alt' color="#fff"></box-icon>
-                            </button>
-                            <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]">
-                                <box-icon name='download' color='#fff'></box-icon>
-                            </button>
-                        </td>
+        <div class="flex flex-col">
+            <table id="dataDiriTable" class="min-w-full hover ">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            No.</th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            Nama
+                            Lengkap</th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            Jenis
+                            Kelamin</th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            Tempat
+                            Lahir</th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            Tanggal
+                            Lahir</th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            Agama
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            Pendidikan</th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            status
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                            Aksi
+                        </th>
                     </tr>
-                @endforeach
-            </tbody>
-
-            {{-- pagination --}}
-            <tfoot>
-                <tr>
-                    <td colspan="10" class="my-3 text-center">
-                        <div class="flex items-center justify-end gap-4 pt-4">
-
-                            <button
-                                class="flex items-center justify-center p-2 text-gray-600  rounded-lg hover:bg-[#AA0000] pr-4">
-                                <box-icon name='chevron-left' color="#7B7979"></box-icon>
-                                Prev
-                            </button>
-
-                            <button
-                                class="pr-2 p-2 w-8 text-white border rounded-lg hover:bg-[#AA0000] active:bg-orange-400 bg-[#aa0000] hover:text-white">1</button>
-
-                            <button
-                                class="pr-2 p-2 w-8  border rounded-lg hover:bg-[#AA0000] active:bg-orange-400 hover:text-white">2</button>
-
-                            <button
-                                class="flex items-center justify-center p-2 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000] pl-4">
-                                Next
-                                <box-icon name='chevron-right' color="#fff"></box-icon>
-                            </button>
-
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#dataDiriTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '{{ route('kelurahan.pindahMasuk') }}',
+                    type: 'GET',
+                    dataSrc: 'data',
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'namaLengkap',
+                        name: 'namaLengkap'
+                    },
+                    {
+                        data: 'jenisKelamin',
+                        name: 'jenisKelamin'
+                    },
+                    {
+                        data: 'tempatLahir',
+                        name: 'tempatLahir'
+                    },
+                    {
+                        data: 'tanggalLahir',
+                        name: 'tanggalLahir'
+                    },
+                    {
+                        data: 'agama',
+                        name: 'agama'
+                    },
+                    {
+                        data: 'pendidikan',
+                        name: 'pendidikan'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    }, {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    }
+                ]
+            });
+            $('#status').change(function() {
+                table.ajax.reload();
+            });
+        });
+    </script>
+@endpush

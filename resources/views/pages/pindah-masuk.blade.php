@@ -52,29 +52,33 @@
             </div>
 
             <div class="flex flex-col">
-                <table id="dataDiriTable" class="min-w-full hover ">
+                <table id="dataDiriTable" class="min-w-full hover">
                     <thead class="bg-gray-200">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                                No.</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                                Nama
-                                Lengkap</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                                Jenis
-                                Kelamin</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                                Tempat
-                                Lahir</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                                Tanggal
-                                Lahir</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                                Agama
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">No.
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">NIK
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Nama
+                                Lengkap
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Jenis
+                                Kelamin
                             </th>
                             <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                                Pendidikan</th>
+                                Tempat Lahir
+                            </th>
                             <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                                Tanggal Lahir
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Agama
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                                Pendidikan
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
+                                Status</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Aksi
                             </th>
                         </tr>
                     </thead>
@@ -86,23 +90,28 @@
     </div>
 @endsection
 
-
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#dataDiriTable').DataTable({
+            var table = $('#dataDiriTable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('data-diri.pindahMasuk') }}',
+                    url: '{{ route('Pengajuan.getDataRT') }}',
                     type: 'GET',
-                    dataSrc: 'data',
+                    data: function(d) {
+                        d.status = $('#status').val();
+                    }
                 },
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'nik',
+                        name: 'nik'
                     },
                     {
                         data: 'namaLengkap',
@@ -128,7 +137,20 @@
                         data: 'pendidikan',
                         name: 'pendidikan'
                     },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    }
                 ]
+            });
+            $('#status').change(function() {
+                table.ajax.reload();
             });
         });
     </script>
