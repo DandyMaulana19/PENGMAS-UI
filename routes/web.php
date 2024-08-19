@@ -43,11 +43,13 @@ Route::prefix('warga')->group(function () {
     Route::get('/dashboard/{id}', [DashboardController::class, 'index']);
 
     // Route Pindah Masuk
+    Route::get('/datadiri/pindahMasuk', [PindahMasukController::class, 'getData'])->name('data-diri.pindahMasuk');
     Route::get('/pindah-masuk/{id}', [PindahMasukController::class, 'index']);
     Route::get('/form-tambah-data/{id}', [PindahMasukController::class, 'tambahData']);
     Route::get('/form-kk-baru/{id}', [PindahMasukController::class, 'kkBaru']);
 
     // Route Pindah Keluar
+    Route::get('/datadiri/pindahKeluar', [PindahKeluarController::class, 'getData'])->name('data-diri.pindahKeluar');
     Route::get('/pindah-keluar/{id}', [PindahKeluarController::class, 'index']);
     Route::get('/form-pindah-keluar/{id}', [PindahKeluarController::class, 'show']);
     Route::put('/form-pindah-keluar/{id}', [PindahKeluarController::class, 'update'])->name('form-pindah-keluar');

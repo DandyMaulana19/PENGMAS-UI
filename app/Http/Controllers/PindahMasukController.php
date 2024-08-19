@@ -7,6 +7,7 @@ use App\Models\DataDiri;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class PindahMasukController extends Controller
 {
@@ -16,7 +17,8 @@ class PindahMasukController extends Controller
 
         $user = User::findOrFail($id);
         $datadiri = DataDiri::all();
-        if (auth()->user()->id != $id) {
+
+        if (auth()->check() && auth()->user()->id != $id) {
             return redirect('/warga/dashboard/' . auth()->user()->id)->withErrors('Unauthorized access.');
         }
 
@@ -48,5 +50,24 @@ class PindahMasukController extends Controller
         // dd($daerahTujuan);
 
         return view('pages.tambahData', ['datadiri' => $datadiri, 'id' => $user, 'daerahTujuan' => $daerahTujuan]);
+    }
+
+    public function getData(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = DataDiri::select(['id', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('jenisKelamin', function ($row) {
+                    return $row->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan';
+                })
+                ->addColumn('tanggalLahir', function ($row) {
+                    return \Carbon\Carbon::parse($row->tanggalLahir)->translatedformat('d F Y');
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return response()->json(['error' => 'Invalid request'], 400);
     }
 }
