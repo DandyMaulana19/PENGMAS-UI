@@ -11,10 +11,14 @@ class RT extends Model
     protected $table = 'rts';
     protected $primaryKey = 'id';
     public $incrementing = false;
-
+    protected $keyType = 'string';
 
     public function rw()
     {
         return $this->belongsTo(RW::class, 'rw_id');
+    }
+    public function adminRts()
+    {
+        return $this->hasMany(AdminRT::class);
     }
 }

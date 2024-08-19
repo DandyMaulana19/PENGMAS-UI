@@ -9,5 +9,15 @@ class AdminRW extends Model
 {
     use HasFactory;
     protected $table = 'adminrws';
-    public $timestamps = false;
+    public $incrementing = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function rw()
+    {
+        return $this->belongsTo(RW::class);
+    }
 }
