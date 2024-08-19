@@ -40,7 +40,9 @@ Route::get('/register', function () {
 
 // Route penelitian
 Route::prefix('/rt')->group(function () {
-    Route::get('/ubah-kerja', [AdminKerjaController::class, '']);
+    Route::get('/pengajuan/getRT', [AdminKerjaController::class, 'getDataPengajuan'])->name('Pengajuan.getDataRT');
+    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'index']);
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'indexRt']);
     Route::get('/pindah-masuk', [AdminMasukController::class, 'index']);
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
 });
