@@ -1,5 +1,6 @@
-<header class="relative flex flex-wrap w-full px-6 py-3 text-sm bg-white shadow-md sm:justify-start sm:flex-nowrap">
-    <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
+<header class="relative flex flex-wrap w-full px-6 py-3 text-sm bg-white shadow-md sm:flex-nowrap md:px-12 lg:px-24">
+    <nav class="z-10 w-full px-4 mx-auto lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm sm:flex sm:items-center sm:justify-between">
+
         <div class="flex items-center justify-between">
             <a class="flex-none text-xl font-semibold focus:outline-none focus:opacity-80"
                 href="{{ url('/warga/dashboard') }}" aria-label="Brand">
@@ -9,8 +10,9 @@
             <div class="">
                 <button type="button"
                     class="relative flex items-center justify-center text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm hs-collapse-toggle size-7 gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                    id="hs-navbar-example-collapse" aria-expanded="false" aria-controls="hs-navbar-example"
-                    aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-example">
+                    id="sidebar-toggle" aria-expanded="false" aria-controls="sidebar" aria-label="Toggle navigation">
+
+                    <!-- Menu Icon (Hamburger) -->
                     <svg class="hs-collapse-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -18,14 +20,10 @@
                         <line x1="3" x2="21" y1="12" y2="12" />
                         <line x1="3" x2="21" y1="18" y2="18" />
                     </svg>
-                    <svg class="hidden hs-collapse-open:block shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6 6 18" />
-                        <path d="m6 6 12 12" />
-                    </svg>
                     <span class="sr-only">Toggle navigation</span>
                 </button>
+
+
             </div>
         </div>
         <div class="flex items-center justify-center gap-2">
@@ -81,5 +79,18 @@
             </div>
         </div> --}}
     </nav>
-    {{-- @include('components.sidebar') --}}
+    @include('components.sidebar')
 </header>
+
+{{-- collapse and hide the sidebar --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebarToggleBtn = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        sidebarToggleBtn.addEventListener('click', function() {
+            // Toggle the sidebar visibility with sliding animation
+            sidebar.classList.toggle('-translate-x-full');
+        });
+    });
+</script>
