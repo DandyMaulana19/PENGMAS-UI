@@ -33,7 +33,7 @@ class PindahMasukController extends Controller
         $data = DataDiri::all();
         return view('pages.admin.pindah-masuk', ['data' => $data]);
     }
-    public function getKelurahan(Request $request)
+    public function getDataKelurahan(Request $request)
     {
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
@@ -79,7 +79,6 @@ class PindahMasukController extends Controller
 
         return response()->json(['error' => 'Invalid request'], 400);
     }
-
     public function kecamatan()
     {
         $dataDummyTable = [

@@ -35,9 +35,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route penelitian
 Route::prefix('/rt')->group(function () {
-    Route::get('/ubah-kerja', [AdminKerjaController::class, 'rt']);
-    Route::get('/pindah-masuk', [AdminMasukController::class, 'rt']);
-    Route::get('/pindah-keluar', [AdminKeluarController::class, 'rt']);
+    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'index']);
+    Route::get('/pengajuan/getRT', [AdminKerjaController::class, 'getDataPengajuan'])->name('Pengajuan.getDataRT');
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'indexRt']);
+    Route::get('/pindah-masuk', [AdminMasukController::class, 'index']);
+    Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
 });
 Route::prefix('/rw')->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rw']);
@@ -45,9 +47,9 @@ Route::prefix('/rw')->group(function () {
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rw']);
 });
 Route::prefix('/kelurahan')->group(function () {
-    Route::get('/kelurahan/pindahMasuk', [PindahMasukController::class, 'getKelurahan'])->name('kelurahan.pindahMasuk');
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'kelurahan']);
     Route::get('/pindah-masuk', [AdminMasukController::class, 'kelurahan']);
+    Route::get('/kelurahan/pindahMasuk', [AdminMasukController::class, 'getDataKelurahan'])->name('kelurahan.pindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'kelurahan']);
 });
 Route::prefix('/kecamatan')->group(function () {

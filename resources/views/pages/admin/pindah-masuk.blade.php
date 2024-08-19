@@ -61,60 +61,55 @@
         </div> --}}
 
         {{-- table --}}
-        <div class="flex flex-col">
-            <table id="dataDiriTable" class="min-w-full hover ">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            No.</th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            Nama
-                            Lengkap</th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            Jenis
-                            Kelamin</th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            Tempat
-                            Lahir</th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            Tanggal
-                            Lahir</th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            Agama
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            Pendidikan</th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            status
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
-                            Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                </tbody>
-            </table>
-        </div>
+        <table id="dataDiriTable" class="min-w-full hover">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">No.</th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">NIK</th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Nama Lengkap
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Jenis Kelamin
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Tempat Lahir
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Tanggal Lahir
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Agama</th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Pendidikan
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Status</th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+            </tbody>
+        </table>
     </div>
 @endsection
+
 
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#dataDiriTable').DataTable({
+            var table = $('#dataDiriTable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
                     url: '{{ route('kelurahan.pindahMasuk') }}',
                     type: 'GET',
-                    dataSrc: 'data',
+                    data: function(d) {
+                        d.status = $('#status').val();
+                    }
                 },
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'nik',
+                        name: 'nik'
                     },
                     {
                         data: 'namaLengkap',
@@ -143,7 +138,8 @@
                     {
                         data: 'status',
                         name: 'status'
-                    }, {
+                    },
+                    {
                         data: 'action',
                         name: 'action',
                         orderable: false,
@@ -151,6 +147,7 @@
                     }
                 ]
             });
+
             $('#status').change(function() {
                 table.ajax.reload();
             });
