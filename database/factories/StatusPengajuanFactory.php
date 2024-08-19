@@ -22,9 +22,37 @@ class StatusPengajuanFactory extends Factory
     {
         return [
             'id' => (string) Str::uuid(),
-            'nama_status' => $this->faker->word,
+            'nama_status' => '',
             'created_at' => now(),
             'updated_at' => now(),
         ];
+    }
+
+    public function rt(): StatusPengajuanFactory
+    {
+        return $this->state([
+            'nama_status' => 'RT',
+        ]);
+    }
+
+    public function rw(): StatusPengajuanFactory
+    {
+        return $this->state([
+            'nama_status' => 'RW',
+        ]);
+    }
+
+    public function kelurahan(): StatusPengajuanFactory
+    {
+        return $this->state([
+            'nama_status' => 'Kelurahan',
+        ]);
+    }
+
+    public function kecamatan(): StatusPengajuanFactory
+    {
+        return $this->state([
+            'nama_status' => 'Kecamatan',
+        ]);
     }
 }

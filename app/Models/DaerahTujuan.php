@@ -11,6 +11,18 @@ class DaerahTujuan extends Model
     use HasFactory;
     protected $primaryKey = 'dataDiri_id';
     public $incrementing = false;
+    public $timestamps = true;
+
+    protected $fillable = [
+        'dataDiri_id',
+        'alamat',
+        'namaProvinsi',
+        'namaKabupaten',
+        'namaKecamatan',
+        'namaKelurahan',
+        'namaRw',
+        'namaRt',
+    ];
 
     public function dataDiri()
     {

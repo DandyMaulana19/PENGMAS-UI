@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return view('pages.dashboard');
+        $user = User::findOrFail($id);
+
+        if (auth()->user()->id != $id) {
+            return redirect('/warga/dashboard/' . auth()->user()->id)->withErrors('Unauthorized access.');
+        }
+
+        return view('pages.dashboard', compact('user'));
     }
 }

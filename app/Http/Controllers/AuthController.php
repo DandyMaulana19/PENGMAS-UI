@@ -22,7 +22,9 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/warga/dashboard');
+            $userId = Auth::user()->id;
+
+            return redirect()->intended("/warga/dashboard/{$userId}");
         }
 
         return back()->withErrors([

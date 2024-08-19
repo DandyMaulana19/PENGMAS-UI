@@ -41,6 +41,8 @@ class DatabaseSeeder extends Seeder
         DataKK::factory()->count(1)->create();
         DataDiriDataKK::factory()->count(1)->create();
         DaerahTujuan::factory()->count(1)->create();
+        $this->call(PengajuanPekerjaanSeeder::class);
+        $this->call(StatusPengajuanSeeder::class);
 
         User::factory()->create([
             'name' => 'Test User',

@@ -5,74 +5,69 @@
 @section('content')
     {{-- <div class="container px-8 py-6"> --}}
     <div class=" max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between  my-4 rounded h-full items-center">
+
+        @if (session('success'))
+            <div id="dismiss-toast"
+                class="my-4 hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 max-w-full bg-green-600 border border-gray-200 rounded-xl shadow-lg"
+                role="alert" tabindex="-1" aria-labelledby="hs-toast-dismiss-button-label">
+                <div class="flex p-4">
+                    <p id="hs-toast-dismiss-button-label" class="text-sm text-white">
+                        {{ session('success') }}
+                    </p>
+
+                    <div class="ms-auto">
+                        <button type="button"
+                            class="inline-flex shrink-0 justify-center items-center size-5 rounded-lg text-white opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100"
+                            aria-label="Close" data-hs-remove-element="#dismiss-toast">
+                            <span class="sr-only">Close</span>
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="w-full p-6 mb-6 bg-white shadow-md rounded-xl">
             <h1 class="mb-6 text-xl font-bold">Progress Laporan ( Surat Pindah Masuk )</h1>
 
             <ul class="relative flex flex-row max-w-6xl mx-auto gap-x-2">
-                <li class="flex-1 shrink basis-0 group">
-                    <div class="inline-flex items-center w-full text-xs align-middle min-w-7 min-h-7">
-                        <span
-                            class="flex items-center justify-center font-medium text-white bg-red-800 rounded-full size-7 shrink-0">
-                            1
-                        </span>
-                        <div class="flex-1 w-full h-px bg-gray-200 ms-2 group-last:hidden"></div>
-                    </div>
-                    <div class="mt-3">
-                        <span class="block font-semibold text-black text-md">
-                            RT
-                        </span>
-                    </div>
-                    <div class="mt-1">
-                        <a href="{{ url('/warga/detail-pindah-masuk') }}" class="block text-xs font-normal text-blue-500">
-                            detail
-                        </a>
-                    </div>
-                </li>
+                @php
+                    $statuses = ['RT', 'RW', 'Kelurahan', 'Kecamatan'];
+                    $currentStatus = $dataDiri->statusPengajuan->nama_status ?? null;
+                @endphp
 
-                <li class="flex-1 shrink basis-0 group">
-                    <div class="inline-flex items-center w-full text-xs align-middle min-w-7 min-h-7">
-                        <span
-                            class="flex items-center justify-center font-medium text-gray-800 bg-gray-100 rounded-full size-7 shrink-0">
-                            2
-                        </span>
-                        <div class="flex-1 w-full h-px bg-gray-200 ms-2 group-last:hidden"></div>
-                    </div>
-                    <div class="mt-3">
-                        <span class="block font-semibold text-black text-md">
-                            RW
-                        </span>
-                    </div>
-                </li>
+                @foreach ($statuses as $index => $status)
+                    @php
+                        $isActive = $currentStatus == $status || $index < array_search($currentStatus, $statuses);
+                        $bgColor = $isActive ? 'bg-red-800 text-white' : 'bg-gray-100 text-gray-800';
+                    @endphp
 
-                <li class="flex-1 shrink basis-0 group">
-                    <div class="inline-flex items-center w-full text-xs align-middle min-w-7 min-h-7">
-                        <span
-                            class="flex items-center justify-center font-medium text-gray-800 bg-gray-100 rounded-full size-7 shrink-0">
-                            3
-                        </span>
-                        <div class="flex-1 w-full h-px bg-gray-200 ms-2 group-last:hidden"></div>
-                    </div>
-                    <div class="mt-3">
-                        <span class="block font-semibold text-black text-md">
-                            Kelurahan
-                        </span>
-                    </div>
-                </li>
-
-                <li class="flex-1 shrink basis-0 group">
-                    <div class="inline-flex items-center w-full text-xs align-middle min-w-7 min-h-7">
-                        <span
-                            class="flex items-center justify-center font-medium text-gray-800 bg-gray-100 rounded-full size-7 shrink-0">
-                            3
-                        </span>
-                        <div class="flex-1 w-full h-px bg-gray-200 ms-2 group-last:hidden"></div>
-                    </div>
-                    <div class="mt-3">
-                        <span class="block font-semibold text-black text-md">
-                            Kecamatan
-                        </span>
-                    </div>
-                </li>
+                    <li class="flex-1 shrink basis-0 group">
+                        <div class="inline-flex items-center w-full text-xs align-middle min-w-7 min-h-7">
+                            <span
+                                class="flex items-center justify-center font-medium {{ $bgColor }} rounded-full size-7 shrink-0">
+                                {{ $index + 1 }}
+                            </span>
+                            <div class="flex-1 w-full h-px bg-gray-200 ms-2 group-last:hidden"></div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="block font-semibold text-black text-md">
+                                {{ $status }}
+                            </span>
+                        </div>
+                        {{-- <div class="mt-1">
+                            <a href="{{ url('/warga/detail-pindah-masuk') }}"
+                                class="block text-xs font-normal text-blue-500">
+                                detail
+                            </a>
+                        </div> --}}
+                    </li>
+                @endforeach
             </ul>
 
         </div>
@@ -142,7 +137,7 @@
                             penduduk untuk secara resmi mengajukan permohonan untuk pindah dari desa Panjunan ke lokasi
                             baru..</p>
                         <div class="text-end">
-                            <a href="{{ url('/warga/pindah-keluar') }}"
+                            <a href="{{ url('/warga/pindah-keluar/' . $user->id) }}"
                                 class="text-md font-semibold text-[#9B1010] text-end">Buat Pengajuan</a>
                         </div>
                     </div>
@@ -154,7 +149,7 @@
                         <p class="mb-2">Pengajuan Ubah Status Pekerjaan adalah proses administratif yang memungkinkan
                             penduduk untuk mengajukan perubahan status pekerjaan mereka secara resmi.</p>
                         <div class="text-end">
-                            <a href="{{ url('/warga/ubah-pekerjaan') }}"
+                            <a href="{{ url('/warga/ubah-pekerjaan/' . $user->id) }}"
                                 class="text-md font-semibold text-[#9B1010] text-end">Buat Pengajuan</a>
                         </div>
                     </div>

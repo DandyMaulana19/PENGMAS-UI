@@ -1,4 +1,4 @@
-<header class="relative flex flex-wrap w-full px-6 py-3 text-sm bg-white shadow-md sm:justify-start sm:flex-nowrap">
+{{-- <header class="relative flex flex-wrap w-full px-6 py-3 text-sm bg-white shadow-md sm:justify-start sm:flex-nowrap">
     <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
         <div class="flex items-center justify-between">
             <a class="flex-none text-xl font-semibold focus:outline-none focus:opacity-80"
@@ -66,6 +66,7 @@
                 </div>
             </div>
 
+
             {{-- <div id="hs-navbar-example"
             class="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow"
             aria-labelledby="hs-navbar-example-collapse">
@@ -78,7 +79,7 @@
                 <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400"
                     href="#">Blog</a>
             </div>
-        </div> --}}
+        </div> 
     </nav>
     @include('components.sidebar')
-</header>
+</header> --}}
