@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\AdminKecamatan;
+use App\Models\AdminKelurahan;
+use App\Models\AdminRT;
+use App\Models\AdminRW;
 use App\Models\DaerahAsal;
 use App\Models\DaerahTujuan;
 use App\Models\DataDiri;
@@ -43,6 +47,10 @@ class DatabaseSeeder extends Seeder
         DaerahTujuan::factory()->count(1)->create();
         $this->call(PengajuanPekerjaanSeeder::class);
         $this->call(StatusPengajuanSeeder::class);
+        AdminRT::factory()->count(1)->create();
+        AdminRW::factory()->count(1)->create();
+        AdminKelurahan::factory()->count(1)->create();
+        AdminKecamatan::factory()->count(1)->create();
 
         User::factory()->create([
             'name' => 'Test User',

@@ -7,6 +7,7 @@ use App\Models\DataDiri;
 use App\Models\DaerahTujuan;
 use App\Models\StatusPengajuan;
 use App\Models\User;
+use Yajra\DataTables\DataTables;
 
 class PindahKeluarController extends Controller
 {
@@ -17,7 +18,7 @@ class PindahKeluarController extends Controller
         $user = User::findOrFail($id);
         $dataDiri = DataDiri::all();
 
-        if (auth()->user()->id != $id) {
+        if (auth()->check() && auth()->user()->id != $id) {
             return redirect('/warga/dashboard/' . auth()->user()->id)->withErrors('Unauthorized access.');
         }
 
@@ -73,5 +74,27 @@ class PindahKeluarController extends Controller
 
         return redirect('/warga/dashboard/' . $idUser)->with('success', 'Form berhasil diisi.');
         // return redirect('/warga/pindah-keluar')->with('success', 'Permohonan pindah keluar ditambahkan');
+    }
+
+    public function getData(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = DataDiri::select(['id', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('jenisKelamin', function ($row) {
+                    return $row->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan';
+                })
+                ->addColumn('tanggalLahir', function ($row) {
+                    return \Carbon\Carbon::parse($row->tanggalLahir)->translatedformat('d F Y');
+                })
+                ->addColumn('action', function ($row) {
+                    return '<a href="' . url('/warga/form-pekerjaan/' . $row->id) . '" class="text-xs px-3 py-1.5 bg-[#9B1010] text-white rounded">Ajukan</a>';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return response()->json(['error' => 'Invalid request'], 400);
     }
 }

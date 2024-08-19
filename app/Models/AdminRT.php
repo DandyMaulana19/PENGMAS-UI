@@ -10,4 +10,14 @@ class AdminRT extends Model
     use HasFactory;
     protected $table = 'adminrts';
     public $incrementing = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function rt()
+    {
+        return $this->belongsTo(RT::class);
+    }
 }
