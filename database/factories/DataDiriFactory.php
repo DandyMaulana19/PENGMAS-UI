@@ -36,7 +36,6 @@ class DataDiriFactory extends Factory
             'urlBukuNikah' => $this->faker->imageUrl(),
             'id_status_pekerjaan' => StatusPekerjaan::factory(),
             'id_status_pengajuan' => StatusPengajuan::factory(),
-            'id_status_users' => User::factory(),
             'id_user' => User::factory(),
         ];
     }

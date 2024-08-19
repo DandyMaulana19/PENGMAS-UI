@@ -23,7 +23,6 @@ return new class extends Migration {
             $table->string('alamatPekerjaan', 255);
             $table->uuid('id_status_pekerjaan');
             $table->uuid('id_status_pengajuan');
-            $table->uuid('id_status_users');
             $table->uuid('id_user');
             $table->string('urlktp', 255)->nullable();
             $table->string('urlkk', 255)->nullable();
@@ -32,7 +31,6 @@ return new class extends Migration {
 
             $table->foreign('id_status_pekerjaan')->references('id')->on('statuspekerjaans')->onDelete('cascade');
             $table->foreign('id_status_pengajuan')->references('id')->on('statuspengajuans')->onDelete('cascade');
-            $table->foreign('id_status_users')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }

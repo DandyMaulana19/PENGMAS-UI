@@ -115,11 +115,11 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center px-6 py-5 gap-x-2">
-                                        <a href="{{ url('/warga/pindah-masuk') }}" type="button"
+                                        <a href="{{ url('/warga/pindah-masuk/' . $user->id) }}" type="button"
                                             class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white hover:bg-[#722423] focus:outline-none disabled:opacity-50 disabled:pointer-events-none ">
                                             Numpang KK
                                         </a>
-                                        <a href="{{ url('/warga/form-kk-baru') }}" type="button"
+                                        <a href="{{ url('/warga/form-kk-baru/' . $user->id) }}" type="button"
                                             class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white hover:bg-[#722423] focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                                             Buat KK Baru
                                         </a>

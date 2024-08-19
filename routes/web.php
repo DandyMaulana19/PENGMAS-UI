@@ -41,19 +41,11 @@ Route::get('/permintaan', [PermintaanController::class, 'index']);
 // Route Warga
 Route::prefix('warga')->group(function () {
     Route::get('/dashboard/{id}', [DashboardController::class, 'index']);
-    Route::get('/pindah-masuk', [PindahMasukController::class, 'index']);
-    Route::get('/detail-pindah-masuk', function () {
-        return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk');
-    });
-    Route::get('/detail-pindah-keluar', function () {
-        return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar');
-    });
-    Route::get('/detail-ubah-pekerjaan', function () {
-        return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan');
-    });
-    Route::get('/form-kk-baru', function () {
-        return view('pages.pengajuanKK');
-    });
+
+    // Route Pindah Masuk
+    Route::get('/pindah-masuk/{id}', [PindahMasukController::class, 'index']);
+    Route::get('/form-tambah-data/{id}', [PindahMasukController::class, 'tambahData']);
+    Route::get('/form-kk-baru/{id}', [PindahMasukController::class, 'kkBaru']);
 
     // Route Pindah Keluar
     Route::get('/pindah-keluar/{id}', [PindahKeluarController::class, 'index']);
@@ -65,4 +57,15 @@ Route::prefix('warga')->group(function () {
     Route::get('/form-pekerjaan/{id}', [UbahKerjaController::class, 'show']);
     Route::put('/form-pekerjaan/{id}', [UbahKerjaController::class, 'update'])->name('form-pekerjaan');
     Route::get('/form-pekerjaan/getData', [UbahKerjaController::class, 'getData'])->name('data-diri.getData');
+
+    // Route Detail Pengajuan
+    Route::get('/detail-pindah-masuk', function () {
+        return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk');
+    });
+    Route::get('/detail-pindah-keluar', function () {
+        return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar');
+    });
+    Route::get('/detail-ubah-pekerjaan', function () {
+        return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan');
+    });
 });

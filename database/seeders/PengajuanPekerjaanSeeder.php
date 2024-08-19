@@ -23,8 +23,7 @@ class PengajuanPekerjaanSeeder extends Seeder
         DataDiri::factory()->create([
             'id_status_pekerjaan' => $statusPekerjaan->id,
             'id_status_pengajuan' => $statusPengajuan->id,
-            'id_status_users' => $user->id,
+            'id_user' => $user->id,
         ]);
     }
-
 }

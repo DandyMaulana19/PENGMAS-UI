@@ -122,48 +122,47 @@
                 </div>
 
                 <h3 class="my-6 mb-4 text-2xl font-semibold">Data Daerah Tujuan</h3>
-
-                @foreach ($datadiri as $data)
+                @foreach ($daerahTujuan as $item)
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Alamat</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Alamat" value="{{ $data->alamat }}" readonly>
+                            placeholder="Masukkan Alamat" value="{{ $item->alamat }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">RT</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan RT" value="{{ $data->namaRt }}" readonly>
+                            placeholder="Masukkan RT" value="{{ $item->namaRt }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">RW</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan RW" value="{{ $data->namaRw }}" readonly>
+                            placeholder="Masukkan RW" value="{{ $item->namaRw }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Desa/Kelurahan</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Desa/Kelurahan" value="{{ $data->namaKelurahan }}" readonly>
+                            placeholder="Masukkan Desa/Kelurahan" value="{{ $item->namaKelurahan }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Kecamatan</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Kecamatan" value="{{ $data->namaKecamatan }}" readonly>
+                            placeholder="Masukkan Kecamatan" value="{{ $item->namaKecamatan }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Kabupaten</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Kabupaten" value="{{ $data->namaKabupaten }}" readonly>
+                            placeholder="Masukkan Kabupaten" value="{{ $item->namaKabupaten }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
                         <label for="" class="w-full md:w-1/4">Provinsi</label>
                         <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4"
-                            placeholder="Masukkan Provinsi" value="{{ $data->namaProvinsi }}" readonly>
+                            placeholder="Masukkan Provinsi" value="{{ $item->namaProvinsi }}" readonly>
                     </div>
 
                     <div class="flex flex-col items-center mb-4 md:flex-row">
@@ -172,6 +171,7 @@
                             class="block w-full text-sm border border-gray-200 rounded-lg shadow-sm md:w-3/4 focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
                     </div>
                 @endforeach
+
 
                 <div class="flex justify-end mt-8">
                     <a href="{{ url('/warga/pindah-masuk') }}"
