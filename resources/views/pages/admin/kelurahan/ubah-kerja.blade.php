@@ -9,37 +9,6 @@
 
         <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem] mx-auto text-start py-12">Permohonan Ubah Status Pekerjaan
         </h1>
-        <div class="flex py-5 space-x-4 ">
-            <div class="flex justify-start w-full p-3 border rounded-lg shadow-md">
-                <div class="px-4 py-4 bg-[#46E02D] rounded flex items-center">
-                    <box-icon name='check' color="#ffff"></box-icon>
-                </div>
-                <div class="inline-flex flex-col px-4">
-                    <span class="font-bold text-gray-500">Disetujui</span>
-                    <span class="font-bold text-gray-800">1</span>
-                </div>
-            </div>
-
-            <div class="flex justify-start w-full p-3 border rounded-lg shadow-md">
-                <div class="px-4 py-4 rounded bg-[#FFA426] flex items-center">
-                    <box-icon name='time-five' color="#ffff"></box-icon>
-                </div>
-                <div class="inline-flex flex-col px-4">
-                    <span class="font-bold text-gray-500">Disetujui</span>
-                    <span class="font-bold text-gray-800">1</span>
-                </div>
-            </div>
-
-            <div class="flex justify-start w-full p-3 border rounded-lg shadow-md">
-                <div class="px-4 py-4 bg-[#FC544B] rounded flex items-center">
-                    <box-icon name='message-alt-x' color="#ffff"></box-icon>
-                </div>
-                <div class="inline-flex flex-col px-4">
-                    <span class="font-bold text-gray-500">Disetujui</span>
-                    <span class="font-bold text-gray-800">1</span>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div

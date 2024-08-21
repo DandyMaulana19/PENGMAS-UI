@@ -55,8 +55,4 @@ class DataDiri extends Model
     {
         return $this->belongsToMany(DataKK::class, 'datadiri_datakks', 'dataDiri_id', 'dataKk_id');
     }
-    public function daerahTujuans()
-    {
-        return $this->hasMany(DaerahTujuan::class, 'dataDiri_id');
-    }
 }
