@@ -5,28 +5,18 @@
 @section('content')
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    {{-- Cards Container --}}
     <div class="max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between my-4 rounded h-full items-center">
 
         <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem] mx-auto text-start py-12">Permohonan Ubah Status Pekerjaan
         </h1>
-
-        {{-- cards --}}
-        <div class="flex py-5 space-x-4">
-            <!-- Your cards here -->
-        </div>
     </div>
 
-    {{-- table container --}}
     <div
         class="px-12 py-8 max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-white border-[#D92F2F] border-t-8">
-        {{-- title --}}
         <h1 class="text-3xl font-bold text-[#AA0000] max-w-[82rem] mx-auto text-start py-4 my-3">Daftar Pengajuan</h1>
 
-        {{-- divider --}}
         <div class="mb-3 border-b-[1.8px] border-[#AA0000]"></div>
 
-        {{-- table --}}
         <table id="dataDiriTable" class="min-w-full hover">
             <thead class="bg-gray-200">
                 <tr>
@@ -60,7 +50,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('Pengajuan.getDataRT') }}',
+                    url: '{{ route('rt.ubahKerja') }}',
                     type: 'GET',
                     data: function(d) {
                         d.status = $('#status').val();

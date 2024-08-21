@@ -71,13 +71,12 @@ class UbahKerjaController extends Controller
         }
 
         $dataDiri->id_status_pengajuan = $statusPengajuan->id;
-
         $dataDiri->save();
-
         $idUser = session('idUser');
 
         return redirect('/warga/dashboard/' . $idUser)->with('success', 'Form berhasil diisi.');
     }
+
     public function getData(Request $request)
     {
         if ($request->ajax()) {
