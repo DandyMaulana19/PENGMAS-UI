@@ -35,31 +35,29 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route penelitian
 Route::prefix('/rt')->group(function () {
-    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'show'])->name('ubah-pekerjaan-pengajuan.rt');
-    Route::get('/ubah-kerja', [AdminKerjaController::class, 'rt'])->name('rt.ubahKerja');
+    Route::get('/pengajuan/getRT', [AdminKerjaController::class, 'getDataPengajuan'])->name('Pengajuan.getDataRT');
+    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'showRt'])->name('ubah-pekerjaan-pengajuan');
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'indexRt']);
     Route::get('/pindah-masuk', [AdminMasukController::class, 'rt'])->name('rt.pindahMasuk');
-    Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('rt.detailPindahMasuk');
-    Route::get('/pindah-keluar', [AdminKeluarController::class, 'rt']);
+    Route::get('/detail-pindah-masuk', [AdminMasukController::class, 'show'])->name('rt.detailPindahMasuk');
+    Route::get('/pindah-keluar', [AdminKeluarController::class, 'index']);
 });
 Route::prefix('/rw')->group(function () {
-    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'show'])->name('ubah-pekerjaan-pengajuan.rw');
-    Route::get('/ubah-kerja', [AdminKerjaController::class, 'rw'])->name('rw.ubahKerja');
-    Route::get('/pindah-masuk', [AdminMasukController::class, 'rw'])->name('rw.pindahMasuk');
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'rw']);
+    Route::get('/pindah-masuk', [AdminMasukController::class, 'rt'])->name('rw.pindahMasuk');
     Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('rw.detailPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rw']);
 });
 Route::prefix('/kelurahan')->group(function () {
-    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'show'])->name('ubah-pekerjaan-pengajuan.kelurahan');
-    Route::get('/ubah-kerja', [AdminKerjaController::class, 'kelurahan'])->name('kelurahan.ubahKerja');
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'kelurahan']);
     Route::get('/pindah-masuk', [AdminMasukController::class, 'kelurahan'])->name('kelurahan.pindahMasuk');
     Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('kelurahan.detailPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'kelurahan']);
 });
 Route::prefix('/kecamatan')->group(function () {
-    Route::get('/ubah-pekerjaan-pengajuan/{id}', [AdminKerjaController::class, 'show'])->name('ubah-pekerjaan-pengajuan.kecamatan');
-    Route::get('/ubah-kerja', [AdminKerjaController::class, 'kecamatan'])->name('kecamatan.ubahKerja');
+    Route::get('/ubah-kerja', [AdminKerjaController::class, 'kecamatan']);
     Route::get('/pindah-masuk', [AdminMasukController::class, 'kecamatan'])->name('kecamatan.pindahMasuk');
-    Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('kecamatan.detailPindahMasuk');
+    Route::get('/pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('kecamatan.detailPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'kecamatan']);
 });
 

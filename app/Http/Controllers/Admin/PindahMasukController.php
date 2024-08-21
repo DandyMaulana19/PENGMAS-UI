@@ -60,7 +60,7 @@ class PindahMasukController extends Controller
                 ->addColumn('action', function ($row) {
                     return '
                         <td class="flex items-center justify-center gap-2 p-2">
-                            <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('kelurahan.detailPindahMasuk', ['id' => $row->id]) . '\'">
+                            <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('rt.detailPindahMasuk', ['id' => $row->id]) . '\'">
                                 <box-icon name="show-alt" color="#fff"></box-icon>
                             </button>
                             <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]" onclick="downloadDetails(' . $row->id . ')">
@@ -106,7 +106,7 @@ class PindahMasukController extends Controller
                 ->addColumn('action', function ($row) {
                     return '
                         <td class="flex items-center justify-center gap-2 p-2">
-                            <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('kelurahan.detailPindahMasuk', ['id' => $row->id]) . '\'">
+                            <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('rw.detailPindahMasuk', ['id' => $row->id]) . '\'">
                                 <box-icon name="show-alt" color="#fff"></box-icon>
                             </button>
                             <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]" onclick="downloadDetails(' . $row->id . ')">
@@ -197,7 +197,7 @@ class PindahMasukController extends Controller
                 ->addColumn('action', function ($row) {
                     return '
                         <td class="flex items-center justify-center gap-2 p-2">
-                            <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('kelurahan.detailPindahMasuk', ['id' => $row->id]) . '\'">
+                            <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('kecamatan.detailPindahMasuk', ['id' => $row->id]) . '\'">
                                 <box-icon name="show-alt" color="#fff"></box-icon>
                             </button>
                             <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]" onclick="downloadDetails(' . $row->id . ')">

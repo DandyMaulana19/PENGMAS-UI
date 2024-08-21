@@ -17,18 +17,19 @@
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="status" class="w-full md:w-1/4">Status</label>
                     <select id="status" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" disabled>
-                        <option value="Belum Kerja">
+                        <option value="Belum Kerja" {{ $dataDiri->status_pengajuan == 'Belum Kerja' ? 'selected' : '' }}>
                             Menunggu Persetujuan</option>
-                        <option value="Mahasiswa">
+                        <option value="Mahasiswa" {{ $dataDiri->status_pengajuan == 'Mahasiswa' ? 'selected' : '' }}>
                             Disetujui</option>
-                        <option value="Sudah Bekerja">Ditolak</option>
+                        <option value="Sudah Bekerja"
+                            {{ $dataDiri->status_pengajuan == 'Sudah Bekerja' ? 'selected' : '' }}>Ditolak</option>
                     </select>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="catatan" class="w-full md:w-1/4">Catatan</label>
                     <textarea id="catatan" class="w-full md:w-3/4 px-4 py-2 border border-gray-200 rounded-lg" rows="5"
-                        placeholder="Catatan" readonly></textarea>
+                        placeholder="Catatan" readonly>{{ $dataDiri->catatan }}</textarea>
                 </div>
             </form>
 
@@ -170,6 +171,7 @@
                 <button type="submit"
                     class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-200">Submit</button>
             </div>
+
         </div>
     </div>
 @endsection

@@ -37,8 +37,7 @@
                         readonly>
                 </div>
 
-                <div class="flex
-                        flex-col md:flex-row items-center mb-4">
+                <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">NIK</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
                         value="{{ $dataDiri->nik }}" readonly>
@@ -129,43 +128,43 @@
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Alamat</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $daerahTujuan->alamat }}" readonly>
+                        value="{{ $daerahTujuan ? $daerahTujuan->alamat : 'N/A' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">RT</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $daerahTujuan->namaRt }}" readonly>
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaRt : 'N/A' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">RW</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $daerahTujuan->namaRw }}" readonly>
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaRw : 'N/A' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Desa/Kelurahan</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $daerahTujuan->namaKelurahan }}" readonly>
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaKelurahan : 'N/A' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Kecamatan</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $daerahTujuan->namaKecamatan }}" readonly>
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaKecamatan : 'N/A' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Kabupaten</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $daerahTujuan->namaKabupaten }}" readonly>
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaKabupaten : 'N/A' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Provinsi</label>
                     <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
-                        value="{{ $daerahTujuan->namaProvinsi }}" readonly>
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaProvinsi : 'N/A' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
