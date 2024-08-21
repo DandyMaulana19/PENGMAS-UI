@@ -16,7 +16,7 @@ class UbahKerjaController extends Controller
 
         $daerahTujuan = DaerahTujuan::where('dataDiri_id', $id)->first();
 
-        return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan', [
+        return view('pages.admin.detail.ubah-kerja', [
             'dataDiri' => $dataDiri,
             'dataKK' => $dataDiri,
             'daerahTujuan' => $daerahTujuan,
