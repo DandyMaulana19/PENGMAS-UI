@@ -43,7 +43,7 @@ Route::prefix('/rt')->group(function () {
 });
 Route::prefix('/rw')->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rw']);
-    Route::get('/pindah-masuk', [AdminMasukController::class, 'rw']);
+    Route::get('/pindah-masuk', [AdminMasukController::class, 'rt'])->name('rw.pindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rw']);
 });
 Route::prefix('/kelurahan')->group(function () {
