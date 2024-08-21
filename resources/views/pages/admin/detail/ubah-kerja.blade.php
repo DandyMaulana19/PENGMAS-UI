@@ -16,19 +16,17 @@
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="status" class="w-full md:w-1/4">Status</label>
-                    <select id="status" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" disabled>
-                        <option value="Belum Kerja">
-                            Menunggu Persetujuan</option>
-                        <option value="Mahasiswa">
-                            Disetujui</option>
-                        <option value="Sudah Bekerja">Ditolak</option>
+                    <select id="status" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg">
+                        <option selected disabled>Menunggu Persetujuan</option>
+                        <option value="Disetujui">Disetujui</option>
+                        <option value="Ditolak">Ditolak</option>
                     </select>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="catatan" class="w-full md:w-1/4">Catatan</label>
                     <textarea id="catatan" class="w-full md:w-3/4 px-4 py-2 border border-gray-200 rounded-lg" rows="5"
-                        placeholder="Catatan" readonly></textarea>
+                        placeholder="Catatan"></textarea>
                 </div>
             </form>
 

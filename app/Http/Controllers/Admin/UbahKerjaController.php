@@ -3,85 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\DaerahAsal;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\DataDiri;
 use App\Models\DaerahTujuan;
-use App\Models\DataKK;
-use App\Models\StatusPekerjaan;
 
 class UbahKerjaController extends Controller
 {
-    public function rw()
-    {
-        $dataDummyTable = [
-            [
-                'nip' => '1234567890',
-                'penulis' => 'John Doe',
-                'judulpenelitian' => 'Laki laki',
-                'kontributor' => 'Jane Doe',
-                'prodi' => 'Agroteknologi',
-                'tanggalupload' => '2021-01-01',
-                'tanggalpembaruan' => '2021-01-02',
-
-            ],
-        ];
-        return view('pages.admin.ubah-kerja', [
-            'dataDummyTable' => $dataDummyTable
-        ]);
-    }
-    public function kelurahan()
-    {
-        $dataDummyTable = [
-            [
-                'nip' => '1234567890',
-                'penulis' => 'John Doe',
-                'judulpenelitian' => 'Laki laki',
-                'kontributor' => 'Jane Doe',
-                'prodi' => 'Agroteknologi',
-                'tanggalupload' => '2021-01-01',
-                'tanggalpembaruan' => '2021-01-02',
-
-            ],
-        ];
-        return view('pages.admin.ubah-kerja', [
-            'dataDummyTable' => $dataDummyTable
-        ]);
-    }
-    public function kecamatan()
-    {
-        $dataDummyTable = [
-            [
-                'nip' => '1234567890',
-                'penulis' => 'John Doe',
-                'judulpenelitian' => 'Laki laki',
-                'kontributor' => 'Jane Doe',
-                'prodi' => 'Agroteknologi',
-                'tanggalupload' => '2021-01-01',
-                'tanggalpembaruan' => '2021-01-02',
-
-            ],
-        ];
-        return view('pages.admin.ubah-kerja', [
-            'dataDummyTable' => $dataDummyTable
-        ]);
-    }
-
-    public function indexRt()
-    {
-        $dataDiri = DataDiri::all();
-
-        return view('pages.admin.ubah-kerja', ['dataDiri' => $dataDiri]);
-    }
-
-    public function showRt($id)
+    public function show($id)
     {
         $dataDiri = DataDiri::with('dataKks', 'statusPekerjaan')->findOrFail($id);
 
         $daerahTujuan = DaerahTujuan::where('dataDiri_id', $id)->first();
 
-        return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan', [
+        return view('pages.admin.detail.ubah-kerja', [
             'dataDiri' => $dataDiri,
             'dataKK' => $dataDiri,
             'daerahTujuan' => $daerahTujuan,
@@ -89,7 +24,7 @@ class UbahKerjaController extends Controller
         ]);
     }
 
-    public function getDataPengajuan(Request $request)
+    public function rt(Request $request)
     {
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
@@ -120,7 +55,7 @@ class UbahKerjaController extends Controller
                 ->addColumn('action', function ($row) {
                     return '
                     <td class="flex items-center justify-center gap-2 p-2">
-                        <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('ubah-pekerjaan-pengajuan', ['id' => $row->id]) . '\'">
+                        <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('ubah-pekerjaan-pengajuan.rt', ['id' => $row->id]) . '\'">
                             <box-icon name="show-alt" color="#fff"></box-icon>
                         </button>
                         <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]" onclick="downloadDetails(' . $row->id . ')">
@@ -133,6 +68,151 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        return response()->json(['error' => 'Invalid request'], 400);
+        return view('pages.admin.rt.ubah-kerja');
+        // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function rw(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
+                ->where('statuspengajuans.nama_status', 'RW')
+                ->select([
+                    'datadiris.id',
+                    'datadiris.nik',
+                    'datadiris.namaLengkap',
+                    'datadiris.jenisKelamin',
+                    'datadiris.tempatLahir',
+                    'datadiris.tanggalLahir',
+                    'datadiris.agama',
+                    'datadiris.pendidikan',
+                    'statuspengajuans.nama_status'
+                ]);
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('jenisKelamin', function ($row) {
+                    return $row->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan';
+                })
+                ->addColumn('tanggalLahir', function ($row) {
+                    return $row->tanggalLahir->format('d F Y');
+                })
+                ->addColumn('status', function ($row) {
+                    return 'Pending';
+                })
+                ->addColumn('action', function ($row) {
+                    return '
+                    <td class="flex items-center justify-center gap-2 p-2">
+                        <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('ubah-pekerjaan-pengajuan.rw', ['id' => $row->id]) . '\'">
+                            <box-icon name="show-alt" color="#fff"></box-icon>
+                        </button>
+                        <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]" onclick="downloadDetails(' . $row->id . ')">
+                            <box-icon name="download" color="#fff"></box-icon>
+                        </button>
+                    </td>
+                ';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('pages.admin.rw.ubah-kerja');
+        // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function kelurahan(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
+                ->where('statuspengajuans.nama_status', 'Kelurahan')
+                ->select([
+                    'datadiris.id',
+                    'datadiris.nik',
+                    'datadiris.namaLengkap',
+                    'datadiris.jenisKelamin',
+                    'datadiris.tempatLahir',
+                    'datadiris.tanggalLahir',
+                    'datadiris.agama',
+                    'datadiris.pendidikan',
+                    'statuspengajuans.nama_status'
+                ]);
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('jenisKelamin', function ($row) {
+                    return $row->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan';
+                })
+                ->addColumn('tanggalLahir', function ($row) {
+                    return $row->tanggalLahir->format('d F Y');
+                })
+                ->addColumn('status', function ($row) {
+                    return 'Pending';
+                })
+                ->addColumn('action', function ($row) {
+                    return '
+                    <td class="flex items-center justify-center gap-2 p-2">
+                        <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('ubah-pekerjaan-pengajuan.kelurahan', ['id' => $row->id]) . '\'">
+                            <box-icon name="show-alt" color="#fff"></box-icon>
+                        </button>
+                        <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]" onclick="downloadDetails(' . $row->id . ')">
+                            <box-icon name="download" color="#fff"></box-icon>
+                        </button>
+                    </td>
+                ';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('pages.admin.kelurahan.ubah-kerja');
+        // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function kecamatan(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
+                ->where('statuspengajuans.nama_status', 'Kecamatan')
+                ->select([
+                    'datadiris.id',
+                    'datadiris.nik',
+                    'datadiris.namaLengkap',
+                    'datadiris.jenisKelamin',
+                    'datadiris.tempatLahir',
+                    'datadiris.tanggalLahir',
+                    'datadiris.agama',
+                    'datadiris.pendidikan',
+                    'statuspengajuans.nama_status'
+                ]);
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('jenisKelamin', function ($row) {
+                    return $row->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan';
+                })
+                ->addColumn('tanggalLahir', function ($row) {
+                    return $row->tanggalLahir->format('d F Y');
+                })
+                ->addColumn('status', function ($row) {
+                    return 'Pending';
+                })
+                ->addColumn('action', function ($row) {
+                    return '
+                    <td class="flex items-center justify-center gap-2 p-2">
+                        <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('ubah-pekerjaan-pengajuan.kecamatan', ['id' => $row->id]) . '\'">
+                            <box-icon name="show-alt" color="#fff"></box-icon>
+                        </button>
+                        <button class="flex p-1 text-white bg-blue-500 rounded-lg hover:bg-[#AA0000]" onclick="downloadDetails(' . $row->id . ')">
+                            <box-icon name="download" color="#fff"></box-icon>
+                        </button>
+                    </td>
+                ';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('pages.admin.kecamatan.ubah-kerja');
+        // return response()->json(['error' => 'Invalid request'], 400);
     }
 }
