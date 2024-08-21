@@ -5,10 +5,12 @@
 @section('content')
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    <div class="max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between my-4 rounded h-full items-center">
+    {{-- Cards Container --}}
+    <div class=" max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between  my-4 rounded h-full items-csenter">
 
-        <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem] mx-auto text-start py-12">Permohonan Ubah Status Pekerjaan
-        </h1>
+        <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem] mx-auto text-start py-12">Permohonan Pindah Keluar</h1>
+
+        {{-- cards --}}
         <div class="flex py-5 space-x-4 ">
             <div class="flex justify-start w-full p-3 border rounded-lg shadow-md">
                 <div class="px-4 py-4 bg-[#46E02D] rounded flex items-center">
@@ -42,12 +44,23 @@
         </div>
     </div>
 
-    <div
-        class="px-12 py-8 max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-white border-[#D92F2F] border-t-8">
-        <h1 class="text-3xl font-bold text-[#AA0000] max-w-[82rem] mx-auto text-start py-4 my-3">Daftar Pengajuan</h1>
 
+    {{-- table container --}}
+    <div
+        class="px-12 py-8 max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-slate-100 border-[#D92F2F] border-t-8 ">
+
+        {{-- title --}}
+        <h1 class="text-3xl font-bold text-[#AA0000] max-w-[82rem]  mx-auto text-start py-4 my-3">Daftar Pengajuan</h1>
+
+        {{-- divider --}}
         <div class="mb-3 border-b-[1.8px] border-[#AA0000]"></div>
 
+        {{-- <div class="flex items-center justify-end gap-4 my-4">
+            <label for="search" class="text-sm text-gray-800 text-md">Cari :</label>
+            <input type="search" class="p-2 border-2 rounded-md">
+        </div> --}}
+
+        {{-- table --}}
         <table id="dataDiriTable" class="min-w-full hover">
             <thead class="bg-gray-200">
                 <tr>
@@ -74,6 +87,7 @@
     </div>
 @endsection
 
+
 @push('scripts')
     <script>
         $(document).ready(function() {
@@ -81,7 +95,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('rt.ubahKerja') }}',
+                    url: '{{ route('kelurahan.pindahKeluar') }}',
                     type: 'GET',
                     data: function(d) {
                         d.status = $('#status').val();
