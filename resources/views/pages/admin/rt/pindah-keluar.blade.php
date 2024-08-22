@@ -44,7 +44,6 @@
         </div>
     </div>
 
-
     {{-- table container --}}
     <div
         class="px-12 py-8 max-w-[82rem] w-full mx-auto sm:items-center sm:justify-between pb-5 my-4 rounded shadow-md h-full bg-slate-100 border-[#D92F2F] border-t-8 ">

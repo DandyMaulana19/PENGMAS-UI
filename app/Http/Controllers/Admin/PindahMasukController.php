@@ -21,7 +21,7 @@ class PindahMasukController extends Controller
 
         // dd($daerahTujuan);
 
-        return view('pages.admin.detail.pindah-masuk', [
+        return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk', [
             'dataDiri' => $dataDiri,
             'dataKK' => $dataDiri,
             'daerahTujuan' => $daerahTujuan,

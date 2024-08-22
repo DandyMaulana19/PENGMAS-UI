@@ -19,7 +19,7 @@ class PindahKeluarController extends Controller
 
         $statusPekerjaan = $dataDiri->statusPekerjaan;
 
-        return view('pages.admin.detail.pindah-keluar', [
+        return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar', [
             'dataDiri' => $dataDiri,
             'dataKK' => $dataKK,
             'daerahTujuan' => $daerahTujuan,

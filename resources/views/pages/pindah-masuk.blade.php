@@ -46,8 +46,8 @@
             </div>
 
             <div class="mb-3 text-end">
-                <a href="{{ url('/warga/form-tambah-data') }}"
-                    class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white shadow-sm hover:bg-[#722423] focus:outline-none disabled:opacity-50 disabled:pointer-events-none ">Tambah
+                <a href="{{ route('form-tambah-data.show', ['id' => $id]) }}"
+                    class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-normal rounded-lg border bg-[#922E2C] text-white shadow-sm hover:bg-[#722423] focus:outline-none disabled:opacity-50 disabled:pointer-events-none">Tambah
                     Data</a>
             </div>
 
@@ -78,8 +78,6 @@
                             </th>
                             <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">
                                 Status</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Aksi
-                            </th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -97,7 +95,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ route('Pengajuan.getDataRT') }}',
+                    url: '{{ route('data-diri.pindahMasuk') }}',
                     type: 'GET',
                     data: function(d) {
                         d.status = $('#status').val();
@@ -140,12 +138,6 @@
                     {
                         data: 'status',
                         name: 'status'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
                     }
                 ]
             });
