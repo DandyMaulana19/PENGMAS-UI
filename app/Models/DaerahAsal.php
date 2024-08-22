@@ -13,6 +13,16 @@ class DaerahAsal extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    protected $fillable = [
+        'dataDiri_id',
+        'alamat',
+        'namaRt',
+        'namaRw',
+        'namaKelurahan',
+        'namaKecamatan',
+        'namaKabupaten',
+        'namaProvinsi',
+    ];
 
     public function dataDiri()
     {

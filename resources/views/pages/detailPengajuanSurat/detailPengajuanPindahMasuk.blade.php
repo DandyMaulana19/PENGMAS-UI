@@ -16,133 +16,155 @@
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="Status" class="w-full md:w-1/4">Status</label>
-                    <select id="Status" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" disabled>
-                        <option value="Belum Kerja">Menunggu Persetujuan</option>
-                        <option value="Mahasiswa">Disetujui</option>
-                        <option value="Sudah Bekerja">Ditolak</option>
+                    <select id="Status" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg">
+                        <option selected disabled>Menunggu Persetujuan</option>
+                        <option value="Disetujui">Disetujui</option>
+                        <option value="Ditolak">Ditolak</option>
                     </select>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Catatan</label>
-                    <textarea class="w-full md:w-3/4 px-4 py-2 border border-gray-200 rounded-lg" rows="5" placeholder="Catatan"
-                        readonly></textarea>
+                    <textarea class="w-full md:w-3/4 px-4 py-2 border border-gray-200 rounded-lg" rows="5" placeholder="Catatan"></textarea>
                 </div>
 
                 <h3 class="text-2xl font-semibold mb-4 my-6">Data Diri</h3>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">No. KK</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataKK->dataKks->isNotEmpty() ? $dataKK->dataKks->first()->no_kk : 'No. KK tidak tersedia' }}"
+                        readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">NIK</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataDiri->nik }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Nama Lengkap</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataDiri->namaLengkap }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Jenis Kelamin</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataDiri->jenisKelamin == 0 ? 'Laki-laki' : 'Perempuan' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Tempat Lahir</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataDiri->tempatLahir }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Tanggal Lahir</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataDiri->tanggalLahir->translatedFormat('d F Y') }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Agama</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataDiri->agama }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Pendidikan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $dataDiri->pendidikan }}" readonly>
                 </div>
 
                 <h3 class="text-2xl font-semibold mb-4 my-6">Data Daerah Asal</h3>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Alamat</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahAsal ? $daerahAsal->alamat : 'Alamat Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">RT</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahAsal ? $daerahAsal->namaRt : 'RT Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">RW</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahAsal ? $daerahAsal->namaRw : 'RW Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Desa/Kelurahan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahAsal ? $daerahAsal->namaKelurahan : 'Kelurahan Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Kecamatan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahAsal ? $daerahAsal->namaKecamatan : 'Kecamatan Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Kabupaten</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahAsal ? $daerahAsal->namaKabupaten : 'Kabupaten Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Provinsi</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahAsal ? $daerahAsal->namaProvinsi : 'Provinsi Tidak Tersedia' }}" readonly>
                 </div>
 
                 <h3 class="text-2xl font-semibold mb-4 my-6">Data Daerah Tujuan</h3>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Alamat</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahTujuan ? $daerahTujuan->alamat : 'Alamat Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">RT</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaRt : 'RT Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">RW</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaRw : 'RW Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Desa/Kelurahan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaKelurahan : 'Kelurahan Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Kecamatan</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaKecamatan : 'Kecamatan Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Kabupaten</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaKabupaten : 'Kabupaten Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
                     <label for="" class="w-full md:w-1/4">Provinsi</label>
-                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" readonly>
+                    <input type="text" class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg"
+                        value="{{ $daerahTujuan ? $daerahTujuan->namaProvinsi : 'Provinsi Tidak Tersedia' }}" readonly>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center mb-4">
