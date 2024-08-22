@@ -78,7 +78,7 @@
                     <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Pendidikan
                     </th>
                     <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Status</th>
-                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Aksi</th>
+                    <th scope="col" class="px-6 py-3 text-xs font-semibold text-black uppercase text-start">Action</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">

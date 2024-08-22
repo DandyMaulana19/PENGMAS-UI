@@ -89,7 +89,7 @@ class PindahKeluarController extends Controller
                     return \Carbon\Carbon::parse($row->tanggalLahir)->translatedformat('d F Y');
                 })
                 ->addColumn('action', function ($row) {
-                    return '<a href="' . url('/warga/form-pekerjaan/' . $row->id) . '" class="text-xs px-3 py-1.5 bg-[#9B1010] text-white rounded">Ajukan</a>';
+                    return '<a href="' . url('/warga/form-pindah-keluar/' . $row->id) . '" class="text-xs px-3 py-1.5 bg-[#9B1010] text-white rounded">Ajukan</a>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
