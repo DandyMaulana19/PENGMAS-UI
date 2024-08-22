@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{{ asset('assets/Logo Desa.svg') }}" type="image/x-icon">
     <title>@yield('title')</title>
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
@@ -18,8 +19,8 @@
 <body class="bg-primary">
 
     <main class="">
-        {{-- <img src="{{ asset('assets/Ellipse 1.svg') }}" class="absolute bottom-0  left-96" alt=""> --}}
-        {{-- <img src="{{ asset('assets/Ellipse 2.svg') }}" class="absolute top-0  right-96" alt=""> --}}
+        {{-- <img src="{{ asset('assets/Ellipse 1.svg') }}" class="absolute bottom-0 left-96" alt=""> --}}
+        {{-- <img src="{{ asset('assets/Ellipse 2.svg') }}" class="absolute top-0 right-96" alt=""> --}}
         @yield('content')
     </main>
 
