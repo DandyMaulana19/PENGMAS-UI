@@ -74,7 +74,8 @@ Route::prefix('warga')->middleware('auth.custom')->group(function () {
     // Route Pindah Masuk
     Route::get('/datadiri/pindahMasuk', [PindahMasukController::class, 'getData'])->name('data-diri.pindahMasuk');
     Route::get('/pindah-masuk/{id}', [PindahMasukController::class, 'index']);
-    Route::get('/form-tambah-data/{id}', [PindahMasukController::class, 'tambahData']);
+    Route::get('/form-tambah-data/{id}', [PindahMasukController::class, 'show'])->name('form-tambah-data.show');
+    Route::put('/form-tambah-data/update/{id}', [PindahMasukController::class, 'update'])->name('form.tambah.data.update');
     Route::get('/form-kk-baru/{id}', [PindahMasukController::class, 'kkBaru']);
 
     // Route Pindah Keluar
