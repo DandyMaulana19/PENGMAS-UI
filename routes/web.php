@@ -33,8 +33,12 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/402', function () {
+    return view('pages.error.unauthorized');
+});
+
 // Route penelitian
-Route::prefix('/rt')->middleware('auth.custom')->group(function () {
+Route::prefix('/rt')->middleware(['auth.custom', 'role:rt'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rt'])->name('rt.ubahKerja');
     Route::get('/deail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('rt.detailUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'rt'])->name('rt.pindahMasuk');
@@ -42,7 +46,7 @@ Route::prefix('/rt')->middleware('auth.custom')->group(function () {
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rt'])->name('rt.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('rt.detailPindahKeluar');
 });
-Route::prefix('/rw')->middleware('auth.custom')->group(function () {
+Route::prefix('/rw')->middleware(['auth.custom', 'role:rw'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rw'])->name('rw.ubahKerja');
     Route::get('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('rw.detailUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'rw'])->name('rw.pindahMasuk');
@@ -50,7 +54,7 @@ Route::prefix('/rw')->middleware('auth.custom')->group(function () {
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rw'])->name('rw.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('rw.detailPindahKeluar');
 });
-Route::prefix('/kelurahan')->middleware('auth.custom')->group(function () {
+Route::prefix('/kelurahan')->middleware(['auth.custom', 'role:kelurahan'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'kelurahan'])->name('kelurahan.ubahKerja');
     Route::get('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('kelurahan.detailUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'kelurahan'])->name('kelurahan.pindahMasuk');
@@ -58,7 +62,7 @@ Route::prefix('/kelurahan')->middleware('auth.custom')->group(function () {
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'kelurahan'])->name('kelurahan.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('kelurahan.detailPindahKeluar');
 });
-Route::prefix('/kecamatan')->middleware('auth.custom')->group(function () {
+Route::prefix('/kecamatan')->middleware(['auth.custom', 'role:kecamatan'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'kecamatan'])->name('kecamatan.ubahKerja');
     Route::get('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('kecamatan.detailUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'kecamatan'])->name('kecamatan.pindahMasuk');
@@ -68,7 +72,7 @@ Route::prefix('/kecamatan')->middleware('auth.custom')->group(function () {
 });
 
 // Route Warga
-Route::prefix('warga')->middleware('auth.custom')->group(function () {
+Route::prefix('warga')->middleware(['auth.custom', 'role:warga'])->group(function () {
     Route::get('/dashboard/{id}', [DashboardController::class, 'index']);
 
     // Route Pindah Masuk

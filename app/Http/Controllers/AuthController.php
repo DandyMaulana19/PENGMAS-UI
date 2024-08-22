@@ -19,12 +19,32 @@ class AuthController extends Controller
             'name' => ['required'],
             'password' => ['required'],
         ]);
+
         if (Auth::attempt($credentials)) {
+            // Regenerasi session
             $request->session()->regenerate();
 
-            $userId = Auth::user()->id;
+            // Ambil user yang sedang login
+            $user = Auth::user();
 
-            return redirect()->intended("/warga/dashboard/{$userId}");
+            // Ambil role pertama dari user yang login
+            $role = $user->roles->first();
+
+            if ($role) {
+                // Redirect berdasarkan role
+                switch ($role->name) {
+                    case 'rt':
+                        return redirect()->intended("/rt/pindah-masuk");
+                    case 'rw':
+                        return redirect()->intended("/rw/pindah-masuk");
+                    case 'kelurahan':
+                        return redirect()->intended("/kelurahan/pindah-masuk");
+                    case 'kecamatan':
+                        return redirect()->intended("/kecamatan/pindah-masuk");
+                    default:
+                        return redirect()->intended("/warga/dashboard/{$user->id}");
+                }
+            }
         }
 
         return back()->withErrors([
