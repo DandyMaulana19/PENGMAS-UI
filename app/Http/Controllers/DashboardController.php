@@ -18,10 +18,7 @@ class DashboardController extends Controller
 
         $dataDiri = $user->dataDiris->first();
 
-        // Ambil status pengajuan dari data diri
         $currentStatus = $dataDiri->statusPengajuan->nama_status ?? null;
-        // $statusPengajuans = $user->datadiris()->with('statuspengajuan')->get()->pluck('statuspengajuan.nama_status');
-
 
         // dd($currentStatus, $dataDiri);
         return view('pages.dashboard', compact('user', 'dataDiri', 'currentStatus'));
