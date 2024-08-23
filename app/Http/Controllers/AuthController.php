@@ -21,25 +21,25 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            // Regenerasi session
             $request->session()->regenerate();
 
-            // Ambil user yang sedang login
             $user = Auth::user();
 
-            // Ambil role pertama dari user yang login
             $role = $user->roles->first();
 
             if ($role) {
-                // Redirect berdasarkan role
                 switch ($role->name) {
                     case 'rt':
+                        session(['rt_id' => $user->id]);
                         return redirect()->intended("/rt/pindah-masuk");
                     case 'rw':
+                        session(['rw_id' => $user->id]);
                         return redirect()->intended("/rw/pindah-masuk");
                     case 'kelurahan':
+                        session(['kelurahan_id' => $user->id]);
                         return redirect()->intended("/kelurahan/pindah-masuk");
                     case 'kecamatan':
+                        session(['kecamatan_id' => $user->id]);
                         return redirect()->intended("/kecamatan/pindah-masuk");
                     default:
                         return redirect()->intended("/warga/dashboard/{$user->id}");

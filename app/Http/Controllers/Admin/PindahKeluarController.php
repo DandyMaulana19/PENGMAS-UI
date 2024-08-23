@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\DataDiri;
+use App\Models\Aktifitas;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use App\Models\DataDiri;
+use App\Http\Controllers\Controller;
 
 class PindahKeluarController extends Controller
 {
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $dataDiri = DataDiri::with('dataKks', 'daerahTujuans', 'statusPekerjaan')->findOrFail($id);
 
@@ -19,7 +21,25 @@ class PindahKeluarController extends Controller
 
         $statusPekerjaan = $dataDiri->statusPekerjaan;
 
-        return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar', [
+        $prefix = $request->route()->getPrefix();
+        switch ($prefix) {
+            case '/rt':
+                $view = 'pages.admin.rt.detail-pindah-keluar';
+                break;
+            case '/rw':
+                $view = 'pages.admin.rw.detail-pindah-keluar';
+                break;
+            case '/kelurahan':
+                $view = 'pages.admin.kelurahan.detail-pindah-keluar';
+                break;
+            case '/kecamatan':
+                $view = 'pages.admin.kecamatan.detail-pindah-keluar';
+                break;
+            default:
+                abort(404);
+        }
+
+        return view($view, [
             'dataDiri' => $dataDiri,
             'dataKK' => $dataKK,
             'daerahTujuan' => $daerahTujuan,
@@ -32,6 +52,7 @@ class PindahKeluarController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RT')
+                ->where('statuspengajuans.jenis', 'pindah keluar')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -74,11 +95,46 @@ class PindahKeluarController extends Controller
         return view('pages.admin.rt.pindah-keluar');
         // return response()->json(['error' => 'Invalid request'], 400);
     }
+
+    public function storeRt(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'RW' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah keluar',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'RT',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('rt.pindahKeluar')->with('success', 'Submit berhasil.');
+    }
+
     public function rw(Request $request)
     {
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RW')
+                ->where('statuspengajuans.jenis', 'pindah keluar')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -121,11 +177,45 @@ class PindahKeluarController extends Controller
         return view('pages.admin.rw.pindah-keluar');
         // return response()->json(['error' => 'Invalid request'], 400);
     }
+
+    public function storeRw(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Kelurahan' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah keluar',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'RW',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('rw.pindahKeluar')->with('success', 'Submit berhasil.');
+    }
     public function kelurahan(Request $request)
     {
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kelurahan')
+                ->where('statuspengajuans.jenis', 'pindah keluar')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -169,11 +259,45 @@ class PindahKeluarController extends Controller
         // return response()->json(['error' => 'Invalid request'], 400);
     }
 
+    public function storeKel(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Kecamatan' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah keluar',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'Kelurahan',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kelurahan.pindahKeluar')->with('success', 'Submit berhasil.');
+    }
+
     public function kecamatan(Request $request)
     {
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kecamatan')
+                ->where('statuspengajuans.jenis', 'pindah keluar')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -215,5 +339,38 @@ class PindahKeluarController extends Controller
 
         return view('pages.admin.kecamatan.pindah-keluar');
         // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function storeKec(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Selesai' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah keluar',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'Kecamatan',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kecamatan.pindahKeluar')->with('success', 'Submit berhasil.');
     }
 }

@@ -69,18 +69,22 @@ class DatabaseSeeder extends Seeder
         $pengajuanRt = StatusPengajuan::create([
             'id' => (string) Str::uuid(),
             'nama_status' => 'RT',
+            'jenis' => 'pindah masuk',
         ]);
         $pengajuanRw = StatusPengajuan::create([
             'id' => (string) Str::uuid(),
             'nama_status' => 'RW',
+            'jenis' => 'pindah masuk',
         ]);
         $pengajuanKel = StatusPengajuan::create([
             'id' => (string) Str::uuid(),
             'nama_status' => 'Kelurahan',
+            'jenis' => 'pindah masuk',
         ]);
         $pengajuanKec = StatusPengajuan::create([
             'id' => (string) Str::uuid(),
             'nama_status' => 'Kecamatan',
+            'jenis' => 'pindah masuk',
         ]);
 
         // User

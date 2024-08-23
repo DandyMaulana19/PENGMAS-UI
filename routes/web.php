@@ -41,34 +41,46 @@ Route::get('/402', function () {
 Route::prefix('/rt')->middleware(['auth.custom', 'role:rt'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rt'])->name('rt.ubahKerja');
     Route::get('/deail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('rt.detailUbahKerja');
+    Route::post('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'storeRt'])->name('rt.submitUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'rt'])->name('rt.pindahMasuk');
     Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('rt.detailPindahMasuk');
+    Route::post('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'storeRt'])->name('rt.submitPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rt'])->name('rt.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('rt.detailPindahKeluar');
+    Route::post('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'storeRt'])->name('rt.submitPindahKeluar');
 });
 Route::prefix('/rw')->middleware(['auth.custom', 'role:rw'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rw'])->name('rw.ubahKerja');
     Route::get('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('rw.detailUbahKerja');
+    Route::post('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'storeRw'])->name('rw.submitUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'rw'])->name('rw.pindahMasuk');
     Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('rw.detailPindahMasuk');
+    Route::post('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'storeRw'])->name('rw.submitPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rw'])->name('rw.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('rw.detailPindahKeluar');
+    Route::post('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'storeRw'])->name('rw.submitPindahKeluar');
 });
 Route::prefix('/kelurahan')->middleware(['auth.custom', 'role:kelurahan'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'kelurahan'])->name('kelurahan.ubahKerja');
     Route::get('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('kelurahan.detailUbahKerja');
+    Route::post('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'storeKel'])->name('kelurahan.submitUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'kelurahan'])->name('kelurahan.pindahMasuk');
     Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('kelurahan.detailPindahMasuk');
+    Route::post('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'storeKel'])->name('kelurahan.submitPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'kelurahan'])->name('kelurahan.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('kelurahan.detailPindahKeluar');
+    Route::post('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'storeKel'])->name('kelurahan.submitPindahKeluar');
 });
 Route::prefix('/kecamatan')->middleware(['auth.custom', 'role:kecamatan'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'kecamatan'])->name('kecamatan.ubahKerja');
     Route::get('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('kecamatan.detailUbahKerja');
+    Route::post('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'storeKec'])->name('kecamatan.submitUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'kecamatan'])->name('kecamatan.pindahMasuk');
-    Route::get('/pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('kecamatan.detailPindahMasuk');
+    Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('kecamatan.detailPindahMasuk');
+    Route::post('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'storeKec'])->name('kecamatan.submitPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'kecamatan'])->name('kecamatan.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('kecamatan.detailPindahKeluar');
+    Route::post('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'storeKec'])->name('kecamatan.submitPindahKeluar');
 });
 
 // Route Warga

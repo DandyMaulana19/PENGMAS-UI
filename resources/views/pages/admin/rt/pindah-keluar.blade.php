@@ -10,6 +10,32 @@
 
         <h1 class="text-3xl font-bold text-gray-800 max-w-[82rem] mx-auto text-start py-12">Permohonan Pindah Keluar</h1>
 
+        @if (session('success'))
+            <div id="dismiss-toast"
+                class="max-w-full my-4 transition duration-300 bg-green-600 border border-gray-200 shadow-lg hs-removing:translate-x-5 hs-removing:opacity-0 rounded-xl"
+                role="alert" tabindex="-1" aria-labelledby="hs-toast-dismiss-button-label">
+                <div class="flex p-4">
+                    <p id="hs-toast-dismiss-button-label" class="text-sm text-white">
+                        {{ session('success') }}
+                    </p>
+
+                    <div class="ms-auto">
+                        <button type="button"
+                            class="inline-flex items-center justify-center text-white rounded-lg opacity-50 shrink-0 size-5 hover:opacity-100 focus:outline-none focus:opacity-100"
+                            aria-label="Close" data-hs-remove-element="#dismiss-toast">
+                            <span class="sr-only">Close</span>
+                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         {{-- cards --}}
         <div class="flex py-5 space-x-4 ">
             <div class="flex justify-start w-full p-3 border rounded-lg shadow-md">

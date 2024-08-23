@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\DataDiri;
+use App\Models\Aktifitas;
+use Illuminate\Support\Str;
+use App\Models\DaerahTujuan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use App\Models\DataDiri;
-use App\Models\DaerahTujuan;
+use App\Http\Controllers\Controller;
 
 class UbahKerjaController extends Controller
 {
@@ -29,6 +31,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RT')
+                ->where('statuspengajuans.jenis', 'ubah kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -68,8 +71,51 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.rt.ubah-kerja');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'RT')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'RT')
+            ->count();
+
+        return view('pages.admin.rt.ubah-kerja', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function storeRt(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'RW' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'ubah kerja',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'RT',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kelurahan.pindahMasuk')->with('success', 'Submit berhasil.');
     }
 
     public function rw(Request $request)
@@ -77,6 +123,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RW')
+                ->where('statuspengajuans.jenis', 'ubah kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -116,8 +163,51 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.rw.ubah-kerja');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'RW')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'RW')
+            ->count();
+
+        return view('pages.admin.rw.ubah-kerja', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function storeRw(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Kelurahan' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'ubah kerja',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'RW',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kelurahan.ubahKerja')->with('success', 'Submit berhasil.');
     }
 
     public function kelurahan(Request $request)
@@ -125,6 +215,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kelurahan')
+                ->where('statuspengajuans.jenis', 'ubah kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -164,8 +255,51 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.kelurahan.ubah-kerja');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'Kelurahan')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'Kelurahan')
+            ->count();
+
+        return view('pages.admin.kelurahan.ubah-kerja', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function storeKel(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Kecamatan' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'ubah kerja',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'Kelurahan',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kelurahan.ubahKerja')->with('success', 'Submit berhasil.');
     }
 
     public function kecamatan(Request $request)
@@ -173,6 +307,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kecamatan')
+                ->where('statuspengajuans.jenis', 'ubah kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -212,7 +347,50 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.kecamatan.ubah-kerja');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'Kecamatan')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'ubah kerja')
+            ->where('created_by', 'Kecamatan')
+            ->count();
+
+        return view('pages.admin.kecamatan.ubah-kerja', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
+    }
+
+    public function storeKec(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Selesai' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'ubah kerja',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'Kecamatan',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kecamatan.ubahKerja')->with('success', 'Submit berhasil.');
     }
 }

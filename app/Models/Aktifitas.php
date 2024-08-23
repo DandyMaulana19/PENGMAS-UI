@@ -14,10 +14,11 @@ class Aktifitas extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
+        'id',
         'user_id',
-        'statusAkhir',
+        'statusKeputusan',
         'statusPengajuan',
-        'statusKeperluan',
+        'jenis',
         'catatan',
         'created_by',
     ];

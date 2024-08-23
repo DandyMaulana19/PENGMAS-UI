@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\DaerahAsal;
-use App\Models\DaerahTujuan;
 use App\Models\DataDiri;
+use App\Models\Aktifitas;
+use App\Models\DaerahAsal;
+use Illuminate\Support\Str;
+use App\Models\DaerahTujuan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
 class PindahMasukController extends Controller
 {
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $dataDiri = DataDiri::with('dataKks')->findOrFail($id);
 
@@ -21,7 +23,31 @@ class PindahMasukController extends Controller
 
         // dd($daerahTujuan);
 
-        return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk', [
+        // return view('pages.admin.detail.pindah-masuk', [
+        //     'dataDiri' => $dataDiri,
+        //     'dataKK' => $dataDiri,
+        //     'daerahTujuan' => $daerahTujuan,
+        //     'daerahAsal' => $daerahAsal,
+        // ]);
+        $prefix = $request->route()->getPrefix();
+        switch ($prefix) {
+            case '/rt':
+                $view = 'pages.admin.rt.detail-pindah-masuk';
+                break;
+            case '/rw':
+                $view = 'pages.admin.rw.detail-pindah-masuk';
+                break;
+            case '/kelurahan':
+                $view = 'pages.admin.kelurahan.detail-pindah-masuk';
+                break;
+            case '/kecamatan':
+                $view = 'pages.admin.kecamatan.detail-pindah-masuk';
+                break;
+            default:
+                abort(404);
+        }
+
+        return view($view, [
             'dataDiri' => $dataDiri,
             'dataKK' => $dataDiri,
             'daerahTujuan' => $daerahTujuan,
@@ -31,9 +57,11 @@ class PindahMasukController extends Controller
 
     public function rt(Request $request)
     {
+        $rt_id = session('rt_id');
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RT')
+                ->where('statuspengajuans.jenis', 'pindah masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -57,7 +85,7 @@ class PindahMasukController extends Controller
                 ->addColumn('status', function ($row) {
                     return 'Pending';
                 })
-                ->addColumn('action', function ($row) {
+                ->addColumn('action', function ($row) use ($rt_id) {
                     return '
                         <td class="flex items-center justify-center gap-2 p-2">
                             <button class="flex p-1 text-white bg-orange-500 rounded-lg hover:bg-[#AA0000]" onclick="window.location.href=\'' . route('rt.detailPindahMasuk', ['id' => $row->id]) . '\'">
@@ -72,7 +100,41 @@ class PindahMasukController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+
         return view('pages.admin.rt.pindah-masuk');
+    }
+
+    public function storeRt(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'RW' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah masuk',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'RT',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('rt.pindahMasuk')->with('success', 'Submit berhasil.');
     }
 
     public function rw(Request $request)
@@ -80,6 +142,7 @@ class PindahMasukController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RW')
+                ->where('statuspengajuans.jenis', 'pindah masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -120,11 +183,46 @@ class PindahMasukController extends Controller
         }
         return view('pages.admin.rw.pindah-masuk');
     }
+
+    public function storeRw(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Kelurahan' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah masuk',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'RW',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('rw.pindahMasuk')->with('success', 'Submit berhasil.');
+    }
+
     public function kelurahan(Request $request)
     {
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kelurahan')
+                ->where('statuspengajuans.jenis', 'pindah masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -166,11 +264,46 @@ class PindahMasukController extends Controller
 
         return view('pages.admin.kelurahan.pindah-masuk');
     }
+
+    public function storeKel(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Kecamatan' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah masuk',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'Kelurahan',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kelurahan.pindahMasuk')->with('success', 'Submit berhasil.');
+    }
+
     public function kecamatan(Request $request)
     {
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kecamatan')
+                ->where('statuspengajuans.jenis', 'pindah masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -211,5 +344,37 @@ class PindahMasukController extends Controller
         }
 
         return view('pages.admin.kecamatan.pindah-masuk');
+    }
+    public function storeKec(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'statusKeputusan' => 'required|string',
+            'catatan' => 'nullable|string',
+        ]);
+
+        $dataDiri = DataDiri::find($id);
+
+        if (!$dataDiri) {
+            return redirect()->back()->withErrors(['Data Diri tidak ditemukan']);
+        }
+
+        $statusKeputusan = $validatedData['statusKeputusan'];
+        $statusPengajuan = $statusKeputusan === 'Disetujui' ? 'Selesai' : 'Ditolak';
+
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => $statusKeputusan,
+            'statusPengajuan' => $statusPengajuan,
+            'jenis' => 'pindah masuk',
+            'catatan' => $validatedData['catatan'] ?? null,
+            'created_by' => 'Kecamatan',
+        ]);
+
+        $dataDiri->statusPengajuan->update([
+            'nama_status' => $statusPengajuan,
+        ]);
+
+        return redirect()->route('kecamatan.pindahMasuk')->with('success', 'Submit berhasil.');
     }
 }
