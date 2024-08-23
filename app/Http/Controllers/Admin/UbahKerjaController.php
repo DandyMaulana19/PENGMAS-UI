@@ -96,7 +96,7 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'ubah kerja')
             ->where('created_by', 'RT')
             ->count();
@@ -188,7 +188,7 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'ubah kerja')
             ->where('created_by', 'RW')
             ->count();
@@ -280,7 +280,7 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'ubah kerja')
             ->where('created_by', 'Kelurahan')
             ->count();
@@ -372,7 +372,7 @@ class UbahKerjaController extends Controller
                 ->make(true);
         }
 
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'ubah kerja')
             ->where('created_by', 'Kecamatan')
             ->count();

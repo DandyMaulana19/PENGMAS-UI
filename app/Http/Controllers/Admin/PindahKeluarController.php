@@ -92,7 +92,7 @@ class PindahKeluarController extends Controller
                 ->make(true);
         }
 
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'pindah keluar')
             ->where('created_by', 'RT')
             ->count();
@@ -184,7 +184,7 @@ class PindahKeluarController extends Controller
                 ->make(true);
         }
 
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'pindah keluar')
             ->where('created_by', 'RW')
             ->count();
@@ -274,7 +274,7 @@ class PindahKeluarController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'pindah keluar')
             ->where('created_by', 'Kelurahan')
             ->count();
@@ -366,7 +366,7 @@ class PindahKeluarController extends Controller
                 ->make(true);
         }
 
-        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+        $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
             ->where('jenis', 'pindah keluar')
             ->where('created_by', 'Kecamatan')
             ->count();
