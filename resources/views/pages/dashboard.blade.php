@@ -220,23 +220,22 @@
                 <div class="w-full h-full p-6 mb-6 bg-white shadow-md rounded-xl">
                     <h1 class="mb-6 text-xl font-bold">Aktivitas Terkini</h1>
                     <hr class="border-[#9B1010] border mb-6">
-                    <div class="mb-2">
-                        <h2 class="mb-2 font-semibold">
-                            Permohonan pindah masuk anda telah diterima oleh RT
-                        </h2>
-                        <p class="text-xs font-normal">15 Aug 2024 - 17:00 WIB</p>
-                    </div>
-                    <hr class="mb-2 border">
-                    <div class="mb-2">
-                        <h2 class="mb-2 font-semibold">
-                            Anda telah mengajukan permohonan pindah Masuk
-                        </h2>
-                        <p class="text-xs font-normal">14 Aug 2024 - 17:00 WIB</p>
-                    </div>
-                    <hr class="border">
+
+                    @foreach ($aktifitas as $item)
+                        <div class="mb-2">
+                            <h2 class="mb-2 font-semibold">
+                                Permohonan {{ $item->jenis }} anda telah {{ $item->statusKeputusan }} oleh
+                                {{ $item->created_by }}
+                            </h2>
+                            <p class="text-xs font-normal">
+                                {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y - H:i') }} WIB
+                            </p>
+                        </div>
+                        <hr class="mb-2 border">
+                    @endforeach
+
                 </div>
             </div>
-
         </div>
     </div>
 
