@@ -12,13 +12,38 @@ use App\Http\Controllers\Controller;
 
 class UbahKerjaController extends Controller
 {
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $dataDiri = DataDiri::with('dataKks', 'statusPekerjaan')->findOrFail($id);
 
         $daerahTujuan = DaerahTujuan::where('dataDiri_id', $id)->first();
 
-        return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan', [
+        // return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan', [
+        //     'dataDiri' => $dataDiri,
+        //     'dataKK' => $dataDiri,
+        //     'daerahTujuan' => $daerahTujuan,
+        //     'statusPekerjaan' => $dataDiri->statusPekerjaan
+        // ]);
+
+        $prefix = $request->route()->getPrefix();
+        switch ($prefix) {
+            case '/rt':
+                $view = 'pages.admin.rt.detail-ubah-kerja';
+                break;
+            case '/rw':
+                $view = 'pages.admin.rw.detail-ubah-kerja';
+                break;
+            case '/kelurahan':
+                $view = 'pages.admin.kelurahan.detail-ubah-kerja';
+                break;
+            case '/kecamatan':
+                $view = 'pages.admin.kecamatan.detail-ubah-kerja';
+                break;
+            default:
+                abort(404);
+        }
+
+        return view($view, [
             'dataDiri' => $dataDiri,
             'dataKK' => $dataDiri,
             'daerahTujuan' => $daerahTujuan,
