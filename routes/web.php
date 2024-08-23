@@ -42,7 +42,7 @@ Route::prefix('/rt')->middleware(['auth.custom', 'role:rt'])->group(function () 
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rt'])->name('rt.ubahKerja');
     Route::get('/deail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('rt.detailUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'rt'])->name('rt.pindahMasuk');
-    Route::get('/detail-pindah-masuk', [AdminMasukController::class, 'show'])->name('rt.detailPindahMasuk');
+    Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('rt.detailPindahMasuk');
     Route::get('/pindah-keluar', [AdminKeluarController::class, 'rt'])->name('rt.pindahKeluar');
     Route::get('/detail-pindah-keluar/{id}', [AdminKeluarController::class, 'show'])->name('rt.detailPindahKeluar');
 });
@@ -80,7 +80,8 @@ Route::prefix('warga')->middleware(['auth.custom', 'role:warga'])->group(functio
     Route::get('/pindah-masuk/{id}', [PindahMasukController::class, 'index']);
     Route::get('/form-tambah-data/{id}', [PindahMasukController::class, 'show'])->name('form-tambah-data.show');
     Route::put('/form-tambah-data/update/{id}', [PindahMasukController::class, 'update'])->name('form.tambah.data.update');
-    Route::get('/form-kk-baru/{id}', [PindahMasukController::class, 'kkBaru']);
+    Route::get('/form-kk-baru/{id}', [PindahMasukController::class, 'showKK']);
+    Route::post('/form-kk-baru/create/{id}', [PindahMasukController::class, 'store'])->name('form.kk.baru.create');
 
     // Route Pindah Keluar
     Route::get('/datadiri/pindahKeluar', [PindahKeluarController::class, 'getData'])->name('data-diri.pindahKeluar');

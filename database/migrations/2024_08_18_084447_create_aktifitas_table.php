@@ -13,7 +13,9 @@ return new class extends Migration {
         Schema::create('aktifitas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->string('status');
+            $table->string('statusAkhir');
+            $table->string('statusPengajuan');
+            $table->string('statusKeperluan');
             $table->text('catatan')->nullable();
             $table->string('created_by')->nullable();
             $table->timestamps();

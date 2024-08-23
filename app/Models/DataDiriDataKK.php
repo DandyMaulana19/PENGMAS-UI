@@ -12,6 +12,7 @@ class DataDiriDataKK extends Model
     protected $table = 'datadiri_datakks';
     public $timestamps = false;
     public $incrementing = false;
+    protected $fillable = ['dataDiri_id', 'dataKk_id'];
 
     public function DataDiri()
     {
