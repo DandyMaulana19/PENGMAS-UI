@@ -15,7 +15,9 @@ class Aktifitas extends Model
 
     protected $fillable = [
         'user_id',
-        'status',
+        'statusAkhir',
+        'statusPengajuan',
+        'statusKeperluan',
         'catatan',
         'created_by',
     ];
