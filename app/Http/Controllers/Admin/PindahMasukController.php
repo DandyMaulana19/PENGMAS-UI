@@ -101,7 +101,17 @@ class PindahMasukController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.rt.pindah-masuk');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'RT')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'RT')
+            ->count();
+
+        return view('pages.admin.rt.pindah-masuk', ['diterima' => $diterima, 'ditolak' => $ditolak]);
     }
 
     public function storeRt(Request $request, $id)
@@ -181,7 +191,18 @@ class PindahMasukController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('pages.admin.rw.pindah-masuk');
+
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'RW')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'RW')
+            ->count();
+
+        return view('pages.admin.rw.pindah-masuk', ['diterima' => $diterima, 'ditolak' => $ditolak]);
     }
 
     public function storeRw(Request $request, $id)
@@ -262,7 +283,17 @@ class PindahMasukController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.kelurahan.pindah-masuk');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'Kelurahan')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'Kelurahan')
+            ->count();
+
+        return view('pages.admin.kelurahan.pindah-masuk', ['diterima' => $diterima, 'ditolak' => $ditolak]);
     }
 
     public function storeKel(Request $request, $id)
@@ -343,7 +374,17 @@ class PindahMasukController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.kecamatan.pindah-masuk');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'Kecamatan')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah masuk')
+            ->where('created_by', 'Kecamatan')
+            ->count();
+
+        return view('pages.admin.kecamatan.pindah-masuk', ['diterima' => $diterima, 'ditolak' => $ditolak]);
     }
     public function storeKec(Request $request, $id)
     {

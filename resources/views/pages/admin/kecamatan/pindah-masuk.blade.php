@@ -44,7 +44,7 @@
                 </div>
                 <div class="inline-flex flex-col px-4">
                     <span class="font-bold text-gray-500">Disetujui</span>
-                    <span class="font-bold text-gray-800">1</span>
+                    <span class="font-bold text-gray-800">{{ $diterima }}</span>
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
                     <box-icon name='time-five' color="#ffff"></box-icon>
                 </div>
                 <div class="inline-flex flex-col px-4">
-                    <span class="font-bold text-gray-500">Disetujui</span>
+                    <span class="font-bold text-gray-500">Menunggu Persetujuan</span>
                     <span class="font-bold text-gray-800">1</span>
                 </div>
             </div>
@@ -63,8 +63,8 @@
                     <box-icon name='message-alt-x' color="#ffff"></box-icon>
                 </div>
                 <div class="inline-flex flex-col px-4">
-                    <span class="font-bold text-gray-500">Disetujui</span>
-                    <span class="font-bold text-gray-800">1</span>
+                    <span class="font-bold text-gray-500">Ditolak</span>
+                    <span class="font-bold text-gray-800">{{ $ditolak }}</span>
                 </div>
             </div>
         </div>

@@ -92,7 +92,17 @@ class PindahKeluarController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.rt.pindah-keluar');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'RT')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'RT')
+            ->count();
+
+        return view('pages.admin.rt.pindah-keluar', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
     }
 
@@ -174,7 +184,17 @@ class PindahKeluarController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.rw.pindah-keluar');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'RW')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'RW')
+            ->count();
+
+        return view('pages.admin.rw.pindah-keluar', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
     }
 
@@ -254,8 +274,17 @@ class PindahKeluarController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'Kelurahan')
+            ->count();
 
-        return view('pages.admin.kelurahan.pindah-keluar');
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'Kelurahan')
+            ->count();
+
+        return view('pages.admin.kelurahan.pindah-keluar', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
     }
 
@@ -337,7 +366,17 @@ class PindahKeluarController extends Controller
                 ->make(true);
         }
 
-        return view('pages.admin.kecamatan.pindah-keluar');
+        $diterima = Aktifitas::where('statusKeputusan', 'Diterima')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'Kecamatan')
+            ->count();
+
+        $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
+            ->where('jenis', 'pindah keluar')
+            ->where('created_by', 'Kecamatan')
+            ->count();
+
+        return view('pages.admin.kecamatan.pindah-keluar', ['diterima' => $diterima, 'ditolak' => $ditolak]);
         // return response()->json(['error' => 'Invalid request'], 400);
     }
 
