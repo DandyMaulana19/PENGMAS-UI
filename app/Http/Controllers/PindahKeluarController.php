@@ -56,7 +56,7 @@ class PindahKeluarController extends Controller
         $dataDiri = DataDiri::findOrFail($id);
         $daerahTujuan = DaerahTujuan::where('dataDiri_id', $id)->first();
 
-        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->first();
+        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->where('jenis', 'Pindah Keluar')->first();
 
         if (!$statusPengajuan) {
             $statusPengajuan = StatusPengajuan::create(['nama_status' => 'RT']);

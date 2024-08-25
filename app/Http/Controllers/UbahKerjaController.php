@@ -64,7 +64,7 @@ class UbahKerjaController extends Controller
             $dataDiri->id_status_pekerjaan = $sudahBekerjaId;
         }
 
-        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->first();
+        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->where('jenis', 'Ubah Kerja')->first();
 
         if (!$statusPengajuan) {
             $statusPengajuan = StatusPengajuan::create(['nama_status' => 'RT']);
