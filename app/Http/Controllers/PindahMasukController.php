@@ -310,15 +310,17 @@ class PindahMasukController extends Controller
     public function getDetail($jenis, $id)
     {
 
-        if ($jenis == "pindah masuk") {
+        if ($jenis == "Pindah Masuk") {
 
             $user = User::findOrFail($id);
             $dataDiri = DataDiri::where('id_user', $id)->first();
             $idUser = $dataDiri->id;
 
-            $dataKK = DataDiri::with(['dataKks' => function ($query) {
-                $query->select('no_kk');
-            }])->find($dataDiri->id);
+            $dataKK = DataDiri::with([
+                'dataKks' => function ($query) {
+                    $query->select('no_kk');
+                }
+            ])->find($dataDiri->id);
 
             $daerahAsal = DaerahAsal::where('dataDiri_id', $idUser)->first();
             $daerahTujuan = DaerahTujuan::where('dataDiri_id', $idUser)->first();
@@ -339,15 +341,17 @@ class PindahMasukController extends Controller
                 'dataKK' => $dataKK,
                 'catatan' => $catatan
             ]);
-        } else if ($jenis == "pindah keluar") {
+        } else if ($jenis == "Pindah Keluar") {
 
             $user = User::findOrFail($id);
             $dataDiri = DataDiri::where('id_user', $id)->first();
             $idUser = $dataDiri->id;
 
-            $dataKK = DataDiri::with(['dataKks' => function ($query) {
-                $query->select('no_kk');
-            }])->find($dataDiri->id);
+            $dataKK = DataDiri::with([
+                'dataKks' => function ($query) {
+                    $query->select('no_kk');
+                }
+            ])->find($dataDiri->id);
 
             $daerahAsal = DaerahAsal::where('dataDiri_id', $idUser)->first();
             $daerahTujuan = DaerahTujuan::where('dataDiri_id', $idUser)->first();
@@ -373,9 +377,11 @@ class PindahMasukController extends Controller
             $idUser = $dataDiri->id;
             $idStatusPekerjaan = $dataDiri->id_status_pekerjaan;
 
-            $dataKK = DataDiri::with(['dataKks' => function ($query) {
-                $query->select('no_kk');
-            }])->find($dataDiri->id);
+            $dataKK = DataDiri::with([
+                'dataKks' => function ($query) {
+                    $query->select('no_kk');
+                }
+            ])->find($dataDiri->id);
 
             $statusPekerjaan = StatusPekerjaan::where('id', $idStatusPekerjaan)->first();
             $daerahTujuan = DaerahTujuan::where('dataDiri_id', $idUser)->first();

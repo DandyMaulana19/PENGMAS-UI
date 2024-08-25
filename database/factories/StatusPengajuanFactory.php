@@ -23,6 +23,7 @@ class StatusPengajuanFactory extends Factory
         return [
             'id' => (string) Str::uuid(),
             'nama_status' => '',
+            'jenis' => '',
             'created_at' => now(),
             'updated_at' => now(),
         ];
