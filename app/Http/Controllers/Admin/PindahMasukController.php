@@ -62,7 +62,7 @@ class PindahMasukController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RT')
-                ->where('statuspengajuans.jenis', 'pindah masuk')
+                ->where('statuspengajuans.jenis', 'Pindah Masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -103,12 +103,12 @@ class PindahMasukController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'RT')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'RT')
             ->count();
 
@@ -136,13 +136,13 @@ class PindahMasukController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'pindah masuk',
+            'jenis' => 'Pindah Masuk',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'RT',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'RW')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->first()
             ->id;
 
@@ -158,7 +158,7 @@ class PindahMasukController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RW')
-                ->where('statuspengajuans.jenis', 'pindah masuk')
+                ->where('statuspengajuans.jenis', 'Pindah Masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -199,12 +199,12 @@ class PindahMasukController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'RW')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'RW')
             ->count();
 
@@ -232,13 +232,13 @@ class PindahMasukController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'pindah masuk',
+            'jenis' => 'Pindah Masuk',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'RW',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kelurahan')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->first()
             ->id;
 
@@ -254,7 +254,7 @@ class PindahMasukController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kelurahan')
-                ->where('statuspengajuans.jenis', 'pindah masuk')
+                ->where('statuspengajuans.jenis', 'Pindah Masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -295,12 +295,12 @@ class PindahMasukController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'Kelurahan')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'Kelurahan')
             ->count();
 
@@ -334,13 +334,13 @@ class PindahMasukController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'pindah masuk',
+            'jenis' => 'Pindah Masuk',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'Kelurahan',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kecamatan')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->first()
             ->id;
 
@@ -356,7 +356,7 @@ class PindahMasukController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kecamatan')
-                ->where('statuspengajuans.jenis', 'pindah masuk')
+                ->where('statuspengajuans.jenis', 'Pindah Masuk')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -397,12 +397,12 @@ class PindahMasukController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'Kecamatan')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->where('created_by', 'Kecamatan')
             ->count();
 
@@ -429,13 +429,13 @@ class PindahMasukController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'pindah masuk',
+            'jenis' => 'Pindah Masuk',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'Kecamatan',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'Selesai')
-            ->where('jenis', 'pindah masuk')
+            ->where('jenis', 'Pindah Masuk')
             ->first()
             ->id;
 

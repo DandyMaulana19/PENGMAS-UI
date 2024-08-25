@@ -40,7 +40,7 @@ Route::get('/402', function () {
 // Route penelitian
 Route::prefix('/rt')->middleware(['auth.custom', 'role:rt'])->group(function () {
     Route::get('/ubah-kerja', [AdminKerjaController::class, 'rt'])->name('rt.ubahKerja');
-    Route::get('/deail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('rt.detailUbahKerja');
+    Route::get('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'show'])->name('rt.detailUbahKerja');
     Route::post('/detail-ubah-kerja/{id}', [AdminKerjaController::class, 'storeRt'])->name('rt.submitUbahKerja');
     Route::get('/pindah-masuk', [AdminMasukController::class, 'rt'])->name('rt.pindahMasuk');
     Route::get('/detail-pindah-masuk/{id}', [AdminMasukController::class, 'show'])->name('rt.detailPindahMasuk');

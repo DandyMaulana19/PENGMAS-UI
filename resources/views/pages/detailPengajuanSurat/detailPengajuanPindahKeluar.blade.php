@@ -11,13 +11,13 @@
         <div class="w-full h-2 bg-red-600 rounded-t-lg"></div>
 
         <div class="container p-10 mx-auto">
-            <h2 class="mb-6 text-3xl font-bold text-red-800">Detail Pengajuan Surat Ubah Status Pekerjaan</h2>
+            <h2 class="mb-6 text-3xl font-bold text-red-800">Detail Pengajuan Surat Pindah Keluar</h2>
 
             <hr class="mb-4 bg-red-600 h-0.5">
 
             <div class="flex flex-col items-center mb-4 md:flex-row">
                 <label for="catatan" class="w-full md:w-1/4">Catatan</label>
-                <textarea id="catatan" class="w-full px-4 py-2 border border-gray-200 rounded-lg md:w-3/4" rows="5">{{ $catatan }}</textarea>
+                <textarea readonly id="catatan" class="w-full px-4 py-2 border border-gray-200 rounded-lg md:w-3/4" rows="5">{{ $catatan }}</textarea>
             </div>
 
             {{-- Data Diri --}}
