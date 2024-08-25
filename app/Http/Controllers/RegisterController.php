@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -24,12 +27,19 @@ class RegisterController extends Controller
             'password.min' => 'Password minimal 8 karakter.',
         ]);
 
-        User::create([
+        $user = User::create([
+            'id' => (string) Str::uuid(),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+        $warga = Role::where('name', 'warga')->first();
+
+        UserRole::create([
+            'user_id' => $user->id,
+            'role_id' => $warga->id,
+        ]);
 
         return redirect('/login')->with('success', 'Pendaftaran berhasil!');
     }
