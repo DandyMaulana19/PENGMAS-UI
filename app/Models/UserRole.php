@@ -12,4 +12,8 @@ class UserRole extends Model
     protected $table = 'userroles';
     public $incrementing = false;
     protected $keyType = 'string';
+    protected $fillable = [
+        'user_id',
+        'role_id',
+    ];
 }

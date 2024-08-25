@@ -48,14 +48,15 @@
 
                 <div class="flex flex-col items-center mb-4 md:flex-row">
                     <label for="jenisKelamin" class="w-full md:w-1/4">Jenis Kelamin</label>
-                    <select id="jenisKelamin" name="jenisKelamin"
+                    <select id="jenisKelamin" name="jenisKelamin" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg md:w-3/4">
-                        <option value="" disabled {{ old('jenisKelamin') ? '' : 'selected' }}>Pilih Jenis Kelamin
+                        <option value="" selected disabled>Pilih Jenis
+                            Kelamin
                         </option>
-                        <option value="1" {{ old('jenisKelamin', $dataDiri->jenisKelamin) == '1' ? 'selected' : '' }}>
+                        <option value="1" {{ old('jenisKelamin') == '1' ? 'selected' : '' }}>
                             Laki - Laki
                         </option>
-                        <option value="0" {{ old('jenisKelamin', $dataDiri->jenisKelamin) == '0' ? 'selected' : '' }}>
+                        <option value="0" {{ old('jenisKelamin') == '0' ? 'selected' : '' }}>
                             Perempuan
                         </option>
                     </select>
@@ -93,11 +94,9 @@
                     <select id="status_pekerjaan" name="status_pekerjaan"
                         class="w-full md:w-3/4 px-4 py-2 border border-gray-300 rounded-lg" onchange="toggleFields(this)">
                         <option value="">Pilih Status Pekerjaan</option>
-                        <option value="Belum Bekerja"
-                            {{ old('status_pekerjaan', $dataDiri->id_status_pekerjaan) == 'Belum Bekerja' ? 'selected' : '' }}>
+                        <option value="Belum Bekerja" {{ old('status_pekerjaan') == 'Belum Bekerja' ? 'selected' : '' }}>
                             Belum Bekerja</option>
-                        <option value="Sudah Bekerja"
-                            {{ old('status_pekerjaan', $dataDiri->id_status_pekerjaan) == 'Sudah Bekerja' ? 'selected' : '' }}>
+                        <option value="Sudah Bekerja" {{ old('status_pekerjaan') == 'Sudah Bekerja' ? 'selected' : '' }}>
                             Sudah Bekerja</option>
                     </select>
                 </div>
