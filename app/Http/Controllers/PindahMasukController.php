@@ -279,4 +279,96 @@ class PindahMasukController extends Controller
 
         return response()->json(['error' => 'Invalid request'], 400);
     }
+
+    public function getDetail($jenis, $id)
+    {
+
+        if ($jenis == "pindah masuk") {
+
+            $user = User::findOrFail($id);
+            $dataDiri = DataDiri::where('id_user', $id)->first();
+            $idUser = $dataDiri->id;
+
+            $dataKK = DataDiri::with(['dataKks' => function ($query) {
+                $query->select('no_kk');
+            }])->find($dataDiri->id);
+
+            $daerahAsal = DaerahAsal::where('dataDiri_id', $idUser)->first();
+            $daerahTujuan = DaerahTujuan::where('dataDiri_id', $idUser)->first();
+
+            $catatan = Aktifitas::where('jenis', $jenis)
+                ->where('id', $id)
+                ->pluck('catatan')
+                ->first();
+            // dd($daerahTujuan);
+            // dd($daerahAsal);
+
+
+            return view('pages.detailPengajuanSurat.detailPengajuanPindahMasuk', [
+                'id' => $user,
+                'dataDiri' => $dataDiri,
+                'daerahAsal' => $daerahAsal,
+                'daerahTujuan' => $daerahTujuan,
+                'dataKK' => $dataKK,
+                'catatan' => $catatan
+            ]);
+        } else if ($jenis == "pindah keluar") {
+
+            $user = User::findOrFail($id);
+            $dataDiri = DataDiri::where('id_user', $id)->first();
+            $idUser = $dataDiri->id;
+
+            $dataKK = DataDiri::with(['dataKks' => function ($query) {
+                $query->select('no_kk');
+            }])->find($dataDiri->id);
+
+            $daerahAsal = DaerahAsal::where('dataDiri_id', $idUser)->first();
+            $daerahTujuan = DaerahTujuan::where('dataDiri_id', $idUser)->first();
+
+            $catatan = Aktifitas::where('jenis', $jenis)
+                ->where('id', $id)
+                ->pluck('catatan')
+                ->first();
+            // dd($daerahTujuan);
+            // dd($daerahAsal);
+
+            return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar', [
+                'id' => $user,
+                'dataDiri' => $dataDiri,
+                'daerahAsal' => $daerahAsal,
+                'daerahTujuan' => $daerahTujuan,
+                'dataKK' => $dataKK,
+                'catatan' => $catatan
+            ]);
+        } else {
+            $user = User::findOrFail($id);
+            $dataDiri = DataDiri::where('id_user', $id)->first();
+            $idUser = $dataDiri->id;
+            $idStatusPekerjaan = $dataDiri->id_status_pekerjaan;
+
+            $dataKK = DataDiri::with(['dataKks' => function ($query) {
+                $query->select('no_kk');
+            }])->find($dataDiri->id);
+
+            $statusPekerjaan = StatusPekerjaan::where('id', $idStatusPekerjaan)->first();
+            $daerahTujuan = DaerahTujuan::where('dataDiri_id', $idUser)->first();
+
+            $catatan = Aktifitas::where('jenis', $jenis)
+                ->where('id', $id)
+                ->pluck('catatan')
+                ->first();
+            // dd($daerahTujuan);
+            // dd($daerahAsal);
+
+
+            return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar', [
+                'id' => $user,
+                'dataDiri' => $dataDiri,
+                'daerahTujuan' => $daerahTujuan,
+                'dataKK' => $dataKK,
+                'statusPekerjaan' => $statusPekerjaan,
+                'catatan' => $catatan
+            ]);
+        }
+    }
 }

@@ -223,10 +223,11 @@
 
                     @foreach ($aktifitas as $item)
                         <div class="mb-2">
-                            <h2 class="mb-2 font-semibold">
+                            <a href="{{ url('/warga/detail/' . $item->jenis . '/' . $item->user_id) }}"
+                                class="mb-2 font-semibold hover:text-[#9B1010]">
                                 Permohonan {{ $item->jenis }} anda telah {{ $item->statusKeputusan }} oleh
                                 {{ $item->created_by }}
-                            </h2>
+                            </a>
                             <p class="text-xs font-normal">
                                 {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y - H:i') }} WIB
                             </p>

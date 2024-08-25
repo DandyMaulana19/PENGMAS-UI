@@ -70,4 +70,8 @@ class DataDiri extends Model
     {
         return $this->hasMany(DaerahTujuan::class, 'dataDiri_id');
     }
+    public function daerahAsals()
+    {
+        return $this->hasMany(DaerahAsal::class, 'dataDiri_id');
+    }
 }

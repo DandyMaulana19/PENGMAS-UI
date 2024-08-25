@@ -94,18 +94,22 @@ Route::prefix('warga')->middleware(['auth.custom', 'role:warga'])->group(functio
     Route::put('/form-tambah-data/update/{id}', [PindahMasukController::class, 'update'])->name('form.tambah.data.update');
     Route::get('/form-kk-baru/{id}', [PindahMasukController::class, 'showKK']);
     Route::post('/form-kk-baru/create/{id}', [PindahMasukController::class, 'store'])->name('form.kk.baru.create');
+    Route::get('/detail/{jenis}/{id}', [PindahMasukController::class, 'getDetail'])->name('getDetail');
+    // Route::get('/detail-pindah-masuk/{id}', [PindahMasukController::class, 'detail'])->name('');
 
     // Route Pindah Keluar
     Route::get('/datadiri/pindahKeluar', [PindahKeluarController::class, 'getData'])->name('data-diri.pindahKeluar');
     Route::get('/pindah-keluar/{id}', [PindahKeluarController::class, 'index']);
     Route::get('/form-pindah-keluar/{id}', [PindahKeluarController::class, 'show']);
     Route::put('/form-pindah-keluar/{id}', [PindahKeluarController::class, 'update'])->name('form-pindah-keluar');
+    Route::get('/detail-pindah-keluar/{id}', []);
 
     // Route Ubah Pekerjaan
     Route::get('/datadiri/getData', [UbahKerjaController::class, 'getData'])->name('data-diri.getData');
     Route::get('/ubah-pekerjaan/{id}', [UbahKerjaController::class, 'index']);
     Route::get('/form-pekerjaan/{id}', [UbahKerjaController::class, 'show']);
     Route::put('/form-pekerjaan/{id}', [UbahKerjaController::class, 'update'])->name('form-pekerjaan');
+    Route::get('/detail-ubah-pekerjaan/{id}', []);
 
     // Route Detail Pengajuan
     Route::get('/detail-pindah-masuk', function () {
