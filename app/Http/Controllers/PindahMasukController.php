@@ -388,7 +388,7 @@ class PindahMasukController extends Controller
             // dd($daerahAsal);
 
 
-            return view('pages.detailPengajuanSurat.detailPengajuanPindahKeluar', [
+            return view('pages.detailPengajuanSurat.detailPengajuanPekerjaan', [
                 'id' => $user,
                 'dataDiri' => $dataDiri,
                 'daerahTujuan' => $daerahTujuan,
