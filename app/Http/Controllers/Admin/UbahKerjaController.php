@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\DataDiri;
+use App\Models\StatusPengajuan;
 use App\Models\Aktifitas;
 use Illuminate\Support\Str;
 use App\Models\DaerahTujuan;
@@ -136,8 +137,13 @@ class UbahKerjaController extends Controller
             'created_by' => 'RT',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'RW')
+            ->where('jenis', 'ubah kerja')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('kelurahan.pindahMasuk')->with('success', 'Submit berhasil.');
@@ -228,8 +234,13 @@ class UbahKerjaController extends Controller
             'created_by' => 'RW',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kelurahan')
+            ->where('jenis', 'ubah kerja')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('kelurahan.ubahKerja')->with('success', 'Submit berhasil.');
@@ -320,8 +331,13 @@ class UbahKerjaController extends Controller
             'created_by' => 'Kelurahan',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kecamatan')
+            ->where('jenis', 'ubah kerja')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('kelurahan.ubahKerja')->with('success', 'Submit berhasil.');
@@ -412,8 +428,13 @@ class UbahKerjaController extends Controller
             'created_by' => 'Kecamatan',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'Selesai')
+            ->where('jenis', 'ubah kerja')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('kecamatan.ubahKerja')->with('success', 'Submit berhasil.');
