@@ -304,7 +304,13 @@ class PindahMasukController extends Controller
             ->where('created_by', 'Kelurahan')
             ->count();
 
-        return view('pages.admin.kelurahan.pindah-masuk', ['diterima' => $diterima, 'ditolak' => $ditolak]);
+        $pending = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
+            ->where('statuspengajuans.nama_status', 'Kelurahan')
+            ->where('statuspengajuans.jenis', 'pindah masuk')
+            ->where('statuspengajuans.pending', 'true')
+            ->count();
+
+        return view('pages.admin.kelurahan.pindah-masuk', ['diterima' => $diterima, 'ditolak' => $ditolak, 'pending' => $pending]);
     }
 
     public function storeKel(Request $request, $id)
