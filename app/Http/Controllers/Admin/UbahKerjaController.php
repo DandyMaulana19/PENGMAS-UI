@@ -57,7 +57,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RT')
-                ->where('statuspengajuans.jenis', 'ubah kerja')
+                ->where('statuspengajuans.jenis', 'Ubah Kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -98,12 +98,12 @@ class UbahKerjaController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'RT')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'RT')
             ->count();
 
@@ -132,13 +132,13 @@ class UbahKerjaController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'ubah kerja',
+            'jenis' => 'Ubah Kerja',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'RT',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'RW')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->first()
             ->id;
 
@@ -146,7 +146,7 @@ class UbahKerjaController extends Controller
             'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
-        return redirect()->route('kelurahan.pindahMasuk')->with('success', 'Submit berhasil.');
+        return redirect()->route('rt.pindahMasuk')->with('success', 'Submit berhasil.');
     }
 
     public function rw(Request $request)
@@ -154,7 +154,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'RW')
-                ->where('statuspengajuans.jenis', 'ubah kerja')
+                ->where('statuspengajuans.jenis', 'Ubah Kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -195,12 +195,12 @@ class UbahKerjaController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'RW')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'RW')
             ->count();
 
@@ -229,13 +229,13 @@ class UbahKerjaController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'ubah kerja',
+            'jenis' => 'Ubah Kerja',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'RW',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kelurahan')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->first()
             ->id;
 
@@ -243,7 +243,7 @@ class UbahKerjaController extends Controller
             'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
-        return redirect()->route('kelurahan.ubahKerja')->with('success', 'Submit berhasil.');
+        return redirect()->route('rw.ubahKerja')->with('success', 'Submit berhasil.');
     }
 
     public function kelurahan(Request $request)
@@ -251,7 +251,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kelurahan')
-                ->where('statuspengajuans.jenis', 'ubah kerja')
+                ->where('statuspengajuans.jenis', 'Ubah Kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -292,12 +292,12 @@ class UbahKerjaController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'Kelurahan')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'Kelurahan')
             ->count();
 
@@ -326,13 +326,13 @@ class UbahKerjaController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'ubah kerja',
+            'jenis' => 'Ubah Kerja',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'Kelurahan',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kecamatan')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->first()
             ->id;
 
@@ -348,7 +348,7 @@ class UbahKerjaController extends Controller
         if ($request->ajax()) {
             $data = DataDiri::join('statuspengajuans', 'datadiris.id_status_pengajuan', '=', 'statuspengajuans.id')
                 ->where('statuspengajuans.nama_status', 'Kecamatan')
-                ->where('statuspengajuans.jenis', 'ubah kerja')
+                ->where('statuspengajuans.jenis', 'Ubah Kerja')
                 ->select([
                     'datadiris.id',
                     'datadiris.nik',
@@ -389,12 +389,12 @@ class UbahKerjaController extends Controller
         }
 
         $diterima = Aktifitas::where('statusKeputusan', 'Disetujui')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'Kecamatan')
             ->count();
 
         $ditolak = Aktifitas::where('statusKeputusan', 'Ditolak')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->where('created_by', 'Kecamatan')
             ->count();
 
@@ -423,13 +423,13 @@ class UbahKerjaController extends Controller
             'user_id' => $dataDiri->id_user,
             'statusKeputusan' => $statusKeputusan,
             'statusPengajuan' => $statusPengajuan,
-            'jenis' => 'ubah kerja',
+            'jenis' => 'Ubah Kerja',
             'catatan' => $validatedData['catatan'] ?? null,
             'created_by' => 'Kecamatan',
         ]);
 
         $StatusPengajuan = StatusPengajuan::where('nama_status', 'Selesai')
-            ->where('jenis', 'ubah kerja')
+            ->where('jenis', 'Ubah Kerja')
             ->first()
             ->id;
 

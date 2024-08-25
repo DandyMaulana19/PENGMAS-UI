@@ -91,6 +91,67 @@ class DatabaseSeeder extends Seeder
             'nama_status' => 'Selesai',
             'jenis' => 'Pindah Masuk',
         ]);
+        // Ubah Kerja
+        $pengajuanRtUbahKerja = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'RT',
+            'jenis' => 'Ubah Kerja',
+        ]);
+
+        $pengajuanRwUbahKerja = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'RW',
+            'jenis' => 'Ubah Kerja',
+        ]);
+
+        $pengajuanKelUbahKerja = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'Kelurahan',
+            'jenis' => 'Ubah Kerja',
+        ]);
+
+        $pengajuanKecUbahKerja = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'Kecamatan',
+            'jenis' => 'Ubah Kerja',
+        ]);
+
+        $pengajuanSelesaiUbahKerja = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'Selesai',
+            'jenis' => 'Ubah Kerja',
+        ]);
+
+        // Pindah Keluar
+        $pengajuanRtPindahKeluar = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'RT',
+            'jenis' => 'Pindah Keluar',
+        ]);
+
+        $pengajuanRwPindahKeluar = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'RW',
+            'jenis' => 'Pindah Keluar',
+        ]);
+
+        $pengajuanKelPindahKeluar = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'Kelurahan',
+            'jenis' => 'Pindah Keluar',
+        ]);
+
+        $pengajuanKecPindahKeluar = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'Kecamatan',
+            'jenis' => 'Pindah Keluar',
+        ]);
+
+        $pengajuanSelesaiPindahKeluar = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'Selesai',
+            'jenis' => 'Pindah Keluar',
+        ]);
 
         // User
         $userWarga = User::create([

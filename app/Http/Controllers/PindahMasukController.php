@@ -88,7 +88,7 @@ class PindahMasukController extends Controller
         $namaPekerjaan = $request->status_pekerjaan === 'Belum Bekerja' ? '' : $request->input('namaPekerjaan', '');
         $alamatPekerjaan = $request->status_pekerjaan === 'Belum Bekerja' ? '' : $request->input('alamatPekerjaan', '');
 
-        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->first();
+        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->where('jenis', 'Pindah Masuk')->first();
         if (!$statusPengajuan) {
             $statusPengajuan = StatusPengajuan::create(['nama_status' => 'RT']);
         }
@@ -194,7 +194,7 @@ class PindahMasukController extends Controller
         $namaPekerjaan = $request->status_pekerjaan === 'Belum Bekerja' ? '' : $request->input('namaPekerjaan', '');
         $alamatPekerjaan = $request->status_pekerjaan === 'Belum Bekerja' ? '' : $request->input('alamatPekerjaan', '');
 
-        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->first();
+        $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->where('jenis', 'Pindah Masuk')->first();
         if (!$statusPengajuan) {
             $statusPengajuan = StatusPengajuan::create(['nama_status' => 'RT']);
         }
