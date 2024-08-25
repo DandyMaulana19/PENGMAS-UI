@@ -133,16 +133,6 @@ class PindahMasukController extends Controller
             'namaProvinsi' => $validatedData['provinsiTujuan'],
         ]);
 
-        Aktifitas::create([
-            'id' => Str::uuid(),
-            'user_id' => $dataDiri->id_user,
-            'statusKeputusan' => 'Di ajukan',
-            'statusPengajuan' => 'Menunggu Persetujuan',
-            'jenis' => 'Pindah Masuk',
-            'catatan' => '',
-            'created_by' => $dataDiri->namaLengkap,
-        ]);
-
         $rt_ID = RT::where('nama', $validatedData['rtTujuan'])->first();
 
         $dataKk = DataKK::create([
@@ -182,13 +172,6 @@ class PindahMasukController extends Controller
             'kecamatanAsal' => 'required|string|max:100',
             'kabupatenAsal' => 'required|string|max:100',
             'provinsiAsal' => 'required|string|max:100',
-            'alamatTujuan' => 'required|string|max:255',
-            'rtTujuan' => 'required|string|max:10',
-            'rwTujuan' => 'required|string|max:10',
-            'kelurahanTujuan' => 'required|string|max:100',
-            'kecamatanTujuan' => 'required|string|max:100',
-            'kabupatenTujuan' => 'required|string|max:100',
-            'provinsiTujuan' => 'required|string|max:100',
         ]);
 
         $namaPekerjaan = $request->status_pekerjaan === 'Belum Bekerja' ? '' : $request->input('namaPekerjaan', '');
@@ -228,17 +211,6 @@ class PindahMasukController extends Controller
             'namaProvinsi' => $validatedData['provinsiAsal'],
         ]);
 
-        DaerahTujuan::create([
-            'dataDiri_id' => $dataDiri->id,
-            'alamat' => $validatedData['alamatTujuan'],
-            'namaRt' => $validatedData['rtTujuan'],
-            'namaRw' => $validatedData['rwTujuan'],
-            'namaKelurahan' => $validatedData['kelurahanTujuan'],
-            'namaKecamatan' => $validatedData['kecamatanTujuan'],
-            'namaKabupaten' => $validatedData['kabupatenTujuan'],
-            'namaProvinsi' => $validatedData['provinsiTujuan'],
-        ]);
-
         Aktifitas::create([
             'id' => Str::uuid(),
             'user_id' => $dataDiri->id_user,
@@ -272,13 +244,14 @@ class PindahMasukController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $dataDiri = DataDiri::where('id_user', $user->id)
-            ->first();
+        $dataDiri = DataDiri::where('id_user', $user->id)->with('dataKks')->firstOrFail();
 
+        $daerahTujuan = DaerahTujuan::where('dataDiri_id', $dataDiri->id)->first();
 
         return view('pages.pengajuanKK', [
             'id' => $user,
             'dataDiri' => $dataDiri,
+            'daerahTujuan' => $daerahTujuan,
         ]);
     }
 
