@@ -86,6 +86,11 @@ class DatabaseSeeder extends Seeder
             'nama_status' => 'Kecamatan',
             'jenis' => 'pindah masuk',
         ]);
+        $pengajuanSelesai = StatusPengajuan::create([
+            'id' => (string) Str::uuid(),
+            'nama_status' => 'Selesai',
+            'jenis' => 'pindah masuk',
+        ]);
 
         // User
         $userWarga = User::create([
@@ -165,7 +170,7 @@ class DatabaseSeeder extends Seeder
 
         // DataDiri
         DataDiri::create([
-            'id'  => (string) Str::uuid(),
+            'id' => (string) Str::uuid(),
             'nik' => '12345',
             'namaLengkap' => 'warga dummy',
             'jenisKelamin' => 1,

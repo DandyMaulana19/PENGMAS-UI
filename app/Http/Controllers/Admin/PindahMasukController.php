@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\DaerahTujuan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\StatusPengajuan;
 use Yajra\DataTables\Facades\DataTables;
 
 class PindahMasukController extends Controller
@@ -140,8 +141,13 @@ class PindahMasukController extends Controller
             'created_by' => 'RT',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'RW')
+            ->where('jenis', 'pindah masuk')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('rt.pindahMasuk')->with('success', 'Submit berhasil.');
@@ -231,8 +237,13 @@ class PindahMasukController extends Controller
             'created_by' => 'RW',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kelurahan')
+            ->where('jenis', 'pindah masuk')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('rw.pindahMasuk')->with('success', 'Submit berhasil.');
@@ -322,8 +333,13 @@ class PindahMasukController extends Controller
             'created_by' => 'Kelurahan',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'Kecamatan')
+            ->where('jenis', 'pindah masuk')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('kelurahan.pindahMasuk')->with('success', 'Submit berhasil.');
@@ -412,8 +428,13 @@ class PindahMasukController extends Controller
             'created_by' => 'Kecamatan',
         ]);
 
-        $dataDiri->statusPengajuan->update([
-            'nama_status' => $statusPengajuan,
+        $StatusPengajuan = StatusPengajuan::where('nama_status', 'Selesai')
+            ->where('jenis', 'pindah masuk')
+            ->first()
+            ->id;
+
+        $dataDiri->update([
+            'id_status_pengajuan' => $StatusPengajuan,
         ]);
 
         return redirect()->route('kecamatan.pindahMasuk')->with('success', 'Submit berhasil.');
