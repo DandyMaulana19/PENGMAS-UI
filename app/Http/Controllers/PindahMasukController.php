@@ -11,6 +11,7 @@ use App\Models\DataDiriDataKK;
 use App\Models\DataKK;
 use App\Models\RT;
 use App\Models\User;
+use App\Models\Aktifitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -210,6 +211,16 @@ class PindahMasukController extends Controller
             'namaProvinsi' => $validatedData['provinsiAsal'],
         ]);
 
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => 'Di ajukan',
+            'statusPengajuan' => 'Menunggu Persetujuan',
+            'jenis' => 'Pindah Masuk',
+            'catatan' => '',
+            'created_by' => $dataDiri->namaLengkap,
+        ]);
+
         $existingDataDiri = DataDiri::where('id_user', $user->id)
             ->whereHas('dataKks')
             ->with('dataKks')
@@ -247,7 +258,11 @@ class PindahMasukController extends Controller
     public function getData(Request $request)
     {
         if ($request->ajax()) {
-            $data = DataDiri::select(['id', 'nik', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+            $userId = auth()->id();
+
+            $data = DataDiri::where('id_user', $userId)
+                ->select(['id', 'nik', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('jenisKelamin', function ($row) {

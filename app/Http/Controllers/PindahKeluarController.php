@@ -7,7 +7,9 @@ use App\Models\DataDiri;
 use App\Models\DaerahTujuan;
 use App\Models\StatusPengajuan;
 use App\Models\User;
+use App\Models\Aktifitas;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Str;
 
 class PindahKeluarController extends Controller
 {
@@ -70,6 +72,16 @@ class PindahKeluarController extends Controller
             DaerahTujuan::create($validatedData);
         }
 
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => 'Di ajukan',
+            'statusPengajuan' => 'Menunggu Persetujuan',
+            'jenis' => 'Pindah Keluar',
+            'catatan' => '',
+            'created_by' => $dataDiri->namaLengkap,
+        ]);
+
         $idUser = session('idUser');
 
         return redirect('/warga/dashboard/' . $idUser)->with('success', 'Form berhasil diisi.');
@@ -79,7 +91,11 @@ class PindahKeluarController extends Controller
     public function getData(Request $request)
     {
         if ($request->ajax()) {
-            $data = DataDiri::select(['id', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+            $userId = auth()->id();
+
+            $data = DataDiri::where('id_user', $userId)
+                ->select(['id', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('jenisKelamin', function ($row) {

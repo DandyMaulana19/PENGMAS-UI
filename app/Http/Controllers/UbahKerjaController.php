@@ -7,7 +7,9 @@ use App\Models\DataDiri;
 use App\Models\StatusPekerjaan;
 use App\Models\StatusPengajuan;
 use App\Models\User;
+use App\Models\Aktifitas;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Str;
 
 class UbahKerjaController extends Controller
 {
@@ -64,8 +66,6 @@ class UbahKerjaController extends Controller
 
         $statusPengajuan = StatusPengajuan::where('nama_status', 'RT')->first();
 
-        // dd($statusPengajuan);
-
         if (!$statusPengajuan) {
             $statusPengajuan = StatusPengajuan::create(['nama_status' => 'RT']);
         }
@@ -74,14 +74,29 @@ class UbahKerjaController extends Controller
 
         $dataDiri->save();
 
+        Aktifitas::create([
+            'id' => Str::uuid(),
+            'user_id' => $dataDiri->id_user,
+            'statusKeputusan' => 'Di ajukan',
+            'statusPengajuan' => 'Menunggu Persetujuan',
+            'jenis' => 'Ubah Kerja',
+            'catatan' => '',
+            'created_by' => $dataDiri->namaLengkap,
+        ]);
+
         $idUser = session('idUser');
 
         return redirect('/warga/dashboard/' . $idUser)->with('success', 'Form berhasil diisi.');
     }
+
     public function getData(Request $request)
     {
         if ($request->ajax()) {
-            $data = DataDiri::select(['id', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+            $userId = auth()->id();
+
+            $data = DataDiri::where('id_user', $userId)
+                ->select(['id', 'namaLengkap', 'jenisKelamin', 'tempatLahir', 'tanggalLahir', 'agama', 'pendidikan']);
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('jenisKelamin', function ($row) {
