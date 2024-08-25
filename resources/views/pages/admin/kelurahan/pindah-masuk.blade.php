@@ -54,7 +54,8 @@
                 </div>
                 <div class="inline-flex flex-col px-4">
                     <span class="font-bold text-gray-500">Menunggu Persetujuan</span>
-                    <span class="font-bold text-gray-800">{{ $menungguPersetujuan }}</span>
+                    <span class="font-bold text-gray-800">1</span>
+                    {{-- <span class="font-bold text-gray-800">{{ $pending }}</span> --}}
                 </div>
             </div>
 
